@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">QDaily</string>
+    <string name="net_error">网络错误，请检查网络连接情况</string>
+    <string name="no_more">客官，没有更多啦啦啦</string>
+    <string name="parse_error">解析出错了哦。。。。</string>
+    <string name="none_point_error">嗨！我是空指针异常</string>
+    <string name="time_out">网络超时。。。</string>
+    <string name="request_error">服务器异常。。。。</string>
+</resources>
