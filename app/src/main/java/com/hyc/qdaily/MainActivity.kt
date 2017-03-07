@@ -2,6 +2,7 @@ package com.hyc.qdaily
 
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import com.hyc.qdaily.base.BaseActivity
 import com.hyc.qdaily.beans.BaseBean
 import com.hyc.qdaily.beans.home.Home
@@ -9,6 +10,10 @@ import com.hyc.qdaily.contract.HomeContract
 import com.hyc.qdaily.presenter.HomePresenter
 
 class MainActivity : BaseActivity<HomePresenter>(),HomeContract.View {
+    override fun isSupportSwipeBack(): Boolean {
+        return false
+    }
+
     override fun showRecommendData(data: BaseBean<Home>) {
         data.response?:let{
             Log.e("hyc-test","null")

@@ -1,13 +1,13 @@
 package com.hyc.qdaily.base
 
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
 import butterknife.ButterKnife
+import com.hyc.skin.BaseActivity
 
 /**
  * Created by hyc on 2016/5/13.
  */
-abstract class BaseActivity<T : BasePresenter<*>> : AppCompatActivity(), BaseView {
+abstract class BaseActivity<T : BasePresenter<*>> : BaseActivity(), BaseView {
     protected lateinit var mPresenter: T
 
     override fun onCreate(savedInstanceState: Bundle?) {

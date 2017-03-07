@@ -3,4 +3,13 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+    <color name="banner_text">#FFFFFF</color>
+    <color name="text_color_normal">#2A2A2A</color>
+    <color name="indicator_select">#FFC820</color>
+    <color name="tab_normal">#B2B2B2</color>
+    <color name="tab_select">#000000</color>
+    <color name="main_bg">#F2F2F2</color>
+    <color name="text_small">#737373</color>
+    <color name="content_bg">#FFFFFF</color>
+    <color name="tab_bg">#FFFFFF</color>
 </resources>

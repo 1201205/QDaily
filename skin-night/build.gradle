@@ -1,0 +1,43 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 25
+    buildToolsVersion "25.0.2"
+
+    defaultConfig {
+        minSdkVersion 14
+        targetSdkVersion 25
+        versionCode 1
+        versionName "1.0"
+    }
+    signingConfigs {
+        default_sign {
+            keyAlias 'hyc'
+            keyPassword 'hychyc'
+            storeFile file(getRootDir().absolutePath+'/key.jks')
+            storePassword 'hychyc'
+        }
+    }
+    buildTypes {
+        release {
+            def name="red"
+            signingConfig signingConfigs.default_sign
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            applicationVariants.all { variant ->
+                variant.outputs.each { output ->
+                    def outputFile = output.outputFile
+                    if (outputFile != null && outputFile.name.endsWith('.apk')) {
+                        def fileName = "${name}.skin"
+                        def path=getRootDir().absolutePath+"/app/src/main/assets";
+                        output.outputFile = new File(path, fileName)
+                    }
+                }
+            }
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+}

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.hyc.skin.widget.SkinRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main"
+    android:background="@color/colorAccent"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context="com.hyc.skin.MainActivity">
+
+    <com.hyc.skin.widget.SkinTextView
+        android:clickable="true"
+        android:textColor="@color/color_selector"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Hello World!"/>
+    <com.hyc.skin.widget.SkinButton
+        android:id="@+id/change"
+        android:textColor="@color/color_selector"
+        android:layout_centerInParent="true"
+        android:text="button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+    <com.hyc.skin.widget.SkinImageView
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/btn_del_nor"
+        android:layout_width="100dp"
+        android:layout_height="100dp"/>
+    <com.hyc.skin.widget.SkinTextView
+        android:layout_alignParentRight="true"
+        android:background="@color/colorPrimaryDark"
+        android:layout_width="100dp"
+        android:layout_height="100dp"/>
+</com.hyc.skin.widget.SkinRelativeLayout>
