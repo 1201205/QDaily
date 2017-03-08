@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="240dp">
+    <com.facebook.drawee.view.SimpleDraweeView
+        android:id="@+id/sdv_banner"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+    <com.hyc.skin.widget.SkinTextView
+        android:id="@+id/tv_banner"
+        android:layout_margin="40dp"
+        android:textColor="@color/banner_text"
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+</RelativeLayout>

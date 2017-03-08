@@ -1,6 +1,7 @@
 package com.hyc.qdaily
 
 import android.app.Application
+import com.hyc.qdaily.view.adpter.holder.ViewModelPool
 import com.hyc.skin.core.SkinManager
 
 /**
@@ -12,6 +13,7 @@ class MainApplication : Application() {
         super.onCreate()
         instance = this
         SkinManager.getInstance().init(this)
+        ViewModelPool.getInstance().init()
     }
 
     companion object {
