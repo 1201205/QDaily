@@ -11,9 +11,6 @@ import java.lang.reflect.Field
 /**
  * Created by Administrator on 2016/8/26.
  */
-object AppUtil {
-
-}
 private var sStausHeight = -1
 /**
  * 生成唯一设备识别id

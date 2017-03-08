@@ -14,10 +14,10 @@ import android.widget.TextView;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.hyc.qdaily.R;
 import com.hyc.qdaily.beans.home.Feed;
-import com.hyc.qdaily.util.AppUtilKt;
-import com.hyc.qdaily.util.FrescoHelperKt;
 import java.util.ArrayList;
 import java.util.List;
+import com.hyc.qdaily.util.AppUtilKt;
+import com.hyc.qdaily.util.FrescoHelperKt;
 
 public class LoopViewPagerAdapter extends BaseLoopPagerAdapter {
     private final List<Feed> mDatas;

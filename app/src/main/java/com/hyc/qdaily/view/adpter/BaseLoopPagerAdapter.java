@@ -38,7 +38,6 @@ public abstract class BaseLoopPagerAdapter extends PagerAdapter
         mHandler = new Handler(Looper.getMainLooper());
         mList = new ArrayList<>();
         mViews = new LinkedList<>();
-
         mViewPager = viewPager;
         mViewPager.setOnTouchListener(this);
     }

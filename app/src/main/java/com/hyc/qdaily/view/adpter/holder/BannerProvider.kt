@@ -12,6 +12,7 @@ import butterknife.BindView
 import butterknife.ButterKnife
 import com.hyc.qdaily.MainActivity
 import com.hyc.qdaily.R
+import com.hyc.qdaily.beans.ViewData
 import com.hyc.qdaily.beans.home.Feed
 import com.hyc.qdaily.view.adpter.LoopViewPagerAdapter
 
@@ -19,12 +20,12 @@ import com.hyc.qdaily.view.adpter.LoopViewPagerAdapter
  * Created by hyc on 2017/3/8.
  */
 class BannerProvider : ItemViewProvider<BannerProvider.BannerViewHolder>() {
-    override fun onBindViewHolder(holder: BannerViewHolder, data: Feed, position: Int, wrapper: ParamWrapper) {
+    override fun onBindViewHolder(holder: BannerViewHolder, data: ViewData, position: Int, wrapper: ParamWrapper) {
         with(holder) {
             vpBanner.adapter?.let {
                 val context: Context = itemView.context
                 var adapter: LoopViewPagerAdapter = LoopViewPagerAdapter(holder.vpBanner, holder.llIndicator)
-                adapter.setList(ArrayList())
+                adapter.setList(data.banners)
                 vpBanner.adapter = adapter
                 vpBanner.addOnPageChangeListener(adapter)
                 adapter.notifyDataSetChanged()
