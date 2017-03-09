@@ -7,4 +7,5 @@ import com.hyc.qdaily.beans.home.Feed
  */
 class ViewData{
     var banners:ArrayList<Feed>?=null
+    var type:String=""
 }

@@ -1,29 +1,36 @@
 package com.hyc.qdaily
 
 import android.os.Bundle
+import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.OrientationHelper
+import android.support.v7.widget.RecyclerView
 import android.util.Log
 import android.view.View
+import butterknife.BindView
 import com.hyc.qdaily.base.BaseActivity
 import com.hyc.qdaily.beans.BaseBean
+import com.hyc.qdaily.beans.ViewData
 import com.hyc.qdaily.beans.home.Home
 import com.hyc.qdaily.contract.HomeContract
 import com.hyc.qdaily.presenter.HomePresenter
+import com.hyc.qdaily.view.adpter.ViewAdapter
 
 class MainActivity : BaseActivity<HomePresenter>(),HomeContract.View {
+    lateinit var mRecyclerView:RecyclerView
+    private var mAdapter:ViewAdapter?=null
     override fun isSupportSwipeBack(): Boolean {
         return false
     }
 
-    override fun showRecommendData(data: BaseBean<Home>) {
-        data.response?:let{
-            Log.e("hyc-test","null")
-        }
-        data.response?.let {
-            Log.e("hyc-test","data.response"+data.response)
-        }
+    override fun showRecommendData(data: ArrayList<ViewData>) {
+        mAdapter=ViewAdapter.Builder(this,data).build()
+        mRecyclerView.adapter=mAdapter
+        var manager=LinearLayoutManager(this)
+        manager.orientation= OrientationHelper.VERTICAL
+        mRecyclerView.layoutManager=manager
     }
 
-    override fun showMore(data: BaseBean<Home>) {
+    override fun showMore(data:ArrayList<ViewData>) {
     }
 
     override fun handleIntent() {
@@ -37,6 +44,7 @@ class MainActivity : BaseActivity<HomePresenter>(),HomeContract.View {
     }
 
     override fun initView() {
+        mRecyclerView= findViewById(R.id.target) as RecyclerView
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

@@ -2,6 +2,7 @@
 <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_main"
+    android:background="@color/indicator_select"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.hyc.qdaily.MainActivity">
@@ -56,27 +57,11 @@
             <!--android:layout_centerVertical="true"-->
             <!--android:background="@drawable/shape_indicator"/>-->
     <!--</RelativeLayout>-->
-    <com.hyc.skin.view.PullToRefreshView
+    <TextView
+        android:id="@+id/tv_banner"
+        android:layout_margin="40dp"
+        android:textColor="@color/banner_text"
+        android:layout_alignParentBottom="true"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <LinearLayout
-            android:id="@id/head"
-            android:layout_width="match_parent"
-            android:layout_height="120dp"
-            android:layout_marginTop="-120dp"
-            android:gravity="center"
-            android:orientation="vertical">
-
-            <com.hyc.skin.view.LoadingAnimView
-                android:id="@id/loading"
-                android:layout_width="80dp"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"/>
-        </LinearLayout>
-
-        <android.support.v7.widget.RecyclerView
-            android:id="@id/target"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
-    </com.hyc.skin.view.PullToRefreshView>
+        android:layout_height="wrap_content"/>
 </android.support.design.widget.CoordinatorLayout>

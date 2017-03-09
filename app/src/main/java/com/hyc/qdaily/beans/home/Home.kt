@@ -1384,11 +1384,11 @@ class Home {
 
     var isHas_more: Boolean = false
     var last_key: String? = null
-    var feeds: List<Feed>? = null
-    var banners: List<Feed>? = null
+    var feeds: ArrayList<Feed>? = null
+    var banners: ArrayList<Feed>? = null
     var headLine: HeadLine? = null
-    var banners_ad: List<Feed>? = null
-    var feeds_ad: List<Feed>? = null
-    var columns: List<Column>? = null
+    var banners_ad: ArrayList<Feed>? = null
+    var feeds_ad: ArrayList<Feed>? = null
+    var columns: ArrayList<Column>? = null
 
 }

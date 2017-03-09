@@ -1,9 +1,11 @@
 package com.hyc.qdaily.view.adpter;
 
+import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -91,9 +93,18 @@ public class LoopViewPagerAdapter extends BaseLoopPagerAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         ViewHolder holder = null;
+        Log.e("hyc-test","View");
         if (convertView == null) {
-            convertView = LayoutInflater.from(parent.getContext())
+            Log.e("hyc-------",parent.getContext()+"----");
+            LayoutInflater inflater= (LayoutInflater) parent.getContext().getSystemService(
+                Context.LAYOUT_INFLATER_SERVICE);
+            if (inflater==null) {
+                Log.e("hyc-------inflaterView","inflaterView----");
+            }
+            convertView = inflater
                 .inflate(R.layout.adpter_banner, parent, false);
+
+            Log.e("hyc-------convertView",convertView+"----");
             holder = new ViewHolder();
             holder.sdvBanner = (SimpleDraweeView) convertView.findViewById(R.id.sdv_banner);
             holder.tvBanner= (TextView) convertView.findViewById(R.id.tv_banner);

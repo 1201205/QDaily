@@ -5,16 +5,20 @@ import com.hyc.qdaily.base.BaseNetDisposableObserver
 import com.hyc.qdaily.base.BasePresenter
 import com.hyc.qdaily.base.SchedulerTransformer
 import com.hyc.qdaily.beans.BaseBean
+import com.hyc.qdaily.beans.ViewData
 import com.hyc.qdaily.beans.home.Home
 import com.hyc.qdaily.contract.HomeContract
+import com.hyc.qdaily.model.MainPageModel
 import com.hyc.qdaily.net.RequestClient
 import io.reactivex.functions.Action
 import io.reactivex.functions.Consumer
+import io.reactivex.functions.Function
 
 /**
  * Created by hyc on 2017/3/7.
  */
 class HomePresenter(mView: HomeContract.View) : HomeContract.Presenter, BasePresenter<HomeContract.View>(mView) {
+    private var model:MainPageModel= MainPageModel()
     override fun getMoreData(index: String) {
     }
 
@@ -28,20 +32,24 @@ class HomePresenter(mView: HomeContract.View) : HomeContract.Presenter, BasePres
 //            Log.e("hhhhhhahhhha", "完成任务");
 //        }
 //        )
-        RequestClient.api.getHomeDataByIndex("0").compose(SchedulerTransformer.create()).subscribe(object : BaseNetDisposableObserver<BaseBean<Home>>(true) {
-            override fun onError(throwable: Throwable) {
-                super.onError(throwable)
-            }
+        RequestClient.api.getHomeDataByIndex("0").compose(SchedulerTransformer.create()).map{model.revertToViewData(it)}.subscribe({mView.showRecommendData(it)
 
-            override fun onNext(t: BaseBean<Home>) {
-                super.onNext(t)
-                mView.showRecommendData(t)
-            }
+        },{  onError(it)})
 
-            override fun onComplete() {
-                super.onComplete()
-                Log.e("hhhhhhahhhha", "完成任务");
-            }
-        })
+//        RequestClient.api.getHomeDataByIndex("0").compose(SchedulerTransformer.create()).subscribe(object : BaseNetDisposableObserver<BaseBean<Home>>(true) {
+//            override fun onError(throwable: Throwable) {
+//                super.onError(throwable)
+//            }
+//
+//            override fun onNext(t: BaseBean<Home>) {
+//                super.onNext(t)
+//                mView.showRecommendData(t)
+//            }
+//
+//            override fun onComplete() {
+//                super.onComplete()
+//                Log.e("hhhhhhahhhha", "完成任务");
+//            }
+//        })
     }
 }

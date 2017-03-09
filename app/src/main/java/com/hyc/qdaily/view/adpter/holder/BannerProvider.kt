@@ -22,7 +22,6 @@ import com.hyc.qdaily.view.adpter.LoopViewPagerAdapter
 class BannerProvider : ItemViewProvider<BannerProvider.BannerViewHolder>() {
     override fun onBindViewHolder(holder: BannerViewHolder, data: ViewData, position: Int, wrapper: ParamWrapper) {
         with(holder) {
-            vpBanner.adapter?.let {
                 val context: Context = itemView.context
                 var adapter: LoopViewPagerAdapter = LoopViewPagerAdapter(holder.vpBanner, holder.llIndicator)
                 adapter.setList(data.banners)
@@ -34,22 +33,19 @@ class BannerProvider : ItemViewProvider<BannerProvider.BannerViewHolder>() {
                     intent.action = data.image
                     context.startActivity(intent)
                 }
-            }
         }
     }
 
-    override fun onCreateViewHolder(inflater: LayoutInflater, viewGroup: ViewGroup): BannerProvider.BannerViewHolder {
+    override fun onCreateViewHolder(inflater: LayoutInflater, viewGroup: ViewGroup?): BannerProvider.BannerViewHolder {
         return BannerViewHolder(inflater.inflate(R.layout.item_pager, viewGroup, false))
     }
 
     class BannerViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        @BindView(R.id.vp_banner)
-        lateinit var vpBanner: ViewPager
-        @BindView(R.id.ll_indicator)
-        lateinit var llIndicator: LinearLayout
+         var vpBanner: ViewPager = itemView.findViewById(R.id.vp_banner) as ViewPager
+        var llIndicator: LinearLayout = itemView.findViewById(R.id.ll_indicator) as LinearLayout
 
         init {
-            ButterKnife.bind(this, itemView)
+//            ButterKnife.bind(this, itemView)
         }
     }
 }

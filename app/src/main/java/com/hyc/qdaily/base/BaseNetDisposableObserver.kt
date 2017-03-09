@@ -3,6 +3,7 @@ package com.hyc.qdaily.base
 import com.google.gson.JsonParseException
 import com.hyc.qdaily.R
 import com.hyc.qdaily.beans.BaseBean
+import com.hyc.qdaily.beans.ViewData
 import io.reactivex.exceptions.Exceptions
 import io.reactivex.observers.DisposableObserver
 import java.net.SocketException
@@ -14,7 +15,7 @@ import com.hyc.qdaily.util.showToast
  * Created by hyc on 2017/3/6.
  */
 
-open class BaseNetDisposableObserver<T : BaseBean<*>> : DisposableObserver<T> {
+open class BaseNetDisposableObserver<T : ArrayList<ViewData>> : DisposableObserver<T> {
     private var toast: Boolean = false
 
 
@@ -28,10 +29,6 @@ open class BaseNetDisposableObserver<T : BaseBean<*>> : DisposableObserver<T> {
 
 
     override fun onNext(t: T) {
-        if (t.error != null) {
-            onError(RequestException())
-            return
-        }
     }
 
     protected fun onNoNetWork() {
