@@ -56,27 +56,12 @@
             <!--android:layout_centerVertical="true"-->
             <!--android:background="@drawable/shape_indicator"/>-->
     <!--</RelativeLayout>-->
-    <com.hyc.skin.view.PullToRefreshView
+    <com.yalantis.phoenix.PullToRefreshView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-        <LinearLayout
-            android:id="@id/head"
-            android:layout_width="match_parent"
-            android:layout_height="120dp"
-            android:layout_marginTop="-120dp"
-            android:gravity="center"
-            android:orientation="vertical">
-
-            <com.hyc.skin.view.LoadingAnimView
-                android:id="@id/loading"
-                android:layout_width="80dp"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"/>
-        </LinearLayout>
-
         <android.support.v7.widget.RecyclerView
             android:id="@id/target"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
-    </com.hyc.skin.view.PullToRefreshView>
+    </com.yalantis.phoenix.PullToRefreshView>
 </android.support.design.widget.CoordinatorLayout>

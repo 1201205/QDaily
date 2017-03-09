@@ -29,6 +29,7 @@ class ViewModelPool private constructor() {
 
     fun init(){
         putInPool("banner",BannerProvider() as ItemViewProvider<RecyclerView.ViewHolder>)
+        putInPool("feed",FeedProvider() as ItemViewProvider<RecyclerView.ViewHolder>)
         Log.e("hyc-we",this.toString()+"init---"+mProviders.size)
     }
 

@@ -32,7 +32,7 @@ abstract class BaseActivity<T : BasePresenter<*>> : BaseActivity(), BaseView {
 
     override fun onDestroy() {
         super.onDestroy()
-        mPresenter!!.detachView()
+        mPresenter.detachView()
     }
 
     //    protected void setShareElementTransition(){

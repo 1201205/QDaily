@@ -36,7 +36,7 @@ object RequestClient {
                     }
                     if (sApi == null) {
                         sApi = Retrofit.Builder().baseUrl("http://app3.qdaily.com/").addCallAdapterFactory(
-                            RxJava2CallAdapterFactory.create()).addConverterFactory(GsonConverterFactory.create()).client(sClient!!).build().create<API>(API::class.java!!)
+                            RxJava2CallAdapterFactory.create()).addConverterFactory(GsonConverterFactory.create()).client(sClient!!).build().create<API>(API::class.java)
                     }
                 }
             }
@@ -62,7 +62,7 @@ object RequestClient {
                 .build()
         }
         //设置缓存路径
-        sHttpCacheDirectory = File(MainApplication.instance?.getCacheDir(), "responses")
+        sHttpCacheDirectory = File(MainApplication.instance.getCacheDir(), "responses")
         //设置缓存 50M
         sCache = Cache(sHttpCacheDirectory, (50 * 1024 * 1024).toLong())
         sClient = OkHttpClient.Builder()

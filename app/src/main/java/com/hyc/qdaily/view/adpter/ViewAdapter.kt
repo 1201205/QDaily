@@ -2,6 +2,7 @@ package com.hyc.qdaily.view.adpter
 
 import android.content.Context
 import android.support.v7.widget.RecyclerView
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.hyc.qdaily.beans.ViewData
@@ -23,6 +24,7 @@ class ViewAdapter private constructor(context: Context,datas: ArrayList<ViewData
         holder?:let{
             return
         }
+        Log.e("hyc-gg",mDatas[position].type);
         ViewModelPool.instance.getProviderByType(mDatas[position].type)?.onBindViewHolder(holder,mDatas[position],position,paramWrapper)
     }
 
@@ -30,6 +32,9 @@ class ViewAdapter private constructor(context: Context,datas: ArrayList<ViewData
         return ViewModelPool.instance.getProvider(viewType).onCreateViewHolder(mInflater,parent)
     }
 
+    override fun getItemViewType(position: Int): Int {
+        return ViewModelPool.instance.getType(mDatas[position].type)
+    }
     class Builder{
         var adapter: ViewAdapter
 

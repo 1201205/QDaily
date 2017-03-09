@@ -1,6 +1,7 @@
 package com.hyc.qdaily.model
 
 import android.util.Log
+import android.view.View
 import com.hyc.qdaily.beans.BaseBean
 import com.hyc.qdaily.beans.ViewData
 import com.hyc.qdaily.beans.home.Feed
@@ -20,6 +21,7 @@ class MainPageModel() : HomeContract.Model<Home>{
         var viewData=ViewData()
         viewData.type="banner"
         viewData.banners=(home?.banners as ArrayList<Feed>)
+        home?.feeds!!.forEach { content -> }
         Log.e("hyc-e","----"+viewData?.banners?.size)
         Log.e("hyc-e?????","----"+home.banners_ad?.size)
         home.banners_ad?.let{
@@ -28,6 +30,14 @@ class MainPageModel() : HomeContract.Model<Home>{
 //            }
         }
         datas.add(viewData)
+        home?.feeds?.let {
+            home.feeds!!.forEach {
+                var data=ViewData()
+                data.type="feed"
+                data.feed=it
+                datas.add(data)
+            }
+        }
         return datas
     }
 
