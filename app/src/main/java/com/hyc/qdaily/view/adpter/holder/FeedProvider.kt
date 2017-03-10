@@ -30,7 +30,7 @@ class FeedProvider : ItemViewProvider<FeedProvider.FeedViewHolder>() {
                 loadUrl(sdvImg,feed.image)
                 tvCatTitle.text=feed.post?.category?.title
                 tvCommentCount.text=(feed.post?.comment_count).toString()
-                tvDescription.text=feed.post?.description
+                tvDescription.text=feed.post?.title
                 tvPraiseCount.text=feed.post?.praise_count.toString()
                 tvTime.text=feed.post?.publish_time.toString()
             }

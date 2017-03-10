@@ -24,7 +24,6 @@ class ViewAdapter private constructor(context: Context,datas: ArrayList<ViewData
         holder?:let{
             return
         }
-        Log.e("hyc-gg",mDatas[position].type);
         ViewModelPool.instance.getProviderByType(mDatas[position].type)?.onBindViewHolder(holder,mDatas[position],position,paramWrapper)
     }
 

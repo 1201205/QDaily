@@ -49,10 +49,7 @@ public class PullToRefreshView extends FrameLayout {
     public PullToRefreshView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         mContext=context;
-        LayoutInflater.from(context).inflate(R.layout.content,this,true);
-        mHead=findViewById(R.id.head);
-        mLoadingView= (LoadingAnimView) findViewById(R.id.loading);
-        mTarget= (RecyclerView) findViewById(R.id.target);
+
         mScroller = new Scroller(getContext());
         mTouchSlop = ViewConfiguration.getTouchSlop();
     }
@@ -70,6 +67,9 @@ public class PullToRefreshView extends FrameLayout {
         if (count <= 0) {
             return;
         }
+        mHead=findViewById(R.id.head);
+        mLoadingView= (LoadingAnimView) findViewById(R.id.loading);
+        mTarget= (RecyclerView) findViewById(R.id.target);
         //mHead = findViewById(R.id.head);
         //if (mHead != null) {
         //    mHasHead = true;
