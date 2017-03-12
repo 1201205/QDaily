@@ -9,13 +9,17 @@ import android.view.View
 import butterknife.BindView
 import com.hyc.qdaily.base.BaseActivity
 import com.hyc.qdaily.beans.BaseBean
-import com.hyc.qdaily.beans.ViewData
+import com.hyc.qdaily.beans.view.ViewData
 import com.hyc.qdaily.beans.home.Home
 import com.hyc.qdaily.contract.HomeContract
 import com.hyc.qdaily.presenter.HomePresenter
 import com.hyc.qdaily.view.adpter.ViewAdapter
 
 class MainActivity : BaseActivity<HomePresenter>(),HomeContract.View {
+    override fun show() {
+        mAdapter?.notifyDataSetChanged()
+    }
+
     lateinit var mRecyclerView:RecyclerView
     private var mAdapter:ViewAdapter?=null
     override fun isSupportSwipeBack(): Boolean {

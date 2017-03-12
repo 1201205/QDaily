@@ -23,13 +23,18 @@ class ViewModelPool private constructor() {
     fun getType(type: String): Int = mProviders.indexOf(mTypeMap[type])
     fun getProviderByType(type: String): ItemViewProvider<RecyclerView.ViewHolder>? = mTypeMap[type]
     fun getProvider(index: Int): ItemViewProvider<RecyclerView.ViewHolder> {
-        Log.e("hyc-we",this.toString()+"Provider---"+mProviders.size)
+        Log.e("hyc-we",this.toString()+"Provider---"+mProviders.size+"++++++"+index)
         return mProviders[index]
     }
 
     fun init(){
         putInPool("banner",BannerProvider() as ItemViewProvider<RecyclerView.ViewHolder>)
         putInPool("feed",FeedProvider() as ItemViewProvider<RecyclerView.ViewHolder>)
+        putInPool("curiosity",CuriosityProvider() as ItemViewProvider<RecyclerView.ViewHolder>)
+        putInPool("vertical",VerticalProvider() as ItemViewProvider<RecyclerView.ViewHolder>)
+        putInPool("recycler",RecyclerProvider() as ItemViewProvider<RecyclerView.ViewHolder>)
+        putInPool("language",LanguageProvider() as ItemViewProvider<RecyclerView.ViewHolder>)
+
         Log.e("hyc-we",this.toString()+"init---"+mProviders.size)
     }
 

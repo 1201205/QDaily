@@ -3,9 +3,11 @@ package com.hyc.qdaily.model
 import android.util.Log
 import android.view.View
 import com.hyc.qdaily.beans.BaseBean
-import com.hyc.qdaily.beans.ViewData
+import com.hyc.qdaily.beans.home.ColumnContent
+import com.hyc.qdaily.beans.view.ViewData
 import com.hyc.qdaily.beans.home.Feed
 import com.hyc.qdaily.beans.home.Home
+import com.hyc.qdaily.beans.view.ColumnData
 import com.hyc.qdaily.contract.HomeContract
 
 /**
@@ -18,7 +20,7 @@ class MainPageModel() : HomeContract.Model<Home>{
     private var datas: ArrayList<ViewData> = ArrayList()
     override fun revertToViewData(bean: BaseBean<Home>):ArrayList<ViewData> {
         var home=bean.response
-        var viewData=ViewData()
+        var viewData= ViewData()
         viewData.type="banner"
         viewData.banners=(home?.banners as ArrayList<Feed>)
         home?.feeds!!.forEach { content -> }
@@ -32,8 +34,12 @@ class MainPageModel() : HomeContract.Model<Home>{
         datas.add(viewData)
         home?.feeds?.let {
             home.feeds!!.forEach {
-                var data=ViewData()
-                data.type="feed"
+                var data= ViewData()
+                when(it.type){
+                    0->data.type="curiosity"
+                    1->data.type="feed"
+                    2->data.type="vertical"
+                }
                 data.feed=it
                 datas.add(data)
             }
@@ -44,6 +50,24 @@ class MainPageModel() : HomeContract.Model<Home>{
     override fun addAndAddToViewData(bean: BaseBean<Home>) {
     }
 
+    fun addColunm(bean : ColumnContent?,name:String,ico:String){
+        var data=ViewData()
+        var colunmData=ColumnData();
+        with(colunmData){
+            icon=ico
+            colunmData.name=name
+            feeds= ArrayList()
+            bean?.feeds?.forEach {
+                var viewData=ViewData()
+                viewData.type="language"
+                viewData.feed=it
+                feeds!!.add(viewData)
+            }
+        }
+        data.type="recycler"
+        data.columnContent=colunmData
+        datas.add(data)
+    }
 
 
 }

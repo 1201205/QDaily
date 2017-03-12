@@ -9,7 +9,7 @@ import butterknife.BindView
 import butterknife.ButterKnife
 import com.facebook.drawee.view.SimpleDraweeView
 import com.hyc.qdaily.R
-import com.hyc.qdaily.beans.ViewData
+import com.hyc.qdaily.beans.view.ViewData
 import com.hyc.qdaily.util.loadUrl
 
 /**

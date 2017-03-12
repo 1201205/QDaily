@@ -11,8 +11,6 @@ class ColumnContent {
      * "feeds":Array[12]
      */
     var last_key: String? = null
-
-
     var isHas_more: Boolean = false
     var feeds: List<Feed>? = null
 }

@@ -3,7 +3,7 @@ package com.hyc.qdaily.base
 import com.google.gson.JsonParseException
 import com.hyc.qdaily.R
 import com.hyc.qdaily.beans.BaseBean
-import com.hyc.qdaily.beans.ViewData
+import com.hyc.qdaily.beans.view.ViewData
 import io.reactivex.exceptions.Exceptions
 import io.reactivex.observers.DisposableObserver
 import java.net.SocketException

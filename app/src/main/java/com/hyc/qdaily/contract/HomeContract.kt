@@ -2,7 +2,7 @@ package com.hyc.qdaily.contract
 
 import com.hyc.qdaily.base.BaseView
 import com.hyc.qdaily.beans.BaseBean
-import com.hyc.qdaily.beans.ViewData
+import com.hyc.qdaily.beans.view.ViewData
 import com.hyc.qdaily.beans.home.Home
 
 /**
@@ -13,6 +13,7 @@ interface HomeContract{
     interface View:BaseView{
         fun showRecommendData(data:ArrayList<ViewData>)
         fun showMore(data: ArrayList<ViewData>)
+        fun show()
     }
     interface Presenter{
         fun getRecommendData()

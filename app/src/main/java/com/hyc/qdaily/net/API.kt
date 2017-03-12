@@ -2,6 +2,7 @@ package com.hyc.qdaily.net
 
 import com.hyc.qdaily.beans.BaseBean
 import com.hyc.qdaily.beans.home.Article
+import com.hyc.qdaily.beans.home.ColumnContent
 import com.hyc.qdaily.beans.home.Home
 import io.reactivex.Observable
 import retrofit2.http.GET
@@ -28,5 +29,8 @@ interface API {
 
     @GET("app3/articles/detail/{index}.json")
     fun getArticleByIndex(@Path("index") index: String): Observable<BaseBean<Article>>
+
+    @GET("app3/columns/index/{id}/{index}.json")
+    fun getColumn(@Path("id") id:String,@Path("index") index: String): Observable<BaseBean<ColumnContent>>
 
 }

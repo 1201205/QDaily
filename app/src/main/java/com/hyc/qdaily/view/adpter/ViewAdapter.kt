@@ -5,7 +5,7 @@ import android.support.v7.widget.RecyclerView
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import com.hyc.qdaily.beans.ViewData
+import com.hyc.qdaily.beans.view.ViewData
 import com.hyc.qdaily.view.adpter.holder.ParamWrapper
 import com.hyc.qdaily.view.adpter.holder.ViewModelPool
 

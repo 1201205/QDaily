@@ -5,7 +5,7 @@ import com.hyc.qdaily.base.BaseNetDisposableObserver
 import com.hyc.qdaily.base.BasePresenter
 import com.hyc.qdaily.base.SchedulerTransformer
 import com.hyc.qdaily.beans.BaseBean
-import com.hyc.qdaily.beans.ViewData
+import com.hyc.qdaily.beans.view.ViewData
 import com.hyc.qdaily.beans.home.Home
 import com.hyc.qdaily.contract.HomeContract
 import com.hyc.qdaily.model.MainPageModel
@@ -32,8 +32,16 @@ class HomePresenter(mView: HomeContract.View) : HomeContract.Presenter, BasePres
 //            Log.e("hhhhhhahhhha", "完成任务");
 //        }
 //        )
-        RequestClient.api.getHomeDataByIndex("0").compose(SchedulerTransformer.create()).map{model.revertToViewData(it)}.subscribe({mView.showRecommendData(it)
-
+        RequestClient.api.getHomeDataByIndex("0").compose(SchedulerTransformer.create()).map{
+            var c=it.response?.columns?.get(0)
+            with(c){
+                c?.let{
+                    getColumn(c?.id.toString(),"0",c.name!!,c.icon!!)
+                }
+            }
+            model.revertToViewData(it)
+        }.subscribe({
+            mView.showRecommendData(it)
         },{  onError(it)})
 
 //        RequestClient.api.getHomeDataByIndex("0").compose(SchedulerTransformer.create()).subscribe(object : BaseNetDisposableObserver<BaseBean<Home>>(true) {
@@ -51,5 +59,14 @@ class HomePresenter(mView: HomeContract.View) : HomeContract.Presenter, BasePres
 //                Log.e("hhhhhhahhhha", "完成任务");
 //            }
 //        })
+    }
+
+    fun getColumn(id:String,index:String,name:String,icon:String){
+        RequestClient.api.getColumn(id,index).compose (SchedulerTransformer.create()).subscribe({
+            model.addColunm(it.response,name,icon)
+            mView.show()
+        },{
+            onError(it)
+        })
     }
 }

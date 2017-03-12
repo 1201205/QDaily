@@ -12,7 +12,7 @@ import butterknife.BindView
 import butterknife.ButterKnife
 import com.hyc.qdaily.MainActivity
 import com.hyc.qdaily.R
-import com.hyc.qdaily.beans.ViewData
+import com.hyc.qdaily.beans.view.ViewData
 import com.hyc.qdaily.view.adpter.LoopViewPagerAdapter
 
 /**
