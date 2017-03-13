@@ -22,6 +22,8 @@ class MainPageModel() : HomeContract.Model<Home> {
     override fun revertToViewData(bean: BaseBean<Home>): ArrayList<ViewData> {
         var home = bean.response
         var viewData = ViewData()
+        var headLineId= home?.headline?.post?.id
+        Log.e("hyc-headLineId","---"+headLineId)
         viewData.type = "banner"
         viewData.banners = (home?.banners as ArrayList<Feed>)
         home?.feeds!!.forEach { content -> }
@@ -47,26 +49,41 @@ class MainPageModel() : HomeContract.Model<Home> {
                     1 -> data.type = "feed"
                     2 -> data.type = "vertical"
                 }
-                data.feed = it
-                datas.add(data)
+                if (headLineId!=0||it.post?.id!=headLineId) {
+                    data.feed = it
+                    datas.add(data)
+                }
             }
         }
+        if (headLineId!=null&&headLineId!=0) {
+            var headLine=ViewData()
+            headLine.headLine=home.headline
+            headLine.type="headline"
+            datas.add(1,headLine)
+        }
+
         return datas
     }
 
     override fun addAndAddToViewData(bean: BaseBean<Home>) {
     }
 
-    fun addColunm(bean: ColumnContent?, name: String, ico: String) {
+    fun addColunm(bean: ColumnContent?, name: String, ico: String,showType:Int) {
         var data = ViewData()
-        var colunmData = ColumnData();
+        var colunmData = ColumnData()
         with(colunmData) {
             icon = ico
             colunmData.name = name
             feeds = ArrayList()
+            var type:String
+            when(showType){
+                1->type="language"
+                2->type="book"
+                else->type="language"
+            }
             bean?.feeds?.forEach {
                 var viewData = ViewData()
-                viewData.type = "language"
+                viewData.type = type
                 viewData.feed = it
                 feeds!!.add(viewData)
             }

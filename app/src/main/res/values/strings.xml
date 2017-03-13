@@ -6,4 +6,6 @@
     <string name="none_point_error">嗨！我是空指针异常</string>
     <string name="time_out">网络超时。。。</string>
     <string name="request_error">服务器异常。。。。</string>
+    <string name="head_line">大公司头条</string>
+    <string name="show_detail">查看详情</string>
 </resources>

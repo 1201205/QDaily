@@ -12,6 +12,11 @@
     <color name="text_small">#939393</color>
     <color name="content_bg">#404040</color>
     <color name="tab_bg">#252525</color>
-
-
+    <color name="week_font">#404040</color>
+    <color name="week_bg">#ababab</color>
+    <color name="day_bg">#404040</color>
+    <color name="day_font">#b8b8b8</color>
+    <color name="border_color">#6c6c6c</color>
+    <color name="recycler_border_color">#404040</color>
+    <color name="divider_color">#595959</color>
 </resources>

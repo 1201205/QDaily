@@ -14,12 +14,16 @@ import com.hyc.skin.R;
 import com.hyc.skin.core.SkinAttrs;
 import com.hyc.skin.core.SkinChangeable;
 import com.hyc.skin.core.SkinResources;
+import java.util.Calendar;
+import java.util.Date;
 
 /**
  * Created by ray on 17/2/20.
  */
 
 public class SkinDateView extends View implements SkinChangeable {
+
+    String[] weekDays = { "SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT" };
     private SkinAttrs mSkinAttrs;
     private int mBorderColor;
     private int mTopBgColor;
@@ -39,7 +43,13 @@ public class SkinDateView extends View implements SkinChangeable {
     private RectF mRectF;
     private Path mPath;
     private RectF mTop;
+    private RectF mBottom;
     private Path mTopPath;
+    private float mStrokeWidth;
+    private String week;
+    private String day;
+    private int mTopLine;
+    private int mBottomLine;
 
 
     public SkinDateView(Context context) {
@@ -55,13 +65,14 @@ public class SkinDateView extends View implements SkinChangeable {
     public SkinDateView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.SkinDateView);
-        mBorderColor = typedArray.getColor(R.styleable.SkinDateView_border_color, 0);
-        mTopBgColor = typedArray.getColor(R.styleable.SkinDateView_top_color, 0);
-        mTopFontColor = typedArray.getColor(R.styleable.SkinDateView_top_font_color, 0);
-        mBottomBgColor = typedArray.getColor(R.styleable.SkinDateView_content_color, 0);
-        mBottomFontColor = typedArray.getColor(R.styleable.SkinDateView_bottom_font_color, 0);
+        mBorderColor = typedArray.getResourceId(R.styleable.SkinDateView_border_color, 0);
+        mTopBgColor = typedArray.getResourceId(R.styleable.SkinDateView_top_color, 0);
+        mTopFontColor = typedArray.getResourceId(R.styleable.SkinDateView_top_font_color, 0);
+        mBottomBgColor = typedArray.getResourceId(R.styleable.SkinDateView_content_color, 0);
+        mBottomFontColor = typedArray.getResourceId(R.styleable.SkinDateView_bottom_font_color, 0);
         typedArray.recycle();
-        mCorner = dip2px(20, context);
+        mStrokeWidth = dip2px(1, context);
+        mCorner = 4 * mStrokeWidth;
         mPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         mPath = new Path();
         skinChanged();
@@ -73,10 +84,23 @@ public class SkinDateView extends View implements SkinChangeable {
         super.onSizeChanged(w, h, oldw, oldh);
         mWidth = w;
         mHeight = h;
-        mRectF = new RectF(mCorner / 40, mCorner / 40, w - mCorner / 20, h - mCorner / 20);
-        mContent = new RectF(mCorner * 3 / 40, mCorner * 3 / 40, w - mCorner * 3 / 40,
-            h - mCorner * 3 / 40);
-        mTop = new RectF(mCorner / 40, mCorner / 40, w - mCorner / 20, h * 0.4f);
+        mRectF = new RectF(mStrokeWidth / 2, mStrokeWidth / 2, w - mStrokeWidth / 2,
+            h - mStrokeWidth / 2);
+        mContent = new RectF(mStrokeWidth, mStrokeWidth, w - mStrokeWidth,
+            h - mStrokeWidth);
+        mTop = new RectF(mStrokeWidth / 2, mStrokeWidth / 2, w - mStrokeWidth / 2, h * 0.45f);
+        mBottom = new RectF(mStrokeWidth / 2, h * 0.45f, w - mStrokeWidth / 2,
+            w - mStrokeWidth / 2);
+        mPaint.setTextSize(20);
+        Paint.FontMetricsInt fontMetrics = mPaint.getFontMetricsInt();
+        mTopLine = (int) ((mTop.bottom + mTop.top - fontMetrics.bottom - fontMetrics.top) / 2);
+        mBottomLine = (int) ((mBottom.bottom + mBottom.top - fontMetrics.bottom - fontMetrics.top) /
+            2);
+        Date date = new Date(System.currentTimeMillis());
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(date);
+        day = String.valueOf(getDay(calendar));
+        week = getWeek(calendar);
     }
 
 
@@ -86,7 +110,7 @@ public class SkinDateView extends View implements SkinChangeable {
     @Override protected void onDraw(Canvas canvas) {
         mPaint.setStyle(Paint.Style.STROKE);
         mPaint.setColor(mRealBorder);
-        mPaint.setStrokeWidth(mCorner / 20);
+        mPaint.setStrokeWidth(mStrokeWidth);
         canvas.drawRoundRect(mRectF, mCorner, mCorner, mPaint);
         int sc = canvas.saveLayer(0, 0, mWidth, mHeight, mPaint, Canvas.ALL_SAVE_FLAG);
         mPaint.setStyle(Paint.Style.FILL);
@@ -98,6 +122,11 @@ public class SkinDateView extends View implements SkinChangeable {
         canvas.drawRect(mTop, mPaint);
         mPaint.setXfermode(null);
         canvas.restoreToCount(sc);
+        mPaint.setTextAlign(Paint.Align.CENTER);
+        mPaint.setColor(mRealTopFont);
+        canvas.drawText(week, mTop.centerX(), mTopLine, mPaint);
+        mPaint.setColor(mRealBottomFont);
+        canvas.drawText(day, mBottom.centerX(), mBottomLine, mPaint);
     }
 
 
@@ -113,5 +142,17 @@ public class SkinDateView extends View implements SkinChangeable {
 
     private float dip2px(float dpValue, Context context) {
         return context.getResources().getDisplayMetrics().density * dpValue + 0.5f;
+    }
+
+
+    private String getWeek(Calendar calendar) {
+
+        int week = calendar.get(Calendar.DAY_OF_WEEK) - 1;
+        return weekDays[week];
+    }
+
+
+    private int getDay(Calendar calendar) {
+        return calendar.get(Calendar.DAY_OF_MONTH);
     }
 }

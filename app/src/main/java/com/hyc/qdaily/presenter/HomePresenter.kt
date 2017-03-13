@@ -36,7 +36,7 @@ class HomePresenter(mView: HomeContract.View) : HomeContract.Presenter, BasePres
             var c=it.response?.columns?.get(0)
             with(c){
                 c?.let{
-                    getColumn(c?.id.toString(),"0",c.name!!,c.icon!!)
+                    getColumn(c?.id.toString(),"0",c.name!!,c.icon!!,c.show_type)
                 }
             }
             model.revertToViewData(it)
@@ -61,9 +61,9 @@ class HomePresenter(mView: HomeContract.View) : HomeContract.Presenter, BasePres
 //        })
     }
 
-    fun getColumn(id:String,index:String,name:String,icon:String){
+    fun getColumn(id:String,index:String,name:String,icon:String,showType:Int){
         RequestClient.api.getColumn(id,index).compose (SchedulerTransformer.create()).subscribe({
-            model.addColunm(it.response,name,icon)
+            model.addColunm(it.response,name,icon,showType)
             mView.show()
         },{
             onError(it)

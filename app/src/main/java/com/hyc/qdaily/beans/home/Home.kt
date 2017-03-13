@@ -1386,7 +1386,7 @@ class Home {
     var last_key: String? = null
     var feeds: ArrayList<Feed>? = null
     var banners: ArrayList<Feed>? = null
-    var headLine: HeadLine? = null
+    var headline: HeadLine? = null
     var banners_ad: ArrayList<Feed>? = null
     var feeds_ad: ArrayList<Feed>? = null
     var columns: ArrayList<Column>? = null

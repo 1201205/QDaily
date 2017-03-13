@@ -45,7 +45,7 @@
     <View
         android:layout_marginLeft="18dp"
         android:layout_marginRight="18dp"
-        android:background="@color/text_small"
+        android:background="@color/divider_color"
         android:layout_width="match_parent"
         android:layout_height="1px"/>
     <android.support.v7.widget.RecyclerView
