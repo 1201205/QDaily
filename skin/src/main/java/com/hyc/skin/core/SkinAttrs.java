@@ -58,7 +58,6 @@ public class SkinAttrs {
 
 
     public void applySkin(View view) {
-        Log.e("hyc-test","applySkin---"+Log.getStackTraceString(new Throwable()));
         if (mTextColor != -1) {
             ColorStateList color = SkinResources.getInstance().getColorStateList(mTextColor);
             ((TextView)view).setTextColor(color);

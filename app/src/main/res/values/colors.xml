@@ -3,7 +3,8 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
-    <color name="white">#60FFFFFF</color>
+    <color name="alpha_white">#60FFFFFF</color>
+    <color name="white">#FFFFFF</color>
     <color name="banner_text">#FFFFFF</color>
     <color name="text_color_normal">#2A2A2A</color>
     <color name="indicator_select">#FFC820</color>

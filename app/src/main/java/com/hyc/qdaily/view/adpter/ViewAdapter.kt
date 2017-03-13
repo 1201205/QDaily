@@ -34,6 +34,10 @@ class ViewAdapter private constructor(context: Context,datas: ArrayList<ViewData
     override fun getItemViewType(position: Int): Int {
         return ViewModelPool.instance.getType(mDatas[position].type)
     }
+
+    fun getData(index : Int):ViewData{
+        return mDatas[index]
+    }
     class Builder{
         var adapter: ViewAdapter
 

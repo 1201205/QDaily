@@ -31,6 +31,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"/>
         <ImageView
+            android:layout_marginRight="18dp"
             android:id="@+id/iv_add"
             android:src="@drawable/icon_sub"
             android:layout_width="wrap_content"
@@ -42,12 +43,13 @@
             android:src="@drawable/icon_share"/>
     </LinearLayout>
     <View
-        android:paddingLeft="18dp"
-        android:paddingRight="18dp"
+        android:layout_marginLeft="18dp"
+        android:layout_marginRight="18dp"
         android:background="@color/text_small"
         android:layout_width="match_parent"
         android:layout_height="1px"/>
     <android.support.v7.widget.RecyclerView
+        android:layout_marginTop="6dp"
         android:id="@+id/rv_language"
         android:layout_marginBottom="15dp"
         android:layout_width="match_parent"

@@ -2,10 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="240dp"
     android:layout_height="wrap_content"
-    android:background="#FFFFFF"
-    android:orientation="vertical"
-    android:layout_marginTop="3dp"
-    android:layout_marginBottom="3dp">
+    android:background="@drawable/recycler_bg"
+    android:orientation="vertical">
 
     <com.facebook.drawee.view.SimpleDraweeView
         android:id="@+id/sdv_img"
@@ -13,31 +11,37 @@
         android:layout_height="120dp"/>
 
     <TextView
+        android:minLines="2"
+        android:ellipsize="end"
+        android:maxLines="2"
         android:id="@+id/tv_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@color/text_color_normal"
-        android:layout_marginRight="18dp"
+        android:layout_marginRight="10dp"
         android:textSize="15sp"
         android:textStyle="bold"
         android:layout_marginTop="15dp"
-        android:layout_marginLeft="18dp"/>
+        android:layout_marginLeft="10dp"/>
 
     <TextView
+        android:minLines="2"
+        android:ellipsize="end"
+        android:maxLines="2"
         android:id="@+id/tv_des"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@color/text_small"
-        android:layout_marginRight="18dp"
+        android:layout_marginRight="10dp"
         android:layout_marginTop="5dp"
-        android:layout_marginLeft="18dp"
+        android:layout_marginLeft="10dp"
         android:layout_marginBottom="15dp"/>
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingLeft="18dp"
-        android:paddingBottom="18dp"
+        android:paddingLeft="10dp"
+        android:paddingBottom="10dp"
         android:orientation="horizontal">
 
         <TextView

@@ -1,7 +1,9 @@
 package com.hyc.qdaily.view.adpter.holder
 
+import android.graphics.Rect
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,6 +14,7 @@ import butterknife.ButterKnife
 import com.facebook.drawee.view.SimpleDraweeView
 import com.hyc.qdaily.R
 import com.hyc.qdaily.beans.view.ViewData
+import com.hyc.qdaily.util.dip2px
 import com.hyc.qdaily.util.loadUrl
 import com.hyc.qdaily.view.adpter.ViewAdapter
 
@@ -26,12 +29,22 @@ class RecyclerProvider : ItemViewProvider<RecyclerProvider.RecyclerHolder>() {
     override fun onBindViewHolder(holder: RecyclerHolder, data: ViewData, position: Int, wrapper: ParamWrapper) {
         var columnContent=data.columnContent
         with(holder){
+            var adapter =rvLanguage.adapter
+            if (adapter is ViewAdapter) {
+                Log.e("hyc-ex","-------"+adapter.getData(0).feed?.post?.id)
+                Log.e("hyc-ex","-------"+data.columnContent?.feeds?.get(0)?.feed?.post?.id)
+
+                if (adapter.getData(0).feed?.post?.id== data.columnContent?.feeds?.get(0)?.feed?.post?.id) {
+                    return
+                }
+            }
             var context=rvLanguage.context
             loadUrl(sdvIcon,columnContent?.icon)
             tvName.text=columnContent?.name
             rvLanguage.adapter=ViewAdapter.Builder(context,columnContent?.feeds!!).build()
             rvLanguage.layoutManager?:let {
                 rvLanguage.layoutManager=LinearLayoutManager(context).also { it.orientation=LinearLayoutManager.HORIZONTAL }
+                rvLanguage.addItemDecoration(SpaceItemDecoration(dip2px(18f).toInt(), dip2px(3f).toInt()))
             }
         }
     }
@@ -47,4 +60,34 @@ class RecyclerProvider : ItemViewProvider<RecyclerProvider.RecyclerHolder>() {
             ButterKnife.bind(this,itemView)
         }
     }
+    class SpaceItemDecoration(border: Int,center:Int) : RecyclerView.ItemDecoration() {
+        var border:Int = border
+        var center:Int = center
+
+        override fun getItemOffsets(outRect: Rect?, view: View?, parent: RecyclerView?, state: RecyclerView.State?) {
+            when(parent?.getChildAdapterPosition(view)){
+                0->outRect?.set(border,0,center,0)
+                (parent?.adapter?.itemCount!! -1)->outRect?.set(center,0,border,0)
+                else->outRect?.set(center,0,center,0)
+            }
+        }
+    }
+//    public class SpacesItemDecoration extends RecyclerView.ItemDecoration {
+//        private int space;
+//
+//        public SpacesItemDecoration(int space) {
+//            this.space = space;
+//        }
+//
+//        @Override
+//        public void getItemOffsets(Rect outRect, View view, RecyclerView parent, RecyclerView.State state) {
+//            int position = parent.getChildPosition(view);
+//            if (position == 0) {
+//                outRect.set(space, 0, 0, 0);
+//            } else if (position == parent.getAdapter().getItemCount() - 1) {
+//                outRect.set(0, 0, space, 0);
+//            }
+//
+//        }
+//    }
 }

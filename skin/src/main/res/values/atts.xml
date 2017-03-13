@@ -1,0 +1,11 @@
+<resources>
+
+   <declare-styleable name="SkinDateView">
+       <attr name="border_color" format="color"/>
+       <attr name="content_color" format="color"/>
+       <attr name="top_color" format="color"/>
+       <attr name="top_font_color" format="color"/>
+       <attr name="bottom_font_color" format="color"/>
+   </declare-styleable>
+
+</resources>

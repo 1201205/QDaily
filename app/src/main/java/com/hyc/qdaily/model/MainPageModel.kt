@@ -13,34 +13,41 @@ import com.hyc.qdaily.contract.HomeContract
 /**
  * Created by hyc on 2017/3/9.
  */
-class MainPageModel() : HomeContract.Model<Home>{
+class MainPageModel() : HomeContract.Model<Home> {
     override fun getViewDatas(): ArrayList<ViewData> {
-       return datas
+        return datas
     }
+
     private var datas: ArrayList<ViewData> = ArrayList()
-    override fun revertToViewData(bean: BaseBean<Home>):ArrayList<ViewData> {
-        var home=bean.response
-        var viewData= ViewData()
-        viewData.type="banner"
-        viewData.banners=(home?.banners as ArrayList<Feed>)
+    override fun revertToViewData(bean: BaseBean<Home>): ArrayList<ViewData> {
+        var home = bean.response
+        var viewData = ViewData()
+        viewData.type = "banner"
+        viewData.banners = (home?.banners as ArrayList<Feed>)
         home?.feeds!!.forEach { content -> }
-        Log.e("hyc-e","----"+viewData?.banners?.size)
-        Log.e("hyc-e?????","----"+home.banners_ad?.size)
-        home.banners_ad?.let{
-//            if (it.isNotEmpty()) {
-                viewData.banners!!.addAll(it)
-//            }
+        Log.e("hyc-e", "----" + viewData?.banners?.size)
+        Log.e("hyc-e?????", "----" + home.banners_ad?.size)
+        home.banners_ad?.let {
+            var i: Int = 1
+            var indexParm = viewData.banners!!.size / (home.banners_ad!!.size * 2)
+            if (indexParm == 0) {
+                indexParm = 1
+            }
+            it.forEach {
+                viewData.banners!!.add(i * indexParm, it)
+                i++
+            }
         }
         datas.add(viewData)
         home?.feeds?.let {
             home.feeds!!.forEach {
-                var data= ViewData()
-                when(it.type){
-                    0->data.type="curiosity"
-                    1->data.type="feed"
-                    2->data.type="vertical"
+                var data = ViewData()
+                when (it.type) {
+                    0 -> data.type = "curiosity"
+                    1 -> data.type = "feed"
+                    2 -> data.type = "vertical"
                 }
-                data.feed=it
+                data.feed = it
                 datas.add(data)
             }
         }
@@ -50,24 +57,24 @@ class MainPageModel() : HomeContract.Model<Home>{
     override fun addAndAddToViewData(bean: BaseBean<Home>) {
     }
 
-    fun addColunm(bean : ColumnContent?,name:String,ico:String){
-        var data=ViewData()
-        var colunmData=ColumnData();
-        with(colunmData){
-            icon=ico
-            colunmData.name=name
-            feeds= ArrayList()
+    fun addColunm(bean: ColumnContent?, name: String, ico: String) {
+        var data = ViewData()
+        var colunmData = ColumnData();
+        with(colunmData) {
+            icon = ico
+            colunmData.name = name
+            feeds = ArrayList()
             bean?.feeds?.forEach {
-                var viewData=ViewData()
-                viewData.type="language"
-                viewData.feed=it
+                var viewData = ViewData()
+                viewData.type = "language"
+                viewData.feed = it
                 feeds!!.add(viewData)
             }
         }
-        data.type="recycler"
-        data.columnContent=colunmData
-        datas.add(data)
-    }
+        data.type = "recycler"
+        data.columnContent = colunmData
+        datas.add(4, data)
 
+    }
 
 }
