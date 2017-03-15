@@ -29,16 +29,19 @@ class MainPageModel() : HomeContract.Model<Home> {
         home?.feeds!!.forEach { content -> }
         Log.e("hyc-e", "----" + viewData?.banners?.size)
         Log.e("hyc-e?????", "----" + home.banners_ad?.size)
-        home.banners_ad?.let {
+        if (home.banners_ad!=null&& home.banners_ad?.size!! >0) {
             var i: Int = 1
             var indexParm = viewData.banners!!.size / (home.banners_ad!!.size * 2)
             if (indexParm == 0) {
                 indexParm = 1
             }
-            it.forEach {
+            home.banners_ad!!.forEach {
                 viewData.banners!!.add(i * indexParm, it)
                 i++
             }
+        }
+        home.banners_ad?.let {
+
         }
         datas.add(viewData)
         home?.feeds?.let {

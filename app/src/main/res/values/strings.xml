@@ -8,4 +8,6 @@
     <string name="request_error">服务器异常。。。。</string>
     <string name="head_line">大公司头条</string>
     <string name="show_detail">查看详情</string>
+    <string name="news">NEWS</string>
+    <string name="lab">LABS</string>
 </resources>

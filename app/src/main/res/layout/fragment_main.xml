@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.yalantis.phoenix.PullToRefreshView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/main_bg">
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@id/target"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+</com.yalantis.phoenix.PullToRefreshView>

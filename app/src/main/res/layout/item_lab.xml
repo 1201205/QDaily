@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/content_bg"
+    android:orientation="vertical"
+    android:layout_marginTop="3dp"
+    android:layout_marginBottom="3dp">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="180dp">
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:id="@+id/sdv_img"
+            android:layout_width="match_parent"
+            android:layout_height="180dp"/>
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:id="@+id/sdv_icon"
+            android:layout_marginLeft="18dp"
+            android:layout_marginBottom="18dp"
+            android:layout_alignParentBottom="true"
+            android:layout_width="25dp"
+            android:layout_height="25dp"/>
+        <LinearLayout
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="18dp"
+            android:layout_marginTop="18dp"
+            android:gravity="center_horizontal"
+            android:background="@drawable/icon_lab_vot_join"
+            android:layout_width="38dp"
+            android:layout_height="32dp">
+            <TextView
+                android:layout_marginTop="4dp"
+                android:id="@+id/tv_count"
+                android:textSize="10sp"
+                android:textColor="@color/indicator_select"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+    </RelativeLayout>
+
+
+    <TextView
+        android:maxLines="2"
+        android:ellipsize="end"
+        android:id="@+id/tv_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/text_color_normal"
+        android:layout_marginRight="18dp"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="18dp"/>
+
+    <TextView
+        android:maxLines="2"
+        android:ellipsize="end"
+        android:id="@+id/tv_des"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/text_small"
+        android:layout_marginRight="18dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="18dp"
+        android:layout_marginBottom="15dp"/>
+
+</LinearLayout>

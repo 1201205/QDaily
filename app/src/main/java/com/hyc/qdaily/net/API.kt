@@ -4,6 +4,7 @@ import com.hyc.qdaily.beans.BaseBean
 import com.hyc.qdaily.beans.home.Article
 import com.hyc.qdaily.beans.home.ColumnContent
 import com.hyc.qdaily.beans.home.Home
+import com.hyc.qdaily.beans.home.Paper
 import io.reactivex.Observable
 import retrofit2.http.GET
 import retrofit2.http.Path
@@ -23,6 +24,8 @@ interface API {
      * http://app3.qdaily.com/app3/columns/index/29/0.json
      * articles
      * http://app3.qdaily.com/app3/articles/detail/38314.json
+     * papers
+     * http://app3.qdaily.com/app3/papers/index/0.json
      */
     @GET("app3/homes/index/{index}.json")
     fun getHomeDataByIndex(@Path("index") index: String): Observable<BaseBean<Home>>
@@ -32,5 +35,8 @@ interface API {
 
     @GET("app3/columns/index/{id}/{index}.json")
     fun getColumn(@Path("id") id:String,@Path("index") index: String): Observable<BaseBean<ColumnContent>>
+
+    @GET("app3/papers/index/{index}.json")
+    fun getPaperByIndex(@Path("index") index: String): Observable<BaseBean<Paper>>
 
 }

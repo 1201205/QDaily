@@ -23,15 +23,6 @@ class HomePresenter(mView: HomeContract.View) : HomeContract.Presenter, BasePres
     }
 
     override fun getRecommendData() {
-//        RequestClient.api.getHomeDataByIndex("0").compose(SchedulerTransformer.create()).subscribe({ homeBaseBean ->
-//            Log.e("hyc-test", "---222222---" + homeBaseBean.response?.columns?.size)
-//            mView.showRecommendData(homeBaseBean)
-//        }, { throwable ->
-//            Log.e("hyc-test", throwable.stackTrace.toString());
-//        }, {
-//            Log.e("hhhhhhahhhha", "完成任务");
-//        }
-//        )
         RequestClient.api.getHomeDataByIndex("0").compose(SchedulerTransformer.create()).map{
             var c=it.response?.columns?.get(0)
             with(c){
@@ -44,21 +35,6 @@ class HomePresenter(mView: HomeContract.View) : HomeContract.Presenter, BasePres
             mView.showRecommendData(it)
         },{  onError(it)})
 
-//        RequestClient.api.getHomeDataByIndex("0").compose(SchedulerTransformer.create()).subscribe(object : BaseNetDisposableObserver<BaseBean<Home>>(true) {
-//            override fun onError(throwable: Throwable) {
-//                super.onError(throwable)
-//            }
-//
-//            override fun onNext(t: BaseBean<Home>) {
-//                super.onNext(t)
-//                mView.showRecommendData(t)
-//            }
-//
-//            override fun onComplete() {
-//                super.onComplete()
-//                Log.e("hhhhhhahhhha", "完成任务");
-//            }
-//        })
     }
 
     fun getColumn(id:String,index:String,name:String,icon:String,showType:Int){

@@ -8,7 +8,7 @@ import com.hyc.skin.BaseActivity
  * Created by hyc on 2016/5/13.
  */
 abstract class BaseActivity<T : BasePresenter<*>> : BaseActivity(), BaseView {
-    protected lateinit var mPresenter: T
+    protected  var mPresenter: T? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -18,7 +18,7 @@ abstract class BaseActivity<T : BasePresenter<*>> : BaseActivity(), BaseView {
             handleIntent()
         }
         initPresenterAndData()
-            mPresenter.attachView()
+            mPresenter?.attachView()
         initView()
     }
 
@@ -32,7 +32,7 @@ abstract class BaseActivity<T : BasePresenter<*>> : BaseActivity(), BaseView {
 
     override fun onDestroy() {
         super.onDestroy()
-        mPresenter.detachView()
+        mPresenter?.detachView()
     }
 
     //    protected void setShareElementTransition(){
