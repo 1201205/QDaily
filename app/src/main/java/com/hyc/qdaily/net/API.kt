@@ -37,6 +37,6 @@ interface API {
     fun getColumn(@Path("id") id:String,@Path("index") index: String): Observable<BaseBean<ColumnContent>>
 
     @GET("app3/papers/index/{index}.json")
-    fun getPaperByIndex(@Path("index") index: String): Observable<BaseBean<Paper>>
+    fun getLabByIndex(@Path("index") index: String): Observable<BaseBean<Paper>>
 
 }

@@ -10,6 +10,7 @@ import com.hyc.qdaily.base.BaseActivity
 import com.hyc.qdaily.presenter.HomePresenter
 import com.hyc.qdaily.util.StatusBarUtil
 import com.hyc.qdaily.view.adpter.FragmentPagerAdapter
+import com.hyc.qdaily.view.fragment.LabFragment
 import com.hyc.qdaily.view.fragment.MainFragment
 
 class MainActivity : BaseActivity<HomePresenter>() {
@@ -57,7 +58,7 @@ class MainActivity : BaseActivity<HomePresenter>() {
                 })
         var adapter = FragmentPagerAdapter(supportFragmentManager)
         adapter.add(MainFragment())
-        adapter.add(MainFragment())
+        adapter.add(LabFragment())
         vpTarget.adapter = adapter
         vpTarget.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
             override fun onPageScrollStateChanged(state: Int) {

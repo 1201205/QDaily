@@ -13,7 +13,7 @@ import com.hyc.qdaily.contract.HomeContract
 /**
  * Created by hyc on 2017/3/9.
  */
-class MainPageModel() : HomeContract.Model<Home> {
+class MainPageModel : HomeContract.Model<Home> {
     override fun getViewDatas(): ArrayList<ViewData> {
         return datas
     }
@@ -23,12 +23,8 @@ class MainPageModel() : HomeContract.Model<Home> {
         var home = bean.response
         var viewData = ViewData()
         var headLineId= home?.headline?.post?.id
-        Log.e("hyc-headLineId","---"+headLineId)
         viewData.type = "banner"
         viewData.banners = (home?.banners as ArrayList<Feed>)
-        home?.feeds!!.forEach { content -> }
-        Log.e("hyc-e", "----" + viewData?.banners?.size)
-        Log.e("hyc-e?????", "----" + home.banners_ad?.size)
         if (home.banners_ad!=null&& home.banners_ad?.size!! >0) {
             var i: Int = 1
             var indexParm = viewData.banners!!.size / (home.banners_ad!!.size * 2)
@@ -68,7 +64,7 @@ class MainPageModel() : HomeContract.Model<Home> {
         return datas
     }
 
-    override fun addAndAddToViewData(bean: BaseBean<Home>) {
+    override fun addToViewData(bean: BaseBean<Home>) {
     }
 
     fun addColunm(bean: ColumnContent?, name: String, ico: String,showType:Int) {

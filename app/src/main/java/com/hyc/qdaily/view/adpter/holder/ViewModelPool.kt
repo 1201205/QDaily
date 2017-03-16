@@ -36,6 +36,9 @@ class ViewModelPool private constructor() {
         putInPool("language",LanguageProvider() as ItemViewProvider<RecyclerView.ViewHolder>)
         putInPool("headline",HeadLineProvider() as ItemViewProvider<RecyclerView.ViewHolder>)
         putInPool("book",BookProvider() as ItemViewProvider<RecyclerView.ViewHolder>)
+        putInPool("lab",LabProvider() as ItemViewProvider<RecyclerView.ViewHolder>)
+        putInPool("topic",TopicProvider() as ItemViewProvider<RecyclerView.ViewHolder>)
+        putInPool("topics",TopicsProvider() as ItemViewProvider<RecyclerView.ViewHolder>)
 
         Log.e("hyc-we",this.toString()+"init---"+mProviders.size)
     }

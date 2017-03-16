@@ -14,12 +14,12 @@ interface LabContract{
         fun show()
     }
     interface Presenter{
-        fun getRecommendData()
-        fun getMoreData(index:String)
+        fun getLab()
+        fun getMoreLab(index:String)
     }
     interface Model<T>{
         fun revertToViewData(bean: BaseBean<T>):ArrayList<ViewData>
-        fun addAndAddToViewData(bean: BaseBean<T>)
+        fun addToViewData(bean: BaseBean<T>)
         fun getViewDatas():ArrayList<ViewData>
     }
 }

@@ -21,7 +21,7 @@ interface HomeContract{
     }
     interface Model<T>{
         fun revertToViewData(bean:BaseBean<T>):ArrayList<ViewData>
-        fun addAndAddToViewData(bean: BaseBean<T>)
+        fun addToViewData(bean: BaseBean<T>)
         fun getViewDatas():ArrayList<ViewData>
     }
 }

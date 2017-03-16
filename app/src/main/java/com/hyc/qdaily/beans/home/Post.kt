@@ -18,5 +18,6 @@ class Post {
     var id: Int = 0
     var category: Category? = null
     var column: Column? = null
+    var record_count: Int = 0
 
 }

@@ -18,20 +18,21 @@
             android:layout_marginLeft="18dp"
             android:layout_marginBottom="18dp"
             android:layout_alignParentBottom="true"
-            android:layout_width="25dp"
-            android:layout_height="25dp"/>
+            android:layout_width="35dp"
+            android:layout_height="35dp"/>
         <LinearLayout
+            android:id="@+id/ll_count"
             android:layout_alignParentRight="true"
             android:layout_marginRight="18dp"
             android:layout_marginTop="18dp"
             android:gravity="center_horizontal"
             android:background="@drawable/icon_lab_vot_join"
-            android:layout_width="38dp"
-            android:layout_height="32dp">
+            android:layout_width="57dp"
+            android:layout_height="43dp">
             <TextView
-                android:layout_marginTop="4dp"
+                android:layout_marginTop="3dp"
                 android:id="@+id/tv_count"
-                android:textSize="10sp"
+                android:textSize="14sp"
                 android:textColor="@color/indicator_select"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
