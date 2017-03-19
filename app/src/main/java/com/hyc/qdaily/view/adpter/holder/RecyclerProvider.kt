@@ -3,20 +3,20 @@ package com.hyc.qdaily.view.adpter.holder
 import android.graphics.Rect
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import android.widget.TextView
 import butterknife.BindView
 import butterknife.ButterKnife
 import com.facebook.drawee.view.SimpleDraweeView
 import com.hyc.qdaily.R
 import com.hyc.qdaily.beans.view.ViewData
+import com.hyc.qdaily.events.LoadMoreEventX
 import com.hyc.qdaily.util.dip2px
 import com.hyc.qdaily.util.loadUrl
 import com.hyc.qdaily.view.adpter.ViewAdapter
+import org.greenrobot.eventbus.EventBus
 
 /**
  * Created by ray on 17/3/12.
@@ -31,9 +31,6 @@ class RecyclerProvider : ItemViewProvider<RecyclerProvider.RecyclerHolder>() {
         with(holder){
             var adapter =rvLanguage.adapter
             if (adapter is ViewAdapter) {
-                Log.e("hyc-ex","-------"+adapter.getData(0).feed?.post?.id)
-                Log.e("hyc-ex","-------"+data.columnContent?.feeds?.get(0)?.feed?.post?.id)
-
                 if (adapter.getData(0).feed?.post?.id== data.columnContent?.feeds?.get(0)?.feed?.post?.id) {
                     return
                 }
@@ -46,6 +43,14 @@ class RecyclerProvider : ItemViewProvider<RecyclerProvider.RecyclerHolder>() {
                 rvLanguage.layoutManager=LinearLayoutManager(context).also { it.orientation=LinearLayoutManager.HORIZONTAL }
                 rvLanguage.addItemDecoration(SpaceItemDecoration(dip2px(18f).toInt(), dip2px(3f).toInt()))
             }
+            rvLanguage.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+                override fun onScrolled(recyclerView: RecyclerView?, dx: Int, dy: Int) {
+                    if ((rvLanguage.layoutManager as
+                            LinearLayoutManager).findLastVisibleItemPosition()>=rvLanguage.adapter.itemCount-4) {
+                        EventBus.getDefault().post(LoadMoreEventX(columnContent.id))
+                    }
+                }
+            })
         }
     }
 

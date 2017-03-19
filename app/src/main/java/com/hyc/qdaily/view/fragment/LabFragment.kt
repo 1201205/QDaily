@@ -18,6 +18,7 @@ import com.hyc.qdaily.view.adpter.ViewAdapter
  * Created by ray on 17/3/15.
  */
 class LabFragment : BaseFragment<LabPresenter>(), LabContract.View {
+
     lateinit var mRecyclerView: RecyclerView
     private var mAdapter: ViewAdapter? = null
 
@@ -46,4 +47,11 @@ class LabFragment : BaseFragment<LabPresenter>(), LabContract.View {
         mPresenter!!.getLab()
     }
 
+    override fun getLayoutID(): Int {
+        return R.layout.fragment_main
+    }
+    override fun initView() {
+    }
+    override fun onNetError() {
+    }
 }

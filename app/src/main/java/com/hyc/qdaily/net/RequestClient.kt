@@ -62,7 +62,7 @@ object RequestClient {
                 .build()
         }
         //设置缓存路径
-        sHttpCacheDirectory = File(MainApplication.instance.getCacheDir(), "responses")
+        sHttpCacheDirectory = File(MainApplication.instance.cacheDir, "responses")
         //设置缓存 50M
         sCache = Cache(sHttpCacheDirectory, (50 * 1024 * 1024).toLong())
         sClient = OkHttpClient.Builder()

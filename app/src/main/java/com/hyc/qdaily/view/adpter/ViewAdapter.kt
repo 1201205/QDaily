@@ -38,6 +38,9 @@ class ViewAdapter private constructor(context: Context,datas: ArrayList<ViewData
     fun getData(index : Int):ViewData{
         return mDatas[index]
     }
+    fun addData(data: ArrayList<ViewData>){
+        mDatas.addAll(data)
+    }
     class Builder{
         var adapter: ViewAdapter
 

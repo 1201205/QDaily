@@ -14,6 +14,7 @@ import com.hyc.qdaily.view.fragment.LabFragment
 import com.hyc.qdaily.view.fragment.MainFragment
 
 class MainActivity : BaseActivity<HomePresenter>() {
+
     @BindView(R.id.vp_target)
     lateinit var vpTarget: ViewPager
     @BindView(R.id.indicator)
@@ -92,5 +93,7 @@ class MainActivity : BaseActivity<HomePresenter>() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+    }
+    override fun onNetError() {
     }
 }

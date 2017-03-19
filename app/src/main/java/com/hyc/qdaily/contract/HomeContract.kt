@@ -14,10 +14,13 @@ interface HomeContract{
         fun showRecommendData(data:ArrayList<ViewData>)
         fun showMore(data: ArrayList<ViewData>)
         fun show()
+        fun noMore()
+        fun showMoreColumn(index:Int,count:Int)
     }
     interface Presenter{
         fun getRecommendData()
-        fun getMoreData(index:String)
+        fun getMoreData()
+        fun getMoreColumnData(id:String)
     }
     interface Model<T>{
         fun revertToViewData(bean:BaseBean<T>):ArrayList<ViewData>
