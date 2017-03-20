@@ -19,18 +19,17 @@ class MainPageModel : HomeContract.Model<Home> {
 
     private var datas: ArrayList<ViewData> = ArrayList()
     override fun revertToViewData(bean: BaseBean<Home>): ArrayList<ViewData> {
-        var target=ArrayList<ViewData>()
         var home = bean.response
         if (home?.banners?.size!! > 0) {
-            target.add(revertBanner(home!!))
+            datas.add(revertBanner(home!!))
         }
         var headLineId = home?.headline?.post?.id
-        target.addAll(revertNormal(home, headLineId))
+        datas.addAll(revertNormal(home, headLineId))
         if (headLineId != null && headLineId != 0) {
-            target.add(revertHeadLine(home))
+            datas.add(revertHeadLine(home))
         }
 
-        return target
+        return datas
     }
 
     fun revertBanner(home: Home): ViewData {
@@ -83,7 +82,9 @@ class MainPageModel : HomeContract.Model<Home> {
 
     fun addColunm(bean: ColumnContent?, colunmData: ColumnData) {
         with(colunmData) {
-            feeds = ArrayList()
+            if (feeds==null) {
+                feeds = ArrayList()
+            }
             var type: String
             when (showType) {
                 1 -> type = "language"
@@ -96,6 +97,7 @@ class MainPageModel : HomeContract.Model<Home> {
                 viewData.feed = it
                 feeds!!.add(viewData)
             }
+            colunmData.lastIndex=bean?.last_key
         }
         if (columnDatas.contains(colunmData)) {
             return
@@ -103,7 +105,8 @@ class MainPageModel : HomeContract.Model<Home> {
         var data = ViewData()
         data.type = "recycler"
         data.columnContent = colunmData
-        datas.add(4, data)
+        datas.add(0, data)
+        columnDatas.add(colunmData)
 
     }
 

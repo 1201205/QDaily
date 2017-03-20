@@ -33,6 +33,11 @@ class HomePresenter(mView: HomeContract.View) : HomeContract.Presenter, BasePres
 
     override fun getRecommendData() {
         RequestClient.api.getHomeDataByIndex("0").compose(SchedulerTransformer.create()).map {
+
+            mLastIndex = it.response?.last_key
+            if (TextUtils.isEmpty(mLastIndex)) {
+                mView.noMore()
+            }
             var c = it.response?.columns?.get(0)
             with(c) {
                 c?.let {
@@ -44,10 +49,6 @@ class HomePresenter(mView: HomeContract.View) : HomeContract.Presenter, BasePres
                     getColumn(data,true)
                 }
             }
-            mLastIndex = it.response?.last_key
-            if (TextUtils.isEmpty(mLastIndex)) {
-                mView.noMore()
-            }
             model.revertToViewData(it)
         }.subscribe({
             mView.showRecommendData(it)
@@ -56,7 +57,7 @@ class HomePresenter(mView: HomeContract.View) : HomeContract.Presenter, BasePres
     }
 
     fun getColumn(data: ColumnData) {
-        RequestClient.api.getColumn(data.id!!, data.lastIndex).compose(SchedulerTransformer.create()).subscribe({
+        RequestClient.api.getColumn(data.id!!, data.lastIndex!!).compose(SchedulerTransformer.create()).subscribe({
             model.addColunm(it.response, data)
             mView.show()
         }, {
@@ -64,7 +65,8 @@ class HomePresenter(mView: HomeContract.View) : HomeContract.Presenter, BasePres
         })
     }
     fun getColumn(data: ColumnData,first:Boolean) {
-        RequestClient.api.getColumn(data.id!!, data.lastIndex).compose(SchedulerTransformer.create()).subscribe({
+        data.requesting=true
+        RequestClient.api.getColumn(data.id!!, data.lastIndex!!).compose(SchedulerTransformer.create()).subscribe({
             var count=0
             if (!first) {
                 count= data.feeds?.size!!
@@ -75,8 +77,10 @@ class HomePresenter(mView: HomeContract.View) : HomeContract.Presenter, BasePres
             } else {
                 mView.show()
             }
+            data.requesting=false
         }, {
             onError(it)
+            data.requesting=false
         })
     }
 }

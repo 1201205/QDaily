@@ -3,6 +3,7 @@ package com.hyc.qdaily.view.adpter.holder
 import android.graphics.Rect
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
+import android.text.TextUtils
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -45,8 +46,8 @@ class RecyclerProvider : ItemViewProvider<RecyclerProvider.RecyclerHolder>() {
             }
             rvLanguage.addOnScrollListener(object : RecyclerView.OnScrollListener() {
                 override fun onScrolled(recyclerView: RecyclerView?, dx: Int, dy: Int) {
-                    if ((rvLanguage.layoutManager as
-                            LinearLayoutManager).findLastVisibleItemPosition()>=rvLanguage.adapter.itemCount-4) {
+                    if (!columnContent.requesting&&!TextUtils.isEmpty(columnContent.lastIndex)&&(rvLanguage.layoutManager as
+                            LinearLayoutManager).findLastVisibleItemPosition()>=rvLanguage.adapter.itemCount-2) {
                         EventBus.getDefault().post(LoadMoreEventX(columnContent.id))
                     }
                 }

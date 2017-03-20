@@ -16,6 +16,8 @@ class ColumnData {
     var index: Int? = 0
     var id: String? = null
     var showType: Int = 0
-    var lastIndex: String = "0"
+    var lastIndex: String? = "0"
+    var requesting: Boolean = false
+
 
 }

@@ -13,7 +13,7 @@ import butterknife.Unbinder
  */
 abstract class BaseFragment<T : BasePresenter<*>> : Fragment() {
     protected var mPresenter: T? = null
-    protected lateinit var mUnbinder: Unbinder
+    protected var mUnbinder: Unbinder? = null
     protected abstract fun initPresenter()
     protected abstract fun getLayoutID(): Int
     protected abstract fun initView()
@@ -36,6 +36,6 @@ abstract class BaseFragment<T : BasePresenter<*>> : Fragment() {
 
     override fun onDetach() {
         super.onDetach()
-        mUnbinder.unbind()
+        mUnbinder?.unbind()
     }
 }

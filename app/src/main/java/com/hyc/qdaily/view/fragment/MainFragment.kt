@@ -5,6 +5,7 @@ import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.OrientationHelper
 import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.RecyclerView.OnScrollListener
+import android.util.Log
 import android.view.ViewGroup
 import butterknife.BindView
 import com.hyc.qdaily.R
@@ -30,7 +31,9 @@ class MainFragment : BaseFragment<HomePresenter>(), HomeContract.View {
                 var count =v.childCount
                 (0..count-1)
                         .filter { v.getChildAt(it) is RecyclerView }
-                        .forEach { (v.getChildAt(it) as RecyclerView).adapter.notifyItemInserted(count) }
+                        .forEach {
+                            Log.e("hyc2","show----"+v.getChildAt(it))
+                            (v.getChildAt(it) as RecyclerView).adapter.notifyItemInserted(count) }
             }
         }
     }
@@ -62,13 +65,13 @@ class MainFragment : BaseFragment<HomePresenter>(), HomeContract.View {
 
     override fun showMore(data: ArrayList<ViewData>) {
         var position = mAdapter?.itemCount
-        mAdapter?.addData(data)
         mAdapter?.notifyItemInserted(position!!)
         requesting = false
 
     }
 
     override fun show() {
+        mAdapter?.notifyDataSetChanged()
     }
 
     override fun getLayoutID(): Int {
@@ -103,6 +106,7 @@ class MainFragment : BaseFragment<HomePresenter>(), HomeContract.View {
     }
     @Subscribe
     fun handleLoadMore(event:LoadMoreEventX){
-
+        Log.e("hyc2","handleLoadMore")
+        mPresenter?.getMoreColumnData(event.mId!!)
     }
 }
