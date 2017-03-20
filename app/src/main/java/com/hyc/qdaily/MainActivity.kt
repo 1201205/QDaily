@@ -1,6 +1,7 @@
 package com.hyc.qdaily
 
 import android.os.Bundle
+import android.support.design.widget.FloatingActionButton
 import android.support.v4.view.ViewPager
 import android.view.View
 import android.view.ViewTreeObserver
@@ -23,6 +24,8 @@ class MainActivity : BaseActivity<HomePresenter>() {
     lateinit var tvNews: TextView
     @BindView(R.id.tv_lab)
     lateinit var tvLab: TextView
+    @BindView(R.id.fab_main)
+    lateinit var fabMain: FloatingActionButton
     var preIndex: Int = 0
     var mIndicatorY: IntArray = IntArray(2)
     var mIndicatorScroll: Int = 0
@@ -41,22 +44,22 @@ class MainActivity : BaseActivity<HomePresenter>() {
     override fun initView() {
         StatusBarUtil.StatusBarLightMode(this)
         indicator.viewTreeObserver
-                .addOnPreDrawListener(object : ViewTreeObserver.OnPreDrawListener {
-                    override fun onPreDraw(): Boolean {
-                        indicator.viewTreeObserver.removeOnPreDrawListener(this)
-                         val width = indicator.width
-                        val textWidth = tvNews.width
-                        val location = IntArray(2)
-                        tvNews.getLocationInWindow(location)
-                        mIndicatorY[0] = location[0] - (width - textWidth) / 2
-                        tvLab.getLocationInWindow(location)
-                        mIndicatorY[1] = location[0] - (width - textWidth) / 2
-                        indicator.x = mIndicatorY[0].toFloat()
-                        mIndicatorScroll = mIndicatorY[1] - mIndicatorY[0]
-                        tvNews.isSelected=true
-                        return true
-                    }
-                })
+            .addOnPreDrawListener(object : ViewTreeObserver.OnPreDrawListener {
+                override fun onPreDraw(): Boolean {
+                    indicator.viewTreeObserver.removeOnPreDrawListener(this)
+                    val width = indicator.width
+                    val textWidth = tvNews.width
+                    val location = IntArray(2)
+                    tvNews.getLocationInWindow(location)
+                    mIndicatorY[0] = location[0] - (width - textWidth) / 2
+                    tvLab.getLocationInWindow(location)
+                    mIndicatorY[1] = location[0] - (width - textWidth) / 2
+                    indicator.x = mIndicatorY[0].toFloat()
+                    mIndicatorScroll = mIndicatorY[1] - mIndicatorY[0]
+                    tvNews.isSelected = true
+                    return true
+                }
+            })
         var adapter = FragmentPagerAdapter(supportFragmentManager)
         adapter.add(MainFragment())
         adapter.add(LabFragment())
@@ -88,11 +91,16 @@ class MainActivity : BaseActivity<HomePresenter>() {
             }
 
         })
-        vpTarget.addOnPageChangeListener(ViewPager.SimpleOnPageChangeListener())
+        fabMain
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+
     }
     override fun onNetError() {
     }

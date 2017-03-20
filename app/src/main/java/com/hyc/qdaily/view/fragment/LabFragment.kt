@@ -12,6 +12,8 @@ import com.hyc.qdaily.base.BaseFragment
 import com.hyc.qdaily.beans.view.ViewData
 import com.hyc.qdaily.contract.LabContract
 import com.hyc.qdaily.presenter.LabPresenter
+import com.hyc.qdaily.util.VerticalSpaceDecoration
+import com.hyc.qdaily.util.dip2px
 import com.hyc.qdaily.view.adpter.ViewAdapter
 
 /**
@@ -34,6 +36,8 @@ class LabFragment : BaseFragment<LabPresenter>(), LabContract.View {
         var manager = LinearLayoutManager(activity)
         manager.orientation = OrientationHelper.VERTICAL
         mRecyclerView.layoutManager = manager
+        mRecyclerView.addItemDecoration(VerticalSpaceDecoration(0, dip2px(3f).toInt()))
+
     }
 
     override fun showMore(data: ArrayList<ViewData>) {
@@ -50,8 +54,10 @@ class LabFragment : BaseFragment<LabPresenter>(), LabContract.View {
     override fun getLayoutID(): Int {
         return R.layout.fragment_main
     }
+
     override fun initView() {
     }
+
     override fun onNetError() {
     }
 }

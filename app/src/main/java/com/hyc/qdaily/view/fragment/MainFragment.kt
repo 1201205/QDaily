@@ -5,7 +5,6 @@ import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.OrientationHelper
 import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.RecyclerView.OnScrollListener
-import android.util.Log
 import android.view.ViewGroup
 import butterknife.BindView
 import com.hyc.qdaily.R
@@ -14,6 +13,8 @@ import com.hyc.qdaily.beans.view.ViewData
 import com.hyc.qdaily.contract.HomeContract
 import com.hyc.qdaily.events.LoadMoreEventX
 import com.hyc.qdaily.presenter.HomePresenter
+import com.hyc.qdaily.util.VerticalSpaceDecoration
+import com.hyc.qdaily.util.dip2px
 import com.hyc.qdaily.view.adpter.ViewAdapter
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
@@ -22,22 +23,6 @@ import org.greenrobot.eventbus.Subscribe
  * Created by ray on 17/3/15.
  */
 class MainFragment : BaseFragment<HomePresenter>(), HomeContract.View {
-    override fun showMoreColumn(index: Int,count:Int) {
-       var v= mManager.findViewByPosition(index)
-        if (v is RecyclerView) {
-            v.adapter.notifyItemInserted(count)
-        } else {
-            if (v is  ViewGroup) {
-                var count =v.childCount
-                (0..count-1)
-                        .filter { v.getChildAt(it) is RecyclerView }
-                        .forEach {
-                            Log.e("hyc2","show----"+v.getChildAt(it))
-                            (v.getChildAt(it) as RecyclerView).adapter.notifyItemInserted(count) }
-            }
-        }
-    }
-
     @BindView(R.id.target)
     lateinit var mRecyclerView: RecyclerView
     private var mAdapter: ViewAdapter? = null
@@ -88,6 +73,7 @@ class MainFragment : BaseFragment<HomePresenter>(), HomeContract.View {
             }
         }
         mRecyclerView.addOnScrollListener(mScrollListener)
+        mRecyclerView.addItemDecoration(VerticalSpaceDecoration(0, dip2px(3f).toInt()))
     }
 
     override fun onNetError() {
@@ -104,9 +90,25 @@ class MainFragment : BaseFragment<HomePresenter>(), HomeContract.View {
         EventBus.getDefault().unregister(this)
         super.onDetach()
     }
+
+    override fun showMoreColumn(index: Int, count: Int) {
+        var v = mManager.findViewByPosition(index)
+        if (v is RecyclerView) {
+            v.adapter.notifyItemInserted(count)
+        } else {
+            if (v is ViewGroup) {
+                var count = v.childCount
+                (0..count - 1)
+                    .filter { v.getChildAt(it) is RecyclerView }
+                    .forEach {
+                        (v.getChildAt(it) as RecyclerView).adapter.notifyItemInserted(count)
+                    }
+            }
+        }
+    }
+
     @Subscribe
-    fun handleLoadMore(event:LoadMoreEventX){
-        Log.e("hyc2","handleLoadMore")
+    fun handleLoadMore(event: LoadMoreEventX) {
         mPresenter?.getMoreColumnData(event.mId!!)
     }
 }
