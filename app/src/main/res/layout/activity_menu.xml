@@ -1,14 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.hyc.skin.widget.SkinLinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/activity_main"
+    android:id="@+id/ll_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="20dp"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
     android:orientation="vertical"
     android:background="@color/main_bg">
 
-    <LinearLayout
+    <com.hyc.skin.widget.SkinLinearLayout
+        android:focusable="true"
+        android:focusableInTouchMode="true"
         android:id="@+id/ll_horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -52,9 +56,11 @@
                 android:drawableTop="@drawable/icon_menu_share"
                 android:text="推荐"/>
         </LinearLayout>
-    </LinearLayout>
+    </com.hyc.skin.widget.SkinLinearLayout>
 
-    <LinearLayout
+    <com.hyc.skin.widget.SkinLinearLayout
+        android:focusable="true"
+        android:focusableInTouchMode="true"
         android:id="@+id/ll_vertical"
         android:layout_marginTop="25dp"
         android:layout_width="match_parent"
@@ -93,9 +99,10 @@
             style="@style/menu_vertical"/>
 
         <ImageButton
+            android:id="@+id/ib_back"
             android:layout_marginTop="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/menu_cancel_selector"/>
-    </LinearLayout>
+    </com.hyc.skin.widget.SkinLinearLayout>
 </com.hyc.skin.widget.SkinLinearLayout>

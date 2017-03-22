@@ -17,6 +17,8 @@ import com.hyc.qdaily.util.AppUtilKt;
 public class ScrollAwareFABBehavior extends FloatingActionButton.Behavior{
     private int toolbarHeight= (int) AppUtilKt.dip2px(42f);
 
+    private CoordinatorLayout.LayoutParams lp;
+
     public ScrollAwareFABBehavior(Context context, AttributeSet attrs) {
         super();
     }
@@ -30,7 +32,9 @@ public class ScrollAwareFABBehavior extends FloatingActionButton.Behavior{
     public boolean onDependentViewChanged(CoordinatorLayout parent, FloatingActionButton fab, View dependency) {
         boolean returnValue = super.onDependentViewChanged(parent, fab, dependency);
         if (dependency instanceof AppBarLayout) {
-            CoordinatorLayout.LayoutParams lp = (CoordinatorLayout.LayoutParams) fab.getLayoutParams();
+            if (lp==null) {
+                lp = (CoordinatorLayout.LayoutParams) fab.getLayoutParams();
+            }
             int fabBottomMargin = lp.bottomMargin;
             int distanceToScroll = fab.getHeight() + fabBottomMargin;
             float ratio = (float)dependency.getY()/(float)toolbarHeight;
