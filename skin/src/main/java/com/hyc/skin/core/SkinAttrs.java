@@ -14,9 +14,9 @@ import android.widget.TextView;
  */
 
 public class SkinAttrs {
-    private int mTextColor = -1;
-    private int mBgRes = -1;
-    private boolean hasDrawable;
+    protected int mTextColor = -1;
+    protected int mBgRes = -1;
+    protected boolean hasDrawable;
 
     @Override
     public String toString() {

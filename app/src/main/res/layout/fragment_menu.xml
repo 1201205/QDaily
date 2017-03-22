@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.hyc.skin.widget.SkinLinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="20dp"
+    android:orientation="vertical"
+    android:background="@color/main_bg">
+
+    <LinearLayout
+        android:id="@+id/ll_horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <com.hyc.skin.widget.SkinTextView
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:gravity="center_vertical"
+            android:paddingLeft="15dp"
+            android:drawablePadding="4dp"
+            android:textSize="16sp"
+            android:text="搜索"
+            android:textColor="@color/text_color_normal"
+            android:background="@drawable/menu_search_bg"
+            android:drawableLeft="@drawable/icon_menu_search"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:orientation="horizontal">
+
+            <com.hyc.skin.widget.SkinTextView
+                style="@style/menu_horizontal"
+                android:drawableTop="@drawable/icon_menu_setting"
+                android:text="设置"/>
+
+            <com.hyc.skin.widget.SkinTextView
+                style="@style/menu_horizontal"
+                android:text="夜间"
+                android:drawableTop="@drawable/icon_menu"/>
+
+            <com.hyc.skin.widget.SkinTextView
+                style="@style/menu_horizontal"
+                android:drawableTop="@drawable/icon_menu_outline"
+                android:text="离线"/>
+
+            <com.hyc.skin.widget.SkinTextView
+                style="@style/menu_horizontal"
+                android:drawableTop="@drawable/icon_menu_share"
+                android:text="推荐"/>
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_vertical"
+        android:layout_marginTop="25dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <com.hyc.skin.widget.SkinTextView
+            android:drawableLeft="@drawable/icon_menu_about"
+            android:text="关于我们"
+            style="@style/menu_vertical"/>
+
+        <com.hyc.skin.widget.SkinTextView
+            android:drawableLeft="@drawable/icon_menu_category"
+            android:text="新闻分类"
+            android:drawableRight="@drawable/icon_menu_second"
+            style="@style/menu_vertical"/>
+
+        <com.hyc.skin.widget.SkinTextView
+            android:drawableLeft="@drawable/icon_menu_column"
+            android:text="栏目中心"
+            style="@style/menu_vertical"/>
+
+        <com.hyc.skin.widget.SkinTextView
+            android:drawableLeft="@drawable/icon_menu_notification"
+            android:text="我的消息"
+            style="@style/menu_vertical"/>
+
+        <com.hyc.skin.widget.SkinTextView
+            android:drawableLeft="@drawable/icon_menu_usercenter"
+            android:text="个人中心"
+            style="@style/menu_vertical"/>
+
+        <com.hyc.skin.widget.SkinTextView
+            android:drawableLeft="@drawable/icon_menu_feedback"
+            android:text="意见反馈"
+            style="@style/menu_vertical"/>
+
+        <ImageButton
+            android:layout_marginTop="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/menu_cancel_selector"/>
+    </LinearLayout>
+</com.hyc.skin.widget.SkinLinearLayout>

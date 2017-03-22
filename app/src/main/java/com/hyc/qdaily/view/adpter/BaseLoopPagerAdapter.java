@@ -175,6 +175,7 @@ public abstract class BaseLoopPagerAdapter extends PagerAdapter
 
 
     private void post() {
+        mHandler.removeCallbacks(this);
         mHandler.postDelayed(this, mDelayMillis);
     }
 

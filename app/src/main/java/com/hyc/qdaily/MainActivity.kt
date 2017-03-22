@@ -13,6 +13,7 @@ import com.hyc.qdaily.util.StatusBarUtil
 import com.hyc.qdaily.view.adpter.FragmentPagerAdapter
 import com.hyc.qdaily.view.fragment.LabFragment
 import com.hyc.qdaily.view.fragment.MainFragment
+import com.hyc.qdaily.view.fragment.MenuFragment
 
 class MainActivity : BaseActivity<HomePresenter>() {
 
@@ -91,7 +92,8 @@ class MainActivity : BaseActivity<HomePresenter>() {
             }
 
         })
-        fabMain
+        findViewById(R.id.fl_container).visibility=View.VISIBLE
+        supportFragmentManager.beginTransaction().add(R.id.fl_container,MenuFragment()).commit()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
