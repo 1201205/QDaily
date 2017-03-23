@@ -1,4 +1,4 @@
-package com.hyc.qdaily
+package com.hyc.qdaily.view.activity
 
 import android.content.Intent
 import android.os.Bundle
@@ -9,15 +9,14 @@ import android.view.ViewTreeObserver
 import android.widget.TextView
 import butterknife.BindView
 import butterknife.OnClick
+import com.hyc.qdaily.R
 import com.hyc.qdaily.base.BaseActivity
-import com.hyc.qdaily.presenter.HomePresenter
-import com.hyc.qdaily.util.StatusBarUtil
-import com.hyc.qdaily.view.activity.MenuActivity
+import com.hyc.qdaily.presenter.VoidPresenter
 import com.hyc.qdaily.view.adpter.FragmentPagerAdapter
 import com.hyc.qdaily.view.fragment.LabFragment
 import com.hyc.qdaily.view.fragment.MainFragment
 
-class MainActivity : BaseActivity<HomePresenter>() {
+class MainActivity : BaseActivity<VoidPresenter>() {
 
     @BindView(R.id.vp_target)
     lateinit var vpTarget: ViewPager
@@ -45,7 +44,6 @@ class MainActivity : BaseActivity<HomePresenter>() {
     }
 
     override fun initView() {
-        StatusBarUtil.StatusBarLightMode(this)
         indicator.viewTreeObserver
                 .addOnPreDrawListener(object : ViewTreeObserver.OnPreDrawListener {
                     override fun onPreDraw(): Boolean {

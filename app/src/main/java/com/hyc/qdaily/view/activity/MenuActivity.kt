@@ -5,6 +5,7 @@ import android.animation.ObjectAnimator
 import android.os.Bundle
 import android.view.ViewTreeObserver
 import android.view.animation.AccelerateDecelerateInterpolator
+import android.view.animation.OvershootInterpolator
 import android.widget.LinearLayout
 import butterknife.BindView
 import butterknife.OnClick
@@ -24,7 +25,7 @@ class MenuActivity : BaseActivity<VoidPresenter>() {
     var verticalAnim: Animator? = null
     var horizontalAnimBack: Animator? = null
     var verticalAnimBack: Animator? = null
-    var interpolator: AccelerateDecelerateInterpolator = AccelerateDecelerateInterpolator()
+    var interpolator: OvershootInterpolator = OvershootInterpolator(1f)
 
     override val layoutID = R.layout.activity_menu
     override fun onNetError() {
@@ -54,14 +55,14 @@ class MenuActivity : BaseActivity<VoidPresenter>() {
                     var l1 = llHorizontal.y
                     var l3 = llVertical.y
                     llHorizontal.viewTreeObserver.removeOnPreDrawListener(this)
-                    horizontalAnim = ObjectAnimator.ofFloat(llHorizontal, "y", -l2 - l1, l1 + 30, l1)
+                    horizontalAnim = ObjectAnimator.ofFloat(llHorizontal, "y", -l2 - l1, l1 )
                     horizontalAnimBack = ObjectAnimator.ofFloat(llHorizontal, "y", l1, -l2 - l1)
-                    verticalAnim = ObjectAnimator.ofFloat(llVertical, "y", l3 + l4, l3 - 30, l3)
+                    verticalAnim = ObjectAnimator.ofFloat(llVertical, "y", l3 + l4, l3)
                     verticalAnimBack = ObjectAnimator.ofFloat(llVertical, "y", l3, l3 + l4)
                     horizontalAnim?.duration = 400
-                    verticalAnim?.duration = 400
-                    horizontalAnimBack?.duration = 400
-                    verticalAnimBack?.duration = 400
+                    verticalAnim?.duration = 500
+                    horizontalAnimBack?.duration = 200
+                    verticalAnimBack?.duration = 200
                     verticalAnim?.interpolator = interpolator
                     horizontalAnim?.interpolator = interpolator
                     verticalAnimBack?.interpolator = interpolator
@@ -83,6 +84,7 @@ class MenuActivity : BaseActivity<VoidPresenter>() {
                         }
 
                     })
+                    horizontalAnim?.startDelay=100
                     horizontalAnim?.start()
                     verticalAnim?.start()
                 }
