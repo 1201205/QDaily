@@ -38,12 +38,12 @@ class MainPageModel : HomeContract.Model<Home> {
         viewData.banners = (home?.banners as ArrayList<Feed>)
         if (home.banners_ad != null && home.banners_ad?.size!! > 0) {
             var i: Int = 1
-            var indexParm = viewData.banners!!.size / (home.banners_ad!!.size * 2)
-            if (indexParm == 0) {
-                indexParm = 1
+            var indexParam = viewData.banners!!.size / (home.banners_ad!!.size * 2)
+            if (indexParam == 0) {
+                indexParam = 1
             }
             home.banners_ad!!.forEach {
-                viewData.banners!!.add(i * indexParm, it)
+                viewData.banners!!.add(i * indexParam, it)
                 i++
             }
         }
@@ -80,8 +80,8 @@ class MainPageModel : HomeContract.Model<Home> {
 
     }
 
-    fun addColunm(bean: ColumnContent?, colunmData: ColumnData) {
-        with(colunmData) {
+    fun addColumn(bean: ColumnContent?, columnData: ColumnData) {
+        with(columnData) {
             if (feeds==null) {
                 feeds = ArrayList()
             }
@@ -97,16 +97,16 @@ class MainPageModel : HomeContract.Model<Home> {
                 viewData.feed = it
                 feeds!!.add(viewData)
             }
-            colunmData.lastIndex=bean?.last_key
+            columnData.lastIndex=bean?.last_key
         }
-        if (columnDatas.contains(colunmData)) {
+        if (columnDatas.contains(columnData)) {
             return
         }
         var data = ViewData()
         data.type = "recycler"
-        data.columnContent = colunmData
-        datas.add(0, data)
-        columnDatas.add(colunmData)
+        data.columnContent = columnData
+        datas.add(columnData.index!!, data)
+        columnDatas.add(columnData)
 
     }
 

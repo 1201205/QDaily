@@ -9,7 +9,7 @@ class Post {
     var start_time: Int = 0
     var post_id: Int = 0
     var datatype: String? = null
-    var publish_time: Int = 0
+    var publish_time: Long = 0
     var genre: Int = 0
     var super_tag: String? = null
     var praise_count: Int = 0

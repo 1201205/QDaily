@@ -10,6 +10,7 @@ import butterknife.ButterKnife
 import com.facebook.drawee.view.SimpleDraweeView
 import com.hyc.qdaily.R
 import com.hyc.qdaily.beans.view.ViewData
+import com.hyc.qdaily.util.getTime
 import com.hyc.qdaily.util.loadUrl
 
 /**
@@ -26,7 +27,8 @@ class VerticalProvider : ItemViewProvider<VerticalProvider.VerticalHolder>() {
             loadUrl(sdvImg, feed?.image)
             tvCatTitle.text = feed?.post?.category?.title
             tvPraiseCount.text = feed?.post?.praise_count.toString()
-            tvTime.text = feed?.post?.publish_time.toString()
+            tvTime.text= getTime(feed?.post?.publish_time!!)
+
             tvDes.text = data.feed?.post?.description
             tvTitle.text = data.feed?.post?.title
         }
