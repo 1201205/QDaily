@@ -10,8 +10,10 @@ import butterknife.ButterKnife
 import com.facebook.drawee.view.SimpleDraweeView
 import com.hyc.qdaily.R
 import com.hyc.qdaily.beans.view.ViewData
+import com.hyc.qdaily.events.JumpArticleEvent
 import com.hyc.qdaily.util.getTime
 import com.hyc.qdaily.util.loadUrl
+import org.greenrobot.eventbus.EventBus
 
 /**
  * Created by ray on 17/3/9.
@@ -34,6 +36,7 @@ class FeedProvider : ItemViewProvider<FeedProvider.FeedViewHolder>() {
                 tvDescription.text=feed.post?.title
                 tvPraiseCount.text=feed.post?.praise_count.toString()
                 tvTime.text= getTime(feed.post?.publish_time!!)
+                itemView.setOnClickListener { EventBus.getDefault().post(JumpArticleEvent(feed.post?.id.toString())) }
             }
         }
     }

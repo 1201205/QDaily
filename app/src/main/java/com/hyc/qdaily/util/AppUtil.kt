@@ -3,14 +3,25 @@ package com.hyc.qdaily.util
 import android.app.Activity
 import android.content.Context
 import android.graphics.Rect
+import android.net.Uri
+import android.os.Environment
 import android.util.DisplayMetrics
 import android.widget.Toast
 import com.hyc.qdaily.MainApplication
+import java.io.File
 import java.lang.reflect.Field
 
 /**
  * Created by Administrator on 2016/8/26.
  */
+
+class AppUtil{
+    companion object{
+        val CACHE_PATH= getCachePath()
+    }
+}
+
+
 private var sStausHeight = -1
 /**
  * 生成唯一设备识别id
@@ -92,9 +103,28 @@ fun showToast(id: Int) {
 }
 
 fun getColor(id: Int): Int? {
-    return MainApplication.instance.getResources()?.getColor(id)
+    return MainApplication.instance.resources?.getColor(id)
 }
 
 fun getString(id: Int): String? {
-    return MainApplication.instance.getResources()?.getString(id)
+    return MainApplication.instance.resources?.getString(id)
+}
+
+fun getCachePath():String{
+    var path:String
+    if (Environment.MEDIA_MOUNTED.equals(Environment.getExternalStorageState())) {
+        path = Environment.getExternalStorageDirectory().absolutePath + File.separator + "cache"
+    } else {
+        path=MainApplication.instance.cacheDir.absolutePath
+    }
+    var f=File(path)
+    if (!f.exists()) {
+        f.mkdirs()
+    }
+    return path
+}
+
+fun getFileName(url: String): String {
+    var fileName = Uri.parse(url)
+    return fileName.pathSegments.last()
 }

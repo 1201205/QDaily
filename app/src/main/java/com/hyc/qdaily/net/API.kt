@@ -6,8 +6,12 @@ import com.hyc.qdaily.beans.home.ColumnContent
 import com.hyc.qdaily.beans.home.Home
 import com.hyc.qdaily.beans.home.Paper
 import io.reactivex.Observable
+import okhttp3.ResponseBody
+import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Path
+import retrofit2.http.Streaming
+import retrofit2.http.Url
 
 /**
  * Created by ray on 17/3/2.
@@ -38,5 +42,9 @@ interface API {
 
     @GET("app3/papers/index/{index}.json")
     fun getLabByIndex(@Path("index") index: String): Observable<BaseBean<Paper>>
+
+    @Streaming
+    @GET
+    fun downLoadFile(@Url url: String):Observable<ResponseBody>
 
 }

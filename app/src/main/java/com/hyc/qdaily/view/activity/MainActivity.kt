@@ -1,6 +1,9 @@
 package com.hyc.qdaily.view.activity
 
+import android.Manifest
+import android.annotation.TargetApi
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.support.design.widget.FloatingActionButton
 import android.support.v4.view.ViewPager
@@ -15,6 +18,12 @@ import com.hyc.qdaily.presenter.VoidPresenter
 import com.hyc.qdaily.view.adpter.FragmentPagerAdapter
 import com.hyc.qdaily.view.fragment.LabFragment
 import com.hyc.qdaily.view.fragment.MainFragment
+import android.Manifest.permission
+import android.Manifest.permission.READ_PHONE_STATE
+import android.Manifest.permission.WRITE_EXTERNAL_STORAGE
+import android.content.pm.PackageManager
+import android.support.v4.app.ActivityCompat
+
 
 class MainActivity : BaseActivity<VoidPresenter>() {
 
@@ -44,23 +53,27 @@ class MainActivity : BaseActivity<VoidPresenter>() {
     }
 
     override fun initView() {
+        checkSDPermission()
+        if (Build.VERSION.SDK_INT >= 23) {
+            checkSDPermission()
+        }
         indicator.viewTreeObserver
-                .addOnPreDrawListener(object : ViewTreeObserver.OnPreDrawListener {
-                    override fun onPreDraw(): Boolean {
-                        indicator.viewTreeObserver.removeOnPreDrawListener(this)
-                        val width = indicator.width
-                        val textWidth = tvNews.width
-                        val location = IntArray(2)
-                        tvNews.getLocationInWindow(location)
-                        mIndicatorY[0] = location[0] - (width - textWidth) / 2
-                        tvLab.getLocationInWindow(location)
-                        mIndicatorY[1] = location[0] - (width - textWidth) / 2
-                        indicator.x = mIndicatorY[0].toFloat()
-                        mIndicatorScroll = mIndicatorY[1] - mIndicatorY[0]
-                        tvNews.isSelected = true
-                        return true
-                    }
-                })
+            .addOnPreDrawListener(object : ViewTreeObserver.OnPreDrawListener {
+                override fun onPreDraw(): Boolean {
+                    indicator.viewTreeObserver.removeOnPreDrawListener(this)
+                    val width = indicator.width
+                    val textWidth = tvNews.width
+                    val location = IntArray(2)
+                    tvNews.getLocationInWindow(location)
+                    mIndicatorY[0] = location[0] - (width - textWidth) / 2
+                    tvLab.getLocationInWindow(location)
+                    mIndicatorY[1] = location[0] - (width - textWidth) / 2
+                    indicator.x = mIndicatorY[0].toFloat()
+                    mIndicatorScroll = mIndicatorY[1] - mIndicatorY[0]
+                    tvNews.isSelected = true
+                    return true
+                }
+            })
         var adapter = FragmentPagerAdapter(supportFragmentManager)
         adapter.add(MainFragment())
         adapter.add(LabFragment())
@@ -94,11 +107,20 @@ class MainActivity : BaseActivity<VoidPresenter>() {
         })
     }
 
-    @OnClick(R.id.fab_main)
-    fun onClick(){
-        startActivity(Intent(this, MenuActivity::class.java))
-        overridePendingTransition(0,0)
+    private fun checkSDPermission() {
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
+            return
+        }
+        val permissions = arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_PHONE_STATE)
+        ActivityCompat.requestPermissions(this, permissions, 1)
     }
+
+    @OnClick(R.id.fab_main)
+    fun onClick() {
+        startActivity(Intent(this, MenuActivity::class.java))
+        overridePendingTransition(0, 0)
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }

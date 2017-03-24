@@ -1,6 +1,7 @@
 package com.hyc.qdaily.view.fragment
 
 import android.content.Context
+import android.content.Intent
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.OrientationHelper
 import android.support.v7.widget.RecyclerView
@@ -11,10 +12,12 @@ import com.hyc.qdaily.R
 import com.hyc.qdaily.base.BaseFragment
 import com.hyc.qdaily.beans.view.ViewData
 import com.hyc.qdaily.contract.HomeContract
+import com.hyc.qdaily.events.JumpArticleEvent
 import com.hyc.qdaily.events.LoadMoreEventX
 import com.hyc.qdaily.presenter.HomePresenter
 import com.hyc.qdaily.util.VerticalSpaceDecoration
 import com.hyc.qdaily.util.dip2px
+import com.hyc.qdaily.view.activity.ArticleActivity
 import com.hyc.qdaily.view.adpter.ViewAdapter
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
@@ -110,5 +113,16 @@ class MainFragment : BaseFragment<HomePresenter>(), HomeContract.View {
     @Subscribe
     fun handleLoadMore(event: LoadMoreEventX) {
         mPresenter?.getMoreColumnData(event.mId!!)
+    }
+
+    @Subscribe
+    fun handleJumpArticle(event: JumpArticleEvent) {
+        jumpToArticle(event.mUrl)
+    }
+
+    fun jumpToArticle(url:String?){
+        var intent=Intent(context,ArticleActivity::class.java)
+        intent.putExtra("url",url)
+        startActivity(intent)
     }
 }
