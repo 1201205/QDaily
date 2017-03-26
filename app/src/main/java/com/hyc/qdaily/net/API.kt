@@ -5,12 +5,12 @@ import com.hyc.qdaily.beans.home.Article
 import com.hyc.qdaily.beans.home.ColumnContent
 import com.hyc.qdaily.beans.home.Home
 import com.hyc.qdaily.beans.home.Paper
+import com.hyc.qdaily.beans.other.Category
+import com.hyc.qdaily.beans.other.LeftSideBar
 import io.reactivex.Observable
 import okhttp3.ResponseBody
-import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Path
-import retrofit2.http.Streaming
 import retrofit2.http.Url
 
 /**
@@ -30,6 +30,12 @@ interface API {
      * http://app3.qdaily.com/app3/articles/detail/38314.json
      * papers
      * http://app3.qdaily.com/app3/papers/index/0.json
+     *
+     * left_sidebar
+     * http://app3.qdaily.com/app3/homes/left_sidebar.json
+     *
+     * 长文章
+     * http://app3.qdaily.com/app3/categories/index/1/0.json
      */
     @GET("app3/homes/index/{index}.json")
     fun getHomeDataByIndex(@Path("index") index: String): Observable<BaseBean<Home>>
@@ -38,13 +44,18 @@ interface API {
     fun getArticleByIndex(@Path("index") index: String): Observable<BaseBean<Article>>
 
     @GET("app3/columns/index/{id}/{index}.json")
-    fun getColumn(@Path("id") id:String,@Path("index") index: String): Observable<BaseBean<ColumnContent>>
+    fun getColumn(@Path("id") id: String, @Path("index") index: String): Observable<BaseBean<ColumnContent>>
 
     @GET("app3/papers/index/{index}.json")
     fun getLabByIndex(@Path("index") index: String): Observable<BaseBean<Paper>>
 
-    @Streaming
     @GET
-    fun downLoadFile(@Url url: String):Observable<ResponseBody>
+    fun downLoadFile(@Url url: String): Observable<ResponseBody>
+
+    @GET("app3/homes/left_sidebar.json")
+    fun getLeftBar(): Observable<LeftSideBar>
+
+    @GET("app3/categories/index/{id}/{index}.json")
+    fun getCategory(@Path("id") id: String, @Path("index") index: String): Observable<BaseBean<Category>>
 
 }

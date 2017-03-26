@@ -30,23 +30,32 @@ class FileDownLoader private constructor() {
         }
         targetFile.createNewFile()
         RequestClient.api.downLoadFile(url).observeOn(Schedulers.io()).subscribeOn(Schedulers.io()).map { result ->
-            var inputStream: InputStream
-            var outputStream: OutputStream
+            var inputStream: InputStream?=null
+            var outputStream: OutputStream?=null
+            var byteArray=result.source().readByteArray();
+            var size=byteArray.size
+            if (size==0) {
+                return@map true
+            }
             try {
                 var readBuffer = ByteArray(4096)
                 var read: Int
-                inputStream = result.byteStream()
+                inputStream = ByteArrayInputStream(byteArray)
                 outputStream = FileOutputStream(targetFile)
                 while (true) {
                     read = inputStream.read(readBuffer)
                     if (read == -1) {
                         break
                     }
-                    outputStream.write(read)
+                    outputStream.write(readBuffer,0,read)
                 }
+                outputStream.flush()
                 return@map true
             } catch (e: IOException) {
-                Log.e(TAG, e.message)
+                e.printStackTrace()
+            }finally {
+                outputStream!!.close()
+                inputStream!!.close()
             }
             false
         }.subscribe {

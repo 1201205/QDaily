@@ -2,14 +2,12 @@ package com.hyc.qdaily.view
 
 import android.annotation.SuppressLint
 import android.text.TextUtils
-import android.util.Log
 import android.webkit.WebResourceRequest
 import android.webkit.WebResourceResponse
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import com.hyc.qdaily.file.FileCacheLoader
 import java.io.FileInputStream
-import java.io.InputStream
 
 /**
  * Created by hyc on 2017/3/24.
@@ -17,12 +15,16 @@ import java.io.InputStream
 open class ArticleWebClient : WebViewClient() {
     @SuppressLint("NewApi")
     override fun shouldInterceptRequest(view: WebView?, request: WebResourceRequest?): WebResourceResponse {
-        var response: WebResourceResponse? = null
         var url: String? = request?.url.toString()
-        if (TextUtils.isEmpty(url)) {
-            return super.shouldInterceptRequest(view, request)
-        }
-        Log.e("hyc-4",url+"------")
+        return getCacheResource(url)
+    }
+
+    override fun shouldInterceptRequest(view: WebView?, url: String?): WebResourceResponse {
+        return getCacheResource(url)
+    }
+
+    fun getCacheResource(url: String?): WebResourceResponse {
+        var response: WebResourceResponse? = null
         var mineType: String = ""
         if (url!!.contains(".png") || url.contains(".jpg") || url.contains(".jpeg")) {
             mineType = "image/jpeg"
@@ -42,12 +44,8 @@ open class ArticleWebClient : WebViewClient() {
             }
         }
         if (response == null) {
-            response = WebResourceResponse("application/javascript", "UTF-8",FileInputStream(FileCacheLoader.instance.getFile()) )
+            response = WebResourceResponse("application/javascript", "UTF-8", FileInputStream(FileCacheLoader.instance.getFile()))
         }
         return response!!
-    }
-
-    override fun shouldInterceptRequest(view: WebView?, url: String?): WebResourceResponse {
-        return WebResourceResponse("application/javascript", "UTF-8",FileInputStream(FileCacheLoader.instance.getFile()) )
     }
 }
