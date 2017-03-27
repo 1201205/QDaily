@@ -9,24 +9,25 @@ import butterknife.BindView
 import butterknife.ButterKnife
 import com.facebook.drawee.view.SimpleDraweeView
 import com.hyc.qdaily.R
+import com.hyc.qdaily.beans.home.Feed
 import com.hyc.qdaily.beans.view.ViewData
 import com.hyc.qdaily.util.loadUrl
 
 /**
  * Created by ray on 17/3/12.
  */
-class BookProvider : ItemViewProvider<BookProvider.BookHolder>() {
+class BookProvider : ItemViewProvider<BookProvider.BookHolder,ViewData<Feed>>() {
     override fun onCreateViewHolder(inflater: LayoutInflater, viewGroup: ViewGroup?): BookHolder {
         return BookHolder(inflater.inflate(R.layout.item_book, viewGroup, false))
     }
 
-    override fun onBindViewHolder(holder: BookHolder, data: ViewData, position: Int, wrapper: ParamWrapper) {
-        var feed = data.feed
+    override fun onBindViewHolder(holder: BookHolder, data: ViewData<Feed>, position: Int, wrapper: ParamWrapper) {
+        var feed = data.content
         with(holder) {
             loadUrl(sdvImg, feed?.image)
             tvCommentCount.text = feed?.post?.comment_count.toString()
             tvPraiseCount.text = feed?.post?.praise_count.toString()
-            tvTitle.text = data.feed?.post?.title
+            tvTitle.text = feed?.post?.title
         }
     }
 

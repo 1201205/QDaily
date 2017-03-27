@@ -1,5 +1,7 @@
 package com.hyc.qdaily.beans.view
 
+import com.hyc.qdaily.beans.home.Feed
+
 /**
  * Created by ray on 17/3/3.
  */
@@ -12,7 +14,7 @@ class ColumnData {
      */
     var name: String? = null
     var icon: String? = null
-    var feeds: ArrayList<ViewData>? = null
+    var feeds: ArrayList<ViewData<Feed>>? = null
     var index: Int? = 0
     var id: String? = null
     var showType: Int = 0

@@ -9,6 +9,7 @@ import butterknife.BindView
 import butterknife.ButterKnife
 import com.facebook.drawee.view.SimpleDraweeView
 import com.hyc.qdaily.R
+import com.hyc.qdaily.beans.home.Feed
 import com.hyc.qdaily.beans.view.ViewData
 import com.hyc.qdaily.events.JumpArticleEvent
 import com.hyc.qdaily.util.getTime
@@ -21,14 +22,14 @@ import org.greenrobot.eventbus.EventBus
 
 
 
-class FeedProvider : ItemViewProvider<FeedProvider.FeedViewHolder>() {
+class FeedProvider : ItemViewProvider<FeedProvider.FeedViewHolder,ViewData<Feed>>() {
     override fun onCreateViewHolder(inflater: LayoutInflater, viewGroup: ViewGroup?): FeedViewHolder {
             return FeedViewHolder(inflater.inflate(R.layout.item_feed,viewGroup,false))
     }
 
-    override fun onBindViewHolder(holder: FeedViewHolder, data: ViewData, position: Int, wrapper: ParamWrapper) {
+    override fun onBindViewHolder(holder: FeedViewHolder, data: ViewData<Feed>, position: Int, wrapper: ParamWrapper) {
         with(holder){
-            var feed=data.feed
+            var feed=data.content
             feed?.let{
                 loadUrl(sdvImg,feed.image)
                 tvCatTitle.text=feed.post?.category?.title

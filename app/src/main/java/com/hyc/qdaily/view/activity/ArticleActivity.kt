@@ -1,7 +1,6 @@
 package com.hyc.qdaily.view.activity
 
 import android.webkit.WebView
-import android.webkit.WebViewClient
 import butterknife.BindView
 import com.hyc.qdaily.R
 import com.hyc.qdaily.base.BaseActivity
@@ -45,13 +44,12 @@ class ArticleActivity:BaseActivity<ArticlePresenter>(),ArticleContract.View{
 
     override fun initPresenterAndData() {
         mPresenter= ArticlePresenter(this)
-        mPresenter!!.getArticle(mUrl.toString())
+        mPresenter!!.getArticle(mUrl)
     }
 
     override fun initView() {
-        var client=ArticleWebClient()
         wbArticle.settings.javaScriptEnabled=true
-        wbArticle.setWebViewClient(client)
+        wbArticle.setWebViewClient(ArticleWebClient())
     }
 
 }

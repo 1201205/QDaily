@@ -9,19 +9,20 @@ import butterknife.BindView
 import butterknife.ButterKnife
 import com.facebook.drawee.view.SimpleDraweeView
 import com.hyc.qdaily.R
+import com.hyc.qdaily.beans.home.InsertContent
 import com.hyc.qdaily.beans.view.ViewData
 import com.hyc.qdaily.util.loadUrl
 
 /**
  * Created by ray on 17/3/12.
  */
-class TopicProvider : ItemViewProvider<TopicProvider.TopicHolder>() {
+class TopicProvider : ItemViewProvider<TopicProvider.TopicHolder, ViewData<InsertContent>>() {
     override fun onCreateViewHolder(inflater: LayoutInflater, viewGroup: ViewGroup?): TopicHolder {
         return TopicHolder(inflater.inflate(R.layout.item_topic, viewGroup, false))
     }
 
-    override fun onBindViewHolder(holder: TopicHolder, data: ViewData, position: Int, wrapper: ParamWrapper) {
-        var insert = data.insertContent
+    override fun onBindViewHolder(holder: TopicHolder, data: ViewData<InsertContent>, position: Int, wrapper: ParamWrapper) {
+        var insert = data.content
         with(holder) {
             loadUrl(sdvImg, insert?.image)
             tvTitle.text = insert?.title

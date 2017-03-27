@@ -53,7 +53,7 @@ interface API {
     fun downLoadFile(@Url url: String): Observable<ResponseBody>
 
     @GET("app3/homes/left_sidebar.json")
-    fun getLeftBar(): Observable<LeftSideBar>
+    fun getLeftBar(): Observable<BaseBean<ArrayList<LeftSideBar>>>
 
     @GET("app3/categories/index/{id}/{index}.json")
     fun getCategory(@Path("id") id: String, @Path("index") index: String): Observable<BaseBean<Category>>

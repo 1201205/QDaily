@@ -93,18 +93,11 @@ public class LoopViewPagerAdapter extends BaseLoopPagerAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         ViewHolder holder = null;
-        Log.e("hyc-test","View");
         if (convertView == null) {
-            Log.e("hyc-------",parent.getContext()+"----");
             LayoutInflater inflater= (LayoutInflater) parent.getContext().getSystemService(
                 Context.LAYOUT_INFLATER_SERVICE);
-            if (inflater==null) {
-                Log.e("hyc-------inflaterView","inflaterView----");
-            }
             convertView = inflater
                 .inflate(R.layout.adpter_banner, parent, false);
-
-            Log.e("hyc-------convertView",convertView+"----");
             holder = new ViewHolder();
             holder.sdvBanner = (SimpleDraweeView) convertView.findViewById(R.id.sdv_banner);
             holder.tvBanner= (TextView) convertView.findViewById(R.id.tv_banner);

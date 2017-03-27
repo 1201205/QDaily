@@ -1,6 +1,7 @@
 package com.hyc.qdaily.presenter
 
 import android.text.TextUtils
+import android.util.Log
 import com.hyc.qdaily.base.BasePresenter
 import com.hyc.qdaily.base.SchedulerTransformer
 import com.hyc.qdaily.beans.BaseBean
@@ -8,14 +9,18 @@ import com.hyc.qdaily.beans.home.Home
 import com.hyc.qdaily.beans.view.ColumnData
 import com.hyc.qdaily.beans.view.ViewData
 import com.hyc.qdaily.contract.HomeContract
+import com.hyc.qdaily.model.ClassifyModel
 import com.hyc.qdaily.model.MainPageModel
 import com.hyc.qdaily.net.RequestClient
+import io.reactivex.functions.Consumer
 import io.reactivex.functions.Function
 
 /**
  * Created by hyc on 2017/3/7.
  */
 class HomePresenter(mView: HomeContract.View) : HomeContract.Presenter, BasePresenter<HomeContract.View>(mView) {
+    private val MAX_RETRY_COUNT = 3
+    private var retry = 0
     override fun getMoreColumnData(id: String) {
         var data = model.getColumn(id)
         data?.let {
@@ -23,7 +28,7 @@ class HomePresenter(mView: HomeContract.View) : HomeContract.Presenter, BasePres
         }
     }
 
-    var revert = Function<BaseBean<Home>, ArrayList<ViewData>> { it ->
+    private var revert = Function<BaseBean<Home>, ArrayList<ViewData<*>>> { it ->
         var home = it!!.response
         mLastIndex = home?.last_key
         if (TextUtils.isEmpty(mLastIndex)) {
@@ -43,11 +48,17 @@ class HomePresenter(mView: HomeContract.View) : HomeContract.Presenter, BasePres
         }
         model.revertToViewData(it)
     }
+    private var retryError = Consumer<Throwable> {
+        if (retry < MAX_RETRY_COUNT) {
+            getLeftBars()
+        }
+        retry++
+    }
     private var model: MainPageModel = MainPageModel()
     private var mLastIndex: String? = null
     override fun getMoreData() {
         RequestClient.api.getHomeDataByIndex(mLastIndex!!).compose(SchedulerTransformer.create()).map(revert).subscribe({ mView.showMore(it) },
-                { onError(it) }
+            { onError(it) }
         )
     }
 
@@ -55,7 +66,13 @@ class HomePresenter(mView: HomeContract.View) : HomeContract.Presenter, BasePres
         RequestClient.api.getHomeDataByIndex("0").compose(SchedulerTransformer.create()).map(revert).subscribe({
             mView.showRecommendData(it)
         }, { onError(it) })
+        getLeftBars()
+    }
 
+    private fun getLeftBars() {
+        RequestClient.api.getLeftBar().compose(SchedulerTransformer.create()).map {
+            ClassifyModel.instance.convertToViewData(it.response)
+        }.subscribe({}, { retryError })
     }
 
     fun getColumn(data: ColumnData, first: Boolean) {

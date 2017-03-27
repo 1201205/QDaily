@@ -3,6 +3,7 @@ package com.hyc.qdaily.model
 import com.hyc.qdaily.beans.BaseBean
 import com.hyc.qdaily.beans.home.ColumnContent
 import com.hyc.qdaily.beans.home.Feed
+import com.hyc.qdaily.beans.home.HeadLine
 import com.hyc.qdaily.beans.home.Home
 import com.hyc.qdaily.beans.view.ColumnData
 import com.hyc.qdaily.beans.view.ViewData
@@ -12,63 +13,63 @@ import com.hyc.qdaily.contract.HomeContract
  * Created by hyc on 2017/3/9.
  */
 class MainPageModel : HomeContract.Model<Home> {
-    override fun getViewDatas(): ArrayList<ViewData> {
-        return datas
+    override fun getViewDatas(): ArrayList<ViewData<*>> {
+        return data
     }
-    private var columnDatas:ArrayList<ColumnData> = ArrayList()
+    private var columnData:ArrayList<ColumnData> = ArrayList()
 
-    private var datas: ArrayList<ViewData> = ArrayList()
-    override fun revertToViewData(bean: BaseBean<Home>): ArrayList<ViewData> {
+    private var data: ArrayList<ViewData<*>> = ArrayList()
+    override fun revertToViewData(bean: BaseBean<Home>): ArrayList<ViewData<*>> {
         var home = bean.response
         if (home?.banners?.size!! > 0) {
-            datas.add(revertBanner(home!!))
+            data.add(revertBanner(home!!))
         }
         var headLineId = home?.headline?.post?.id
-        datas.addAll(revertNormal(home, headLineId))
+        data.addAll(revertNormal(home, headLineId))
         if (headLineId != null && headLineId != 0) {
-            datas.add(revertHeadLine(home))
+            data.add(revertHeadLine(home))
         }
 
-        return datas
+        return data
     }
 
-    fun revertBanner(home: Home): ViewData {
-        var viewData = ViewData()
+    fun revertBanner(home: Home): ViewData<*> {
+        var viewData = ViewData<ArrayList<Feed>>()
         viewData.type = "banner"
-        viewData.banners = (home?.banners as ArrayList<Feed>)
+        viewData.content = (home?.banners as ArrayList<Feed>)
         if (home.banners_ad != null && home.banners_ad?.size!! > 0) {
             var i: Int = 1
-            var indexParam = viewData.banners!!.size / (home.banners_ad!!.size * 2)
+            var indexParam = viewData.content!!.size / (home.banners_ad!!.size * 2)
             if (indexParam == 0) {
                 indexParam = 1
             }
             home.banners_ad!!.forEach {
-                viewData.banners!!.add(i * indexParam, it)
+                viewData.content!!.add(i * indexParam, it)
                 i++
             }
         }
         return viewData
     }
 
-    fun revertHeadLine(home: Home): ViewData {
-        var headLine = ViewData()
-        headLine.headLine = home.headline
+    fun revertHeadLine(home: Home): ViewData<HeadLine> {
+        var headLine = ViewData<HeadLine>()
+        headLine.content = home.headline
         headLine.type = "headline"
         return headLine
     }
 
-    fun revertNormal(home: Home, id: Int?): ArrayList<ViewData> {
-        var viewDatas = ArrayList<ViewData>()
+    fun revertNormal(home: Home, id: Int?): ArrayList<ViewData<Feed>> {
+        var viewDatas = ArrayList<ViewData<Feed>>()
         home?.feeds?.let {
             home.feeds!!.forEach {
-                var data = ViewData()
+                var data = ViewData<Feed>()
                 when (it.type) {
                     0 -> data.type = "curiosity"
                     1 -> data.type = "feed"
                     2 -> data.type = "vertical"
                 }
                 if (id != 0 || it.post?.id != id) {
-                    data.feed = it
+                    data.content = it
                     viewDatas.add(data)
                 }
             }
@@ -92,26 +93,26 @@ class MainPageModel : HomeContract.Model<Home> {
                 else -> type = "language"
             }
             bean?.feeds?.forEach {
-                var viewData = ViewData()
+                var viewData = ViewData<Feed>()
                 viewData.type = type
-                viewData.feed = it
+                viewData.content = it
                 feeds!!.add(viewData)
             }
             columnData.lastIndex=bean?.last_key
         }
-        if (columnDatas.contains(columnData)) {
+        if (this.columnData.contains(columnData)) {
             return
         }
-        var data = ViewData()
+        var data = ViewData<ColumnData>()
         data.type = "recycler"
-        data.columnContent = columnData
-        datas.add(columnData.index!!, data)
-        columnDatas.add(columnData)
+        data.content = columnData
+        this.data.add(columnData.index!!, data)
+        this.columnData.add(columnData)
 
     }
 
     fun getColumn(id:String):ColumnData?{
-        columnDatas.forEach {
+        columnData.forEach {
             if (it.id.equals(id)) {
                 return it
             }

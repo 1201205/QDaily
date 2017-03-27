@@ -9,7 +9,7 @@ import com.hyc.qdaily.beans.home.Feed
 /**
  * Created by hyc on 2017/3/8.
  */
-abstract class ItemViewProvider<V : RecyclerView.ViewHolder>{
+abstract class ItemViewProvider<V : RecyclerView.ViewHolder, in T>{
     abstract fun onCreateViewHolder(inflater: LayoutInflater,viewGroup: ViewGroup?):V
-    abstract fun onBindViewHolder(holder:V, data: ViewData, position:Int, wrapper: ParamWrapper):Unit
+    abstract fun onBindViewHolder(holder:V, data: T, position:Int, wrapper: ParamWrapper):Unit
 }

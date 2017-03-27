@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.hyc.skin.widget.SkinLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.hyc.skin.widget.SkinLinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/ll_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="20dp"
-    android:focusable="true"
-    android:focusableInTouchMode="true"
     android:orientation="vertical"
     android:background="@color/main_bg">
 
     <com.hyc.skin.widget.SkinLinearLayout
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
         android:id="@+id/ll_horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -57,72 +58,85 @@
         </LinearLayout>
     </com.hyc.skin.widget.SkinLinearLayout>
 
-    <com.hyc.skin.widget.SkinLinearLayout
-        android:id="@+id/ll_vertical"
+    <FrameLayout
+
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:focusable="true"
-        android:focusableInTouchMode="true"
-        android:layout_marginTop="25dp"
-        android:orientation="vertical">
+        android:layout_height="0dp"
+        android:layout_weight="1">
 
-        <com.hyc.skin.widget.SkinTextView
-            style="@style/menu_vertical"
-            android:drawableLeft="@drawable/icon_menu_about"
-            android:text="关于我们"/>
-
-        <com.hyc.skin.widget.SkinTextView
-            style="@style/menu_vertical"
-            android:drawableLeft="@drawable/icon_menu_category"
-            android:text="新闻分类"
-            android:drawableRight="@drawable/icon_menu_second"/>
-
-        <com.hyc.skin.widget.SkinTextView
-            style="@style/menu_vertical"
-            android:drawableLeft="@drawable/icon_menu_column"
-            android:text="栏目中心"/>
-
-        <com.hyc.skin.widget.SkinTextView
-            style="@style/menu_vertical"
-            android:drawableLeft="@drawable/icon_menu_notification"
-            android:text="我的消息"/>
-
-        <com.hyc.skin.widget.SkinTextView
-            style="@style/menu_vertical"
-            android:drawableLeft="@drawable/icon_menu_usercenter"
-            android:text="个人中心"/>
-
-        <com.hyc.skin.widget.SkinTextView
-            style="@style/menu_vertical"
-            android:drawableLeft="@drawable/icon_menu_feedback"
-            android:text="意见反馈"/>
-
-        <ImageButton
-            android:id="@+id/ib_back"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/menu_cancel_selector"/>
-    </com.hyc.skin.widget.SkinLinearLayout>
-
-    <com.hyc.skin.widget.SkinLinearLayout
-        android:id="@+id/ll_type"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:visibility="gone">
-
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/rv_type"
+        <com.hyc.skin.widget.SkinLinearLayout
+            android:layout_marginBottom="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:id="@+id/ll_vertical"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:visibility="gone"
-            android:layout_weight="1"/>
-
-        <ImageButton
-            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/menu_cancel_selector"/>
-    </com.hyc.skin.widget.SkinLinearLayout>
+            android:layout_marginTop="25dp"
+            android:orientation="vertical">
 
+            <com.hyc.skin.widget.SkinTextView
+                style="@style/menu_vertical"
+                android:drawableLeft="@drawable/icon_menu_about"
+                android:text="关于我们"/>
+
+            <com.hyc.skin.widget.SkinTextView
+                android:id="@+id/tv_classify"
+                style="@style/menu_vertical"
+                android:drawableLeft="@drawable/icon_menu_category"
+                android:text="新闻分类"
+                android:drawableRight="@drawable/icon_menu_second"/>
+
+            <com.hyc.skin.widget.SkinTextView
+                android:clickable="true"
+                style="@style/menu_vertical"
+                android:drawableLeft="@drawable/icon_menu_column"
+                android:text="栏目中心"/>
+
+            <com.hyc.skin.widget.SkinTextView
+                style="@style/menu_vertical"
+                android:drawableLeft="@drawable/icon_menu_notification"
+                android:text="我的消息"/>
+
+            <com.hyc.skin.widget.SkinTextView
+                style="@style/menu_vertical"
+                android:drawableLeft="@drawable/icon_menu_usercenter"
+                android:text="个人中心"/>
+
+            <com.hyc.skin.widget.SkinTextView
+                style="@style/menu_vertical"
+                android:drawableLeft="@drawable/icon_menu_feedback"
+                android:text="意见反馈"/>
+
+            <ImageButton
+                android:id="@+id/ib_back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/menu_cancel_selector"/>
+        </com.hyc.skin.widget.SkinLinearLayout>
+
+        <com.hyc.skin.widget.SkinLinearLayout
+            android:layout_marginBottom="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="23dp"
+            android:id="@+id/ll_classify"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="invisible">
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rv_classify"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+            <ImageButton
+                android:id="@+id/ib_classify"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/menu_cancel_selector"/>
+        </com.hyc.skin.widget.SkinLinearLayout>
+    </FrameLayout>
 </com.hyc.skin.widget.SkinLinearLayout>

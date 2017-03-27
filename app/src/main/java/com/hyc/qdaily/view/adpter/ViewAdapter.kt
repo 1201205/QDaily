@@ -2,7 +2,6 @@ package com.hyc.qdaily.view.adpter
 
 import android.content.Context
 import android.support.v7.widget.RecyclerView
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.hyc.qdaily.beans.view.ViewData
@@ -12,45 +11,49 @@ import com.hyc.qdaily.view.adpter.holder.ViewModelPool
 /**
  * Created by hyc on 2017/3/8.
  */
-class ViewAdapter private constructor(context: Context,datas: ArrayList<ViewData>): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
-    private  var mDatas: ArrayList<ViewData> = datas
-    private var mInflater:LayoutInflater = LayoutInflater.from(context)
-    private var paramWrapper: ParamWrapper=ParamWrapper()
+class ViewAdapter private constructor(context: Context, data: ArrayList<ViewData<*>>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+    private var mData: ArrayList<ViewData<*>> = data
+    private var mInflater: LayoutInflater = LayoutInflater.from(context)
+    private var paramWrapper: ParamWrapper = ParamWrapper()
     override fun getItemCount(): Int {
-        return mDatas.size
+        return mData.size
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder?, position: Int) {
-        holder?:let{
+        holder ?: let {
             return
         }
-        ViewModelPool.instance.getProviderByType(mDatas[position].type)?.onBindViewHolder(holder,mDatas[position],position,paramWrapper)
+        ViewModelPool.instance.getProviderByType(mData[position].type)?.onBindViewHolder(holder, mData[position], position, paramWrapper)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): RecyclerView.ViewHolder {
-        return ViewModelPool.instance.getProvider(viewType).onCreateViewHolder(mInflater,parent)
+        return ViewModelPool.instance.getProvider(viewType).onCreateViewHolder(mInflater, parent)
     }
 
     override fun getItemViewType(position: Int): Int {
-        return ViewModelPool.instance.getType(mDatas[position].type)
+        return ViewModelPool.instance.getType(mData[position].type)
     }
 
-    fun getData(index : Int):ViewData{
-        return mDatas[index]
+    fun getData(index: Int): ViewData<*> {
+        return mData[index]
     }
-    fun addData(data: ArrayList<ViewData>){
-        mDatas.addAll(data)
+
+    fun addData(data: ArrayList<ViewData<*>>) {
+        mData.addAll(data)
     }
-    class Builder{
+
+    class Builder {
         var adapter: ViewAdapter
 
-        constructor(context: Context,datas: ArrayList<ViewData>){
-            adapter= ViewAdapter(context,datas)
+        constructor(context: Context, data: ArrayList<ViewData<*>>) {
+            adapter = ViewAdapter(context, data)
         }
-        constructor(context: Context){
-            adapter= ViewAdapter(context, ArrayList())
+
+        constructor(context: Context) {
+            adapter = ViewAdapter(context, ArrayList())
         }
-        fun build():ViewAdapter{
+
+        fun build(): ViewAdapter {
             return adapter
         }
     }

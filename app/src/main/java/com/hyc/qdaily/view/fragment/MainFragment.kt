@@ -33,7 +33,7 @@ class MainFragment : BaseFragment<HomePresenter>(), HomeContract.View {
     private var hasMore: Boolean = true
     private var requesting: Boolean = false
     private lateinit var mManager: LinearLayoutManager
-    override fun showRecommendData(data: ArrayList<ViewData>) {
+    override fun showRecommendData(data: ArrayList<ViewData<*>>) {
         mAdapter = ViewAdapter.Builder(activity, data).build()
         mRecyclerView.adapter = mAdapter
         mManager = LinearLayoutManager(activity)
@@ -51,7 +51,7 @@ class MainFragment : BaseFragment<HomePresenter>(), HomeContract.View {
         mPresenter!!.getRecommendData()
     }
 
-    override fun showMore(data: ArrayList<ViewData>) {
+    override fun showMore(data: ArrayList<ViewData<*>>) {
         var position = mAdapter?.itemCount
         mAdapter?.notifyItemInserted(position!!)
         requesting = false

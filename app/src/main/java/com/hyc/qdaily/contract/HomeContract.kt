@@ -11,8 +11,8 @@ import com.hyc.qdaily.beans.home.Home
 
 interface HomeContract{
     interface View:BaseView{
-        fun showRecommendData(data:ArrayList<ViewData>)
-        fun showMore(data: ArrayList<ViewData>)
+        fun showRecommendData(data:ArrayList<ViewData<*>>)
+        fun showMore(data: ArrayList<ViewData<*>>)
         fun show()
         fun noMore()
         fun showMoreColumn(index:Int,count:Int)
@@ -23,8 +23,8 @@ interface HomeContract{
         fun getMoreColumnData(id:String)
     }
     interface Model<T>{
-        fun revertToViewData(bean:BaseBean<T>):ArrayList<ViewData>
+        fun revertToViewData(bean:BaseBean<T>):ArrayList<ViewData<*>>
         fun addToViewData(bean: BaseBean<T>)
-        fun getViewDatas():ArrayList<ViewData>
+        fun getViewDatas():ArrayList<ViewData<*>>
     }
 }

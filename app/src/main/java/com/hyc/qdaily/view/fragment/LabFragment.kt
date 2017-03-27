@@ -30,7 +30,7 @@ class LabFragment : BaseFragment<LabPresenter>(), LabContract.View {
         return view
     }
 
-    override fun showRecommendData(data: ArrayList<ViewData>) {
+    override fun showRecommendData(data: ArrayList<ViewData<*>>) {
         mAdapter = ViewAdapter.Builder(activity, data).build()
         mRecyclerView.adapter = mAdapter
         var manager = LinearLayoutManager(activity)
@@ -40,7 +40,7 @@ class LabFragment : BaseFragment<LabPresenter>(), LabContract.View {
 
     }
 
-    override fun showMore(data: ArrayList<ViewData>) {
+    override fun showMore(data: ArrayList<ViewData<*>>) {
     }
 
     override fun show() {

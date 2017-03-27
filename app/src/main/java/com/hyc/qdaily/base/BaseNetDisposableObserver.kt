@@ -15,7 +15,7 @@ import com.hyc.qdaily.util.showToast
  * Created by hyc on 2017/3/6.
  */
 
-open class BaseNetDisposableObserver<T : ArrayList<ViewData>> : DisposableObserver<T> {
+open class BaseNetDisposableObserver<T : ArrayList<ViewData<*>>> : DisposableObserver<T> {
     private var toast: Boolean = false
 
 

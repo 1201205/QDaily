@@ -9,8 +9,8 @@ import com.hyc.qdaily.beans.view.ViewData
  */
 interface LabContract{
     interface View: BaseView {
-        fun showRecommendData(data:ArrayList<ViewData>)
-        fun showMore(data: ArrayList<ViewData>)
+        fun showRecommendData(data:ArrayList<ViewData<*>>)
+        fun showMore(data: ArrayList<ViewData<*>>)
         fun show()
     }
     interface Presenter{
@@ -18,8 +18,8 @@ interface LabContract{
         fun getMoreLab(index:String)
     }
     interface Model<T>{
-        fun revertToViewData(bean: BaseBean<T>):ArrayList<ViewData>
+        fun revertToViewData(bean: BaseBean<T>):ArrayList<ViewData<*>>
         fun addToViewData(bean: BaseBean<T>)
-        fun getViewDatas():ArrayList<ViewData>
+        fun getViewDatas():ArrayList<ViewData<*>>
     }
 }
