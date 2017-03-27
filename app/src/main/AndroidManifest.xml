@@ -23,6 +23,8 @@
         </activity>
         <activity android:name=".view.activity.MenuActivity"/>
         <activity android:name=".view.activity.ArticleActivity"/>
+        <activity android:name=".view.activity.CategoryActivity"/>
+
     </application>
 
 </manifest>

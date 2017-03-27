@@ -15,9 +15,12 @@ import butterknife.BindView
 import butterknife.OnClick
 import com.hyc.qdaily.R
 import com.hyc.qdaily.base.BaseActivity
+import com.hyc.qdaily.events.JumpCategoryEvent
 import com.hyc.qdaily.model.ClassifyModel
 import com.hyc.qdaily.presenter.VoidPresenter
 import com.hyc.qdaily.view.adpter.ViewAdapter
+import org.greenrobot.eventbus.EventBus
+import org.greenrobot.eventbus.Subscribe
 
 /**
  * Created by ray on 17/3/22.
@@ -51,8 +54,8 @@ class MenuActivity : BaseActivity<VoidPresenter>() {
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
-
         super.onCreate(savedInstanceState)
+        EventBus.getDefault().register(this)
     }
 
     override fun handleIntent() {
@@ -167,5 +170,15 @@ class MenuActivity : BaseActivity<VoidPresenter>() {
         } else {
             ibBack.performClick()
         }
+    }
+
+    @Subscribe
+    fun jumpToCategory(categoryEvent: JumpCategoryEvent) {
+        startActivity(CategoryActivity.getIntent(this, categoryEvent.mID, categoryEvent.mTitle))
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        EventBus.getDefault().unregister(this)
     }
 }

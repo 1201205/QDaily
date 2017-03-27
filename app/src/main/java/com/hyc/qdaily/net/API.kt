@@ -36,6 +36,11 @@ interface API {
      *
      * 长文章
      * http://app3.qdaily.com/app3/categories/index/1/0.json
+     * detail
+     * http://app3.qdaily.com/app3/papers/detail/1587.json
+     *
+     * options
+     * http://app3.qdaily.com/app3/options/index/1587/0.json
      */
     @GET("app3/homes/index/{index}.json")
     fun getHomeDataByIndex(@Path("index") index: String): Observable<BaseBean<Home>>

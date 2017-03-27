@@ -25,11 +25,10 @@ class MainPageModel : HomeContract.Model<Home> {
             data.add(revertBanner(home!!))
         }
         var headLineId = home?.headline?.post?.id
-        data.addAll(revertNormal(home, headLineId))
         if (headLineId != null && headLineId != 0) {
             data.add(revertHeadLine(home))
         }
-
+        data.addAll(revertNormal(home, headLineId))
         return data
     }
 

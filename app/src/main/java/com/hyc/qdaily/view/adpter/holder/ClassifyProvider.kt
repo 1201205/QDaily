@@ -11,7 +11,9 @@ import com.facebook.drawee.view.SimpleDraweeView
 import com.hyc.qdaily.R
 import com.hyc.qdaily.beans.other.LeftSideBar
 import com.hyc.qdaily.beans.view.ViewData
+import com.hyc.qdaily.events.JumpCategoryEvent
 import com.hyc.qdaily.util.loadUrl
+import org.greenrobot.eventbus.EventBus
 
 /**
  * Created by hyc on 2017/3/27.
@@ -27,6 +29,9 @@ class ClassifyProvider : ItemViewProvider<ClassifyProvider.ClassifyHolder, ViewD
             leftBar?.let {
                 tvName.text = leftBar.title
                 loadUrl(sdvIcon, leftBar.white_icon)
+                itemView.setOnClickListener {
+                    EventBus.getDefault().post(JumpCategoryEvent(leftBar.id.toString(), leftBar.title!!))
+                }
             }
         }
 

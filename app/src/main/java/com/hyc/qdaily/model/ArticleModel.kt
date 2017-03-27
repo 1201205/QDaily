@@ -15,7 +15,6 @@ class ArticleModel : ArticleContract.Model {
     }
 
     override fun downLoadSucceed(url: String): Boolean {
-        Log.e("downloader",url+"------"+urlList.size)
         urlList.remove(url)
         return urlList.size == 0
     }

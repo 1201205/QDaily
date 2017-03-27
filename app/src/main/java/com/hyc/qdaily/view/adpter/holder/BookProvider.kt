@@ -16,7 +16,7 @@ import com.hyc.qdaily.util.loadUrl
 /**
  * Created by ray on 17/3/12.
  */
-class BookProvider : ItemViewProvider<BookProvider.BookHolder,ViewData<Feed>>() {
+class BookProvider : ItemViewProvider<BookProvider.BookHolder, ViewData<Feed>>() {
     override fun onCreateViewHolder(inflater: LayoutInflater, viewGroup: ViewGroup?): BookHolder {
         return BookHolder(inflater.inflate(R.layout.item_book, viewGroup, false))
     }
