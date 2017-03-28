@@ -12,7 +12,9 @@ import com.facebook.drawee.view.SimpleDraweeView
 import com.hyc.qdaily.R
 import com.hyc.qdaily.beans.home.Feed
 import com.hyc.qdaily.beans.view.ViewData
+import com.hyc.qdaily.events.JumpPaperDetailEvent
 import com.hyc.qdaily.util.loadUrl
+import org.greenrobot.eventbus.EventBus
 
 /**
  * Created by ray on 17/3/12.
@@ -25,11 +27,14 @@ class LabProvider : ItemViewProvider<LabProvider.LabHolder, ViewData<Feed>>() {
     override fun onBindViewHolder(holder: LabHolder, data: ViewData<Feed>, position: Int, wrapper: ParamWrapper) {
         var feed = data.content
         with(holder) {
-            loadUrl(sdvImg, feed?.image)
+            loadUrl(sdvImg, feed?.post?.image)
             loadUrl(sdvIcon, feed?.post?.category?.image_lab)
             tvCount.text = feed?.post?.record_count.toString()
             tvDes.text = feed?.post?.description
             tvTitle.text = feed?.post?.title
+            itemView.setOnClickListener {
+                EventBus.getDefault().post(JumpPaperDetailEvent(feed!!.post!!.id.toString(),feed.post!!.genre))
+            }
         }
     }
 

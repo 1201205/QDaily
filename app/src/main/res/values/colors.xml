@@ -21,5 +21,14 @@
     <color name="border_color">#e9e9e9</color>
     <color name="recycler_border_color">#e2e2e2</color>
     <color name="divider_color">#e0e0e0</color>
+    <color name="say_bg0">#49c4cd</color>
+    <color name="say_bg1">#ffab43</color>
+    <color name="say_bg2">#e86a60</color>
+    <color name="say_bg3">#acc76d</color>
+    <color name="say_bg4">#85d0ab</color>
+    <color name="say_bg5">#908ec2</color>
+    <color name="say_bg6">#f2a5a8</color>
+    <color name="submit_not_enable">#ffe38f</color>
+    <color name="vote_bg">#F2F2F2</color>
 
 </resources>

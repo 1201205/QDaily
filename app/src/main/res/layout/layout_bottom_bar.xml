@@ -1,18 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="60dp">
+    android:layout_height="50dp">
     <View
         android:background="@color/main_bg"
         android:layout_width="match_parent"
         android:layout_height="1px"/>
     <ImageView
+        android:layout_centerVertical="true"
         android:src="@drawable/nav_back"
         android:padding="8dp"
+        android:layout_marginLeft="25dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
     <ImageView
-        android:src="@drawable/nav_back"
+        android:layout_marginLeft="35dp"
+        android:id="@+id/iv_share"
+        android:layout_marginRight="25dp"
+        android:layout_centerVertical="true"
+        android:layout_alignParentRight="true"
+        android:src="@drawable/icon_nav_share"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+    <ImageView
+        android:id="@+id/iv_comment"
+        android:layout_centerVertical="true"
+        android:layout_toLeftOf="@id/iv_share"
+        android:src="@drawable/icon_toolbar_comment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+    <TextView
+        android:textColor="@color/text_color_normal"
+        android:textSize="10sp"
+        android:layout_marginTop="5dp"
+        android:text="11111"
+        android:layout_toRightOf="@id/iv_comment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
 </RelativeLayout>

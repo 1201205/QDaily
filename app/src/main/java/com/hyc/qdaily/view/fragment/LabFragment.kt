@@ -1,5 +1,6 @@
 package com.hyc.qdaily.view.fragment
 
+import android.content.Context
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.OrientationHelper
@@ -11,10 +12,14 @@ import com.hyc.qdaily.R
 import com.hyc.qdaily.base.BaseFragment
 import com.hyc.qdaily.beans.view.ViewData
 import com.hyc.qdaily.contract.LabContract
+import com.hyc.qdaily.events.JumpPaperDetailEvent
 import com.hyc.qdaily.presenter.LabPresenter
 import com.hyc.qdaily.util.VerticalSpaceDecoration
 import com.hyc.qdaily.util.dip2px
+import com.hyc.qdaily.view.activity.VoteActivity
 import com.hyc.qdaily.view.adpter.ViewAdapter
+import org.greenrobot.eventbus.EventBus
+import org.greenrobot.eventbus.Subscribe
 
 /**
  * Created by ray on 17/3/15.
@@ -40,6 +45,26 @@ class LabFragment : BaseFragment<LabPresenter>(), LabContract.View {
 
     }
 
+    override fun onAttach(context: Context?) {
+        super.onAttach(context)
+        EventBus.getDefault().register(this)
+    }
+
+    override fun onDetach() {
+        super.onDetach()
+        EventBus.getDefault().unregister(this)
+    }
+
+    @Subscribe
+    fun jumpToDetail(event:JumpPaperDetailEvent){
+        //1000 投票  1001 我说  1002 测试 1003 你猜
+        when(event.mType){
+            1000->{startActivity(VoteActivity.getIntent(activity,event.mID))}
+            1001->{}
+            1002->{}
+            1003->{}
+        }
+    }
     override fun showMore(data: ArrayList<ViewData<*>>) {
     }
 

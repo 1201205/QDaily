@@ -27,16 +27,16 @@ class VoteProvider : ItemViewProvider<VoteProvider.VoteHolder, ViewData<Option>>
             loadUrl(holder.sdvIcon, it!!.image)
             holder.tvDes.text = it.content
             if (it.selected) {
-                holder.ivVote.setBackgroundResource(R.id.tv_des)
+                holder.ivVote.setBackgroundResource(R.drawable.icon_checked_multiple_choice)
             } else {
-                holder.ivVote.setBackgroundResource(R.id.tv_des)
+                holder.ivVote.setBackgroundResource(R.drawable.icon_check_multiple_choice)
             }
             holder.itemView.setOnClickListener {
                 data.content!!.selected = !data.content!!.selected
                 if (data.content!!.selected) {
-                    holder.ivVote.setBackgroundResource(R.id.tv_des)
+                    holder.ivVote.setBackgroundResource(R.drawable.icon_checked_multiple_choice)
                 } else {
-                    holder.ivVote.setBackgroundResource(R.id.tv_des)
+                    holder.ivVote.setBackgroundResource(R.drawable.icon_check_multiple_choice)
                 }
             }
         }
