@@ -7,6 +7,7 @@ import com.hyc.qdaily.beans.home.Home
 import com.hyc.qdaily.beans.home.Paper
 import com.hyc.qdaily.beans.other.Category
 import com.hyc.qdaily.beans.other.LeftSideBar
+import com.hyc.qdaily.beans.paper.PaperDetail
 import io.reactivex.Observable
 import okhttp3.ResponseBody
 import retrofit2.http.GET
@@ -37,7 +38,7 @@ interface API {
      * 长文章
      * http://app3.qdaily.com/app3/categories/index/1/0.json
      * detail
-     * http://app3.qdaily.com/app3/papers/detail/1587.json
+     * http://app3.qdaily.com/app3/papers/detail/1588.json
      *
      * options
      * http://app3.qdaily.com/app3/options/index/1587/0.json
@@ -62,5 +63,8 @@ interface API {
 
     @GET("app3/categories/index/{id}/{index}.json")
     fun getCategory(@Path("id") id: String, @Path("index") index: String): Observable<BaseBean<Category>>
+
+    @GET("app3/papers/detail/{id}.json")
+    fun getPaperDetail(@Path("id") id: String):Observable<BaseBean<PaperDetail>>
 
 }

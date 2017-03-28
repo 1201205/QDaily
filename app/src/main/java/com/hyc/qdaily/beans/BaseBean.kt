@@ -7,7 +7,5 @@ package com.hyc.qdaily.beans
 class BaseBean<T> {
     var meta: Meta? = null
     var response: T? = null
-
-
     var error: Error? = null
 }

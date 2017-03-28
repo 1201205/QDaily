@@ -26,5 +26,6 @@ class Option {
     var praise_count: Int = 0
     var perfect: Int = 0
     var author: Author? = null
+    var selected: Boolean = false
 
 }

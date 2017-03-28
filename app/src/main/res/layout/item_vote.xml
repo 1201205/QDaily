@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.hyc.skin.widget.SkinLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@color/content_bg"
+    android:layout_width="match_parent"
+    android:paddingLeft="18dp"
+    android:paddingRight="18dp"
+    android:paddingTop="10dp"
+    android:paddingBottom="10dp"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:layout_height="wrap_content">
+    <com.facebook.drawee.view.SimpleDraweeView
+        android:id="@+id/sdv_icon"
+        android:layout_width="100dp"
+        android:layout_height="100dp"/>
+    <com.hyc.skin.widget.SkinTextView
+        android:id="@+id/tv_des"
+        android:layout_marginRight="10dp"
+        android:layout_weight="1"
+        android:textSize="14sp"
+        android:textColor="@color/text_color_normal"
+        android:layout_marginLeft="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+    <ImageView
+        android:id="@+id/iv_vote"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+</com.hyc.skin.widget.SkinLinearLayout>
