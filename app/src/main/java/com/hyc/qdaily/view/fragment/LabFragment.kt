@@ -16,6 +16,7 @@ import com.hyc.qdaily.events.JumpPaperDetailEvent
 import com.hyc.qdaily.presenter.LabPresenter
 import com.hyc.qdaily.util.VerticalSpaceDecoration
 import com.hyc.qdaily.util.dip2px
+import com.hyc.qdaily.view.activity.SayActivity
 import com.hyc.qdaily.view.activity.VoteActivity
 import com.hyc.qdaily.view.adpter.ViewAdapter
 import org.greenrobot.eventbus.EventBus
@@ -60,7 +61,7 @@ class LabFragment : BaseFragment<LabPresenter>(), LabContract.View {
         //1000 投票  1001 我说  1002 测试 1003 你猜
         when(event.mType){
             1000->{startActivity(VoteActivity.getIntent(activity,event.mID))}
-            1001->{}
+            1001->{startActivity(SayActivity.getIntent(activity,event.mID))}
             1002->{}
             1003->{}
         }

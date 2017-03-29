@@ -8,6 +8,7 @@ import com.hyc.qdaily.beans.home.Paper
 import com.hyc.qdaily.beans.other.Category
 import com.hyc.qdaily.beans.other.LeftSideBar
 import com.hyc.qdaily.beans.paper.PaperDetail
+import com.hyc.qdaily.beans.paper.PaperOptions
 import io.reactivex.Observable
 import okhttp3.ResponseBody
 import retrofit2.http.GET
@@ -65,6 +66,9 @@ interface API {
     fun getCategory(@Path("id") id: String, @Path("index") index: String): Observable<BaseBean<Category>>
 
     @GET("app3/papers/detail/{id}.json")
-    fun getPaperDetail(@Path("id") id: String):Observable<BaseBean<PaperDetail>>
+    fun getPaperDetail(@Path("id") id: String): Observable<BaseBean<PaperDetail>>
+
+    @GET("app3/options/index/{id}/{index}.json")
+    fun getOptions(@Path("id") id: String, @Path("index") index: String): Observable<BaseBean<PaperOptions>>
 
 }
