@@ -1,9 +1,11 @@
 package com.hyc.qdaily.view.adpter.holder
 
 import android.support.v7.widget.RecyclerView
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.RelativeLayout
 import android.widget.TextView
 import butterknife.BindView
 import butterknife.ButterKnife
@@ -28,6 +30,11 @@ class SayProvider : ItemViewProvider<SayProvider.SayHolder, ViewData<Option>>() 
             tvContent.text = option?.content
             tvCount.text = option?.praise_count.toString()
             tvName.text = option?.author?.name
+            var context=itemView.context
+            var name="say_bg"+position%7
+            var color=context.resources.getIdentifier(name,"color",context.packageName)
+            Log.e("hyc-name",name+"----"+color)
+            llContent.setBackgroundColor(context.resources.getColor(color))
         }
     }
 
@@ -40,6 +47,8 @@ class SayProvider : ItemViewProvider<SayProvider.SayHolder, ViewData<Option>>() 
         lateinit var tvName: TextView
         @BindView(R.id.tv_praise_count)
         lateinit var tvCount: TextView
+        @BindView(R.id.rl_content)
+        lateinit var llContent:RelativeLayout
 
         init {
             ButterKnife.bind(this, item)

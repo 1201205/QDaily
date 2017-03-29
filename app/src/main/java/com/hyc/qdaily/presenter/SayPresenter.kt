@@ -14,6 +14,7 @@ class SayPresenter(view: SayContract.View) : BasePresenter<SayContract.View>(vie
     private var mModel = SayModel()
     private var mID = ""
     private var mLastKey: String? = "0"
+    private var hasMore:Boolean=true
 
     override fun getContent(id: String) {
         mID = id
@@ -33,8 +34,9 @@ class SayPresenter(view: SayContract.View) : BasePresenter<SayContract.View>(vie
             }
             if (!it.response!!.has_more) {
                 mView.noMore()
+                hasMore=false
             }
-            var data = mModel.optionToViewData(it)
+            var data = mModel.optionToViewData(it,hasMore)
             if ("0".equals(mLastKey)) {
                 mView.showContent(data)
             } else {

@@ -14,12 +14,17 @@ import com.hyc.qdaily.contract.SayContract
 class SayModel : SayContract.Model {
     private var data: ArrayList<ViewData<*>> = ArrayList()
 
-    override fun optionToViewData(bean: BaseBean<PaperOptions>): ArrayList<ViewData<*>> {
+    override fun optionToViewData(bean: BaseBean<PaperOptions>,hasMore:Boolean): ArrayList<ViewData<*>> {
         var list = bean.response?.options
         list?.forEach {
             var viewData = ViewData<Option>()
             viewData.type = "say"
             viewData.content = it
+            data.add(viewData)
+        }
+        if (!hasMore) {
+            var viewData=ViewData<Void>()
+            viewData.type="sayFooter"
             data.add(viewData)
         }
         return data
@@ -28,7 +33,7 @@ class SayModel : SayContract.Model {
     override fun revertToViewData(bean: BaseBean<PaperDetail>): ArrayList<ViewData<*>> {
         var viewData = ViewData<Feed>()
         var feed = Feed()
-        viewData.type = "lab"
+        viewData.type = "sayHead"
         feed.post = bean.response?.post
         viewData.content = feed
         data.add(viewData)

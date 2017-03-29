@@ -22,7 +22,7 @@ interface SayContract {
     }
 
     interface Model {
-        fun optionToViewData(bean: BaseBean<PaperOptions>): ArrayList<ViewData<*>>
+        fun optionToViewData(bean: BaseBean<PaperOptions>,hasMore:Boolean): ArrayList<ViewData<*>>
         fun revertToViewData(bean: BaseBean<PaperDetail>): ArrayList<ViewData<*>>
     }
 
