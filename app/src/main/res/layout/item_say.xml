@@ -17,6 +17,7 @@
         android:layout_marginLeft="10dp"/>
 
     <TextView
+        android:layout_marginLeft="7dp"
         android:layout_marginTop="18dp"
         android:layout_toRightOf="@id/sdv_head"
         android:id="@+id/tv_name"
@@ -25,34 +26,23 @@
         android:textSize="12sp"
         android:textColor="@color/banner_text"/>
     <com.hyc.skin.view.ExpandableTextView
+        app:animation_duration="200"
+        android:ellipsize="end"
+        android:layout_marginBottom="30dp"
         android:id="@+id/etv_content"
-        app:maxCollapsedLines="4"
-        app:animAlphaStart="1"
         android:gravity="center"
-        app:expandDrawable="@drawable/icon_menu_about"
-        app:collapseDrawable="@drawable/icon_menu_about"
+        android:maxLines="4"
+        android:textColor="@color/banner_text"
         android:layout_centerHorizontal="true"
         android:layout_below="@id/sdv_head"
         android:layout_marginTop="10dp"
         android:layout_marginRight="10dp"
         android:layout_marginLeft="10dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <com.hyc.qdaily.util.MyText
-            android:id="@id/expandable_text"
-            android:textSize="12sp"
-            android:textColor="@color/banner_text"
-            android:gravity="center_horizontal"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-
-        <ImageButton
-            android:id="@id/expand_collapse"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-    </com.hyc.skin.view.ExpandableTextView>
+        android:layout_height="wrap_content"/>
 
     <TextView
+        android:textColor="@color/banner_text"
         android:gravity="center_horizontal"
         android:layout_marginBottom="30dp"
         android:layout_below="@id/sdv_head"
@@ -62,15 +52,16 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:textSize="12sp"
-        android:textColor="@color/banner_text"/>
+        android:textSize="12sp"/>
 
     <TextView
+        android:drawablePadding="6dp"
+        android:textColor="@color/banner_text"
+        android:drawableLeft="@drawable/icon_mobc_comment_unlike"
         android:id="@+id/tv_praise_count"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
-        android:layout_marginLeft="10dp"
+        android:padding="10dp"
         android:layout_alignParentBottom="true"/>
 
     <ImageView
@@ -80,5 +71,5 @@
         android:padding="10dp"
         android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
-        android:src="@drawable/icon_share_day"/>
+        android:src="@drawable/icon_nav_share_night"/>
 </RelativeLayout>

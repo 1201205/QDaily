@@ -8,10 +8,6 @@
        <attr name="bottom_font_color" format="color"/>
    </declare-styleable>
     <declare-styleable name="ExpandableTextView">
-        <attr name="maxCollapsedLines" format="integer"/>
-        <attr name="animDuration" format="integer"/>
-        <attr name="animAlphaStart" format="float"/>
-        <attr name="expandDrawable" format="reference"/>
-        <attr name="collapseDrawable" format="reference"/>
+        <attr name="animation_duration" format="integer"/>
     </declare-styleable>
 </resources>

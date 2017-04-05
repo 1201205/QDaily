@@ -29,13 +29,26 @@ class SayProvider : ItemViewProvider<SayProvider.SayHolder, ViewData<Option>>() 
         var option = data.content
         with(holder) {
             loadUrl(sdvHead, option?.author?.avatar)
-            tvContent.setText(option?.content)
-            tvCount.text = option?.praise_count.toString()
+            tvContent.text = option?.content
+            tvCount.text = option?.praise_count.toString()+" 赞"
             tvName.text = option?.author?.name
             var context=itemView.context
             var name="say_bg"+position%7
             var color=context.resources.getIdentifier(name,"color",context.packageName)
             Log.e("hyc-name",name+"----"+color)
+            if (option?.collapsed!!) {
+                tvContent.collapse()
+            } else {
+                tvContent.expand()
+            }
+            tvContent.setOnClickListener {
+                option?.collapsed=(!option?.collapsed!!)
+                if (tvContent.isExpanded) {
+                    tvContent.collapse()
+                } else {
+                    tvContent.expand()
+                }
+            }
             llContent.setBackgroundColor(context.resources.getColor(color))
 //            ivExpand.setOnClickListener { option?.collapsed=(!option?.collapsed!!) }
         }
