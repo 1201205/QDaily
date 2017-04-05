@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageButton
 import android.widget.RelativeLayout
 import android.widget.TextView
 import butterknife.BindView
@@ -14,6 +15,7 @@ import com.hyc.qdaily.R
 import com.hyc.qdaily.beans.paper.Option
 import com.hyc.qdaily.beans.view.ViewData
 import com.hyc.qdaily.util.loadUrl
+import com.hyc.skin.view.ExpandableTextView
 
 /**
  * Created by hyc on 2017/3/29.
@@ -27,7 +29,7 @@ class SayProvider : ItemViewProvider<SayProvider.SayHolder, ViewData<Option>>() 
         var option = data.content
         with(holder) {
             loadUrl(sdvHead, option?.author?.avatar)
-            tvContent.text = option?.content
+            tvContent.setText(option?.content)
             tvCount.text = option?.praise_count.toString()
             tvName.text = option?.author?.name
             var context=itemView.context
@@ -35,14 +37,15 @@ class SayProvider : ItemViewProvider<SayProvider.SayHolder, ViewData<Option>>() 
             var color=context.resources.getIdentifier(name,"color",context.packageName)
             Log.e("hyc-name",name+"----"+color)
             llContent.setBackgroundColor(context.resources.getColor(color))
+//            ivExpand.setOnClickListener { option?.collapsed=(!option?.collapsed!!) }
         }
     }
 
     class SayHolder(item: View) : RecyclerView.ViewHolder(item) {
         @BindView(R.id.sdv_head)
         lateinit var sdvHead: SimpleDraweeView
-        @BindView(R.id.tv_content)
-        lateinit var tvContent: TextView
+        @BindView(R.id.etv_content)
+        lateinit var tvContent: ExpandableTextView
         @BindView(R.id.tv_name)
         lateinit var tvName: TextView
         @BindView(R.id.tv_praise_count)

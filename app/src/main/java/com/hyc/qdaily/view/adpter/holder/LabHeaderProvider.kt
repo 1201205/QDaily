@@ -22,7 +22,7 @@ import android.support.v7.widget.StaggeredGridLayoutManager
 /**
  * Created by ray on 17/3/12.
  */
-class LabProvider2 : ItemViewProvider<LabProvider2.LabHolder, ViewData<Feed>>() {
+class LabHeaderProvider : ItemViewProvider<LabHeaderProvider.LabHolder, ViewData<Feed>>() {
     override fun onCreateViewHolder(inflater: LayoutInflater, viewGroup: ViewGroup?): LabHolder {
         var itemView=inflater.inflate(R.layout.item_lab, viewGroup, false)
         val targetParams = itemView.layoutParams

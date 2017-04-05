@@ -27,5 +27,7 @@ class Option {
     var perfect: Int = 0
     var author: Author? = null
     var selected: Boolean = false
+    var collapsed: Boolean = true
+
 
 }

@@ -45,7 +45,7 @@ class ViewModelPool private constructor() {
         putInPool("submit", SubmitProvider() as ItemViewProvider<RecyclerView.ViewHolder, ViewData<*>>)
         putInPool("vote_option", VoteProvider() as ItemViewProvider<RecyclerView.ViewHolder, ViewData<*>>)
         putInPool("say", SayProvider() as ItemViewProvider<RecyclerView.ViewHolder, ViewData<*>>)
-        putInPool("sayHead", LabProvider2() as ItemViewProvider<RecyclerView.ViewHolder, ViewData<*>>)
+        putInPool("sayHead", LabHeaderProvider() as ItemViewProvider<RecyclerView.ViewHolder, ViewData<*>>)
         putInPool("sayFooter", SayFooterProvider() as ItemViewProvider<RecyclerView.ViewHolder, ViewData<*>>)
 
         Log.e("hyc-we", this.toString() + "init---" + mProviders.size)

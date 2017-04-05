@@ -4,5 +4,8 @@
     <item name="tv_remain" type="id"/>
     <item name="loading" type="id"/>
     <item name="target" type="id"/>
+
+    <item type="id" name="expandable_text"/>
+    <item type="id" name="expand_collapse"/>
 </resources>
  
