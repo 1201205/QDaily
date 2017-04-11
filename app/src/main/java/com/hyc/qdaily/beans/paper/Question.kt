@@ -11,6 +11,7 @@ class Question {
     "genre":2,  1->1选4  2->单选
     "options":Array[8]
      */
+    var image: String? = null
     var id: String? = null
     var title: String? = null
     var content: String? = null

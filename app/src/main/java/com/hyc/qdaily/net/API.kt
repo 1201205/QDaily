@@ -7,6 +7,7 @@ import com.hyc.qdaily.beans.home.Home
 import com.hyc.qdaily.beans.home.Paper
 import com.hyc.qdaily.beans.other.Category
 import com.hyc.qdaily.beans.other.LeftSideBar
+import com.hyc.qdaily.beans.paper.Choices
 import com.hyc.qdaily.beans.paper.PaperDetail
 import com.hyc.qdaily.beans.paper.PaperOptions
 import io.reactivex.Observable
@@ -39,10 +40,13 @@ interface API {
      * 长文章
      * http://app3.qdaily.com/app3/categories/index/1/0.json
      * detail
-     * http://app3.qdaily.com/app3/papers/detail/1588.json
+     * http://app3.qdaily.com/app3/papers/detail/1605.json
      *
      * options
-     * http://app3.qdaily.com/app3/options/index/1587/0.json
+     * http://app3.qdaily.com/app3/options/index/1605/0.json
+     *
+     * 你猜选项
+     * http://app3.qdaily.com/app3/paper/choices/1605.json
      */
     @GET("app3/homes/index/{index}.json")
     fun getHomeDataByIndex(@Path("index") index: String): Observable<BaseBean<Home>>
@@ -70,5 +74,8 @@ interface API {
 
     @GET("app3/options/index/{id}/{index}.json")
     fun getOptions(@Path("id") id: String, @Path("index") index: String): Observable<BaseBean<PaperOptions>>
+
+    @GET("app3/paper/choices/{id}.json")
+    fun getChoices(@Path("id") id: String): Observable<BaseBean<Choices>>
 
 }

@@ -102,8 +102,8 @@ fun showToast(id: Int) {
     Toast.makeText(MainApplication.instance, id, Toast.LENGTH_LONG).show()
 }
 
-fun getColor(id: Int): Int? {
-    return MainApplication.instance.resources?.getColor(id)
+fun getResourceColor(id: Int): Int {
+    return MainApplication.instance.resources?.getColor(id)!!
 }
 
 fun getString(id: Int): String? {
