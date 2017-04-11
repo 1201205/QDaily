@@ -22,18 +22,20 @@ class GuessPresenter(view: GuessContract.View) : BasePresenter<GuessContract.Vie
             }
             mCount = mQuestions!!.size
             mCurrentQuestion = mQuestions!![0]
-            mView.showChoice(mCurrentQuestion!!, mCount, mCount - mQuestions!!.size + 1)
             mQuestions!!.removeAt(0)
+            mView.showChoice(mCurrentQuestion!!, mCount, mCount - mQuestions!!.size + 1)
         }, { onError(it) })
     }
 
-    override fun getNextChoice(): Question? {
+    override fun showNextChoice() {
         if (mQuestions!!.size == 0) {
-            return null
+            commitChoices()
+            return
         }
         mCurrentQuestion = mQuestions!![0]
         mQuestions!!.removeAt(0)
-        return mCurrentQuestion
+        mView.showChoice(mCurrentQuestion!!, mCount, mCount - mQuestions!!.size + 1)
+
     }
 
     override fun commitChoices() {

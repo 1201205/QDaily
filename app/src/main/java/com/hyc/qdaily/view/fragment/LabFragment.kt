@@ -16,6 +16,7 @@ import com.hyc.qdaily.events.JumpPaperDetailEvent
 import com.hyc.qdaily.presenter.LabPresenter
 import com.hyc.qdaily.util.VerticalSpaceDecoration
 import com.hyc.qdaily.util.dip2px
+import com.hyc.qdaily.view.activity.GuessActivity
 import com.hyc.qdaily.view.activity.SayActivity
 import com.hyc.qdaily.view.activity.VoteActivity
 import com.hyc.qdaily.view.adpter.ViewAdapter
@@ -63,7 +64,7 @@ class LabFragment : BaseFragment<LabPresenter>(), LabContract.View {
             1000->{startActivity(VoteActivity.getIntent(activity,event.mID))}
             1001->{startActivity(SayActivity.getIntent(activity,event.mID))}
             1002->{}
-            1003->{}
+            1003->{startActivity(GuessActivity.getIntent(activity,event.mID))}
         }
     }
     override fun showMore(data: ArrayList<ViewData<*>>) {

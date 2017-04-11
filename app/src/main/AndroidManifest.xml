@@ -26,6 +26,7 @@
         <activity android:name=".view.activity.CategoryActivity"/>
         <activity android:name=".view.activity.VoteActivity"/>
         <activity android:name=".view.activity.SayActivity"/>
+        <activity android:name=".view.activity.GuessActivity"/>
 
     </application>
 

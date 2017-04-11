@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/content_bg"
     android:layout_marginLeft="18dp"
+    android:gravity="center_horizontal"
     android:layout_marginRight="18dp"
     android:orientation="vertical">
 
@@ -35,10 +36,11 @@
     </LinearLayout>
 
     <com.hyc.skin.widget.SkinTextView
+        android:gravity="center_horizontal"
         android:id="@+id/tv_title"
+        android:text="111111111"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
         android:layout_below="@id/ll_title"
         android:layout_centerHorizontal="true"/>
 
@@ -53,7 +55,7 @@
         <LinearLayout
             android:id="@+id/ll1"
             android:layout_width="0dp"
-            android:layout_height="140dp"
+            android:layout_height="wrap_content"
             android:gravity="center"
             android:orientation="vertical"
             android:layout_marginRight="5dp"
@@ -66,6 +68,8 @@
                 android:layout_margin="5dp"/>
 
             <com.hyc.skin.widget.SkinTextView
+                android:background="@color/say_bg6"
+                android:textColor="@color/text_small"
                 android:id="@+id/tv_name1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
@@ -74,7 +78,7 @@
         <LinearLayout
             android:id="@+id/ll2"
             android:layout_width="0dp"
-            android:layout_height="140dp"
+            android:layout_height="wrap_content"
             android:gravity="center"
             android:orientation="vertical"
             android:layout_marginRight="5dp"
@@ -103,7 +107,7 @@
         <LinearLayout
             android:id="@+id/ll3"
             android:layout_width="0dp"
-            android:layout_height="140dp"
+            android:layout_height="wrap_content"
             android:gravity="center"
             android:orientation="vertical"
             android:layout_marginRight="5dp"
@@ -124,7 +128,7 @@
         <LinearLayout
             android:id="@+id/ll4"
             android:layout_width="0dp"
-            android:layout_height="140dp"
+            android:layout_height="wrap_content"
             android:gravity="center"
             android:orientation="vertical"
             android:layout_marginRight="5dp"
@@ -143,4 +147,4 @@
         </LinearLayout>
     </LinearLayout>
 
-</RelativeLayout>
+</LinearLayout>

@@ -5,7 +5,7 @@ import android.animation.Animator
 /**
  * Created by hyc on 2017/4/11.
  */
-class BaseAnimatorListener:Animator.AnimatorListener{
+open class BaseAnimatorListener:Animator.AnimatorListener{
     override fun onAnimationRepeat(animation: Animator?) {
     }
 

@@ -16,7 +16,7 @@ interface GuessContract {
 
     interface Presenter {
         fun getChoices(id: String)
-        fun getNextChoice(): Question?
+        fun showNextChoice()
         fun commitChoices()
         fun onChoiceClicked(position: Int)
     }
