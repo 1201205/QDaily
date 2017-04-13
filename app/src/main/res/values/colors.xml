@@ -30,5 +30,9 @@
     <color name="say_bg6">#f2a5a8</color>
     <color name="submit_not_enable">#ffe38f</color>
     <color name="vote_bg">#F2F2F2</color>
+    <color name="guess_wrong_bg">#FF5454</color>
+    <color name="guess_right_bg">#FCDF63</color>
+    <color name="guess_normal_bg">#F2F2F2</color>
+    <color name="guess_divider">#ECECEC</color>
 
 </resources>

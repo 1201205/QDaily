@@ -17,6 +17,7 @@
         android:orientation="horizontal">
 
         <View
+            android:background="@color/guess_divider"
             android:layout_width="0dp"
             android:layout_height="1px"
             android:layout_weight="1"/>
@@ -30,6 +31,8 @@
         </RelativeLayout>
 
         <View
+            android:background="@color/guess_divider"
+
             android:layout_width="0dp"
             android:layout_height="1px"
             android:layout_weight="1"/>
@@ -68,11 +71,8 @@
                 android:layout_margin="5dp"/>
 
             <com.hyc.skin.widget.SkinTextView
-                android:background="@color/say_bg6"
-                android:textColor="@color/text_small"
-                android:id="@+id/tv_name1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                style="@style/guess_text"
+                android:id="@+id/tv_name1"/>
         </LinearLayout>
 
         <LinearLayout
@@ -91,9 +91,8 @@
                 android:layout_margin="5dp"/>
 
             <com.hyc.skin.widget.SkinTextView
-                android:id="@+id/tv_name2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                style="@style/guess_text"
+                android:id="@+id/tv_name2"/>
         </LinearLayout>
     </LinearLayout>
 
@@ -120,9 +119,8 @@
                 android:layout_margin="5dp"/>
 
             <com.hyc.skin.widget.SkinTextView
-                android:id="@+id/tv_name3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                style="@style/guess_text"
+                android:id="@+id/tv_name3"/>
         </LinearLayout>
 
         <LinearLayout
@@ -141,9 +139,8 @@
                 android:layout_margin="5dp"/>
 
             <com.hyc.skin.widget.SkinTextView
-                android:id="@+id/tv_name4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                style="@style/guess_text"
+                android:id="@+id/tv_name4"/>
         </LinearLayout>
     </LinearLayout>
 

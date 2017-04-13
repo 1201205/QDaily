@@ -174,7 +174,7 @@ class MenuActivity : BaseActivity<VoidPresenter>() {
 
     @Subscribe
     fun jumpToCategory(categoryEvent: JumpCategoryEvent) {
-        startActivity(CategoryActivity.getIntent(this, categoryEvent.mID, categoryEvent.mTitle))
+        startActivity(CategoryActivity.getIntent(this, categoryEvent.id, categoryEvent.title))
     }
 
     override fun onDestroy() {

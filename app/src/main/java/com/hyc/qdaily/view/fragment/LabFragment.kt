@@ -60,11 +60,11 @@ class LabFragment : BaseFragment<LabPresenter>(), LabContract.View {
     @Subscribe
     fun jumpToDetail(event:JumpPaperDetailEvent){
         //1000 投票  1001 我说  1002 测试 1003 你猜
-        when(event.mType){
-            1000->{startActivity(VoteActivity.getIntent(activity,event.mID))}
-            1001->{startActivity(SayActivity.getIntent(activity,event.mID))}
+        when(event.type){
+            1000->{startActivity(VoteActivity.getIntent(activity,event.id))}
+            1001->{startActivity(SayActivity.getIntent(activity,event.id))}
             1002->{}
-            1003->{startActivity(GuessActivity.getIntent(activity,event.mID))}
+            1003->{startActivity(GuessActivity.getIntent(activity,event.id))}
         }
     }
     override fun showMore(data: ArrayList<ViewData<*>>) {

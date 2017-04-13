@@ -50,7 +50,7 @@ class RecyclerProvider : ItemViewProvider<RecyclerProvider.RecyclerHolder, ViewD
                 override fun onScrolled(recyclerView: RecyclerView?, dx: Int, dy: Int) {
                     if (!columnContent.requesting && !TextUtils.isEmpty(columnContent.lastIndex) && (rvLanguage.layoutManager as
                         LinearLayoutManager).findLastVisibleItemPosition() >= rvLanguage.adapter.itemCount - 2) {
-                        EventBus.getDefault().post(LoadMoreEventX(columnContent.id))
+                        EventBus.getDefault().post(LoadMoreEventX(columnContent.id!!))
                     }
                 }
             })

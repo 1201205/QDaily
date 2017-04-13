@@ -50,6 +50,8 @@ public class SkinDateView extends View implements SkinChangeable {
     private String day;
     private int mTopLine;
     private int mBottomLine;
+    private float topTextSize;
+    private float bottomTextSize;
 
 
     public SkinDateView(Context context) {
@@ -75,6 +77,8 @@ public class SkinDateView extends View implements SkinChangeable {
         mCorner = 4 * mStrokeWidth;
         mPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         mPath = new Path();
+        topTextSize= dip2px(11,context);
+        bottomTextSize=  dip2px(12,context);
         skinChanged();
 
     }
@@ -124,8 +128,10 @@ public class SkinDateView extends View implements SkinChangeable {
         canvas.restoreToCount(sc);
         mPaint.setTextAlign(Paint.Align.CENTER);
         mPaint.setColor(mRealTopFont);
+        mPaint.setTextSize(topTextSize);
         canvas.drawText(week, mTop.centerX(), mTopLine, mPaint);
         mPaint.setColor(mRealBottomFont);
+        mPaint.setTextSize(bottomTextSize);
         canvas.drawText(day, mBottom.centerX(), mBottomLine, mPaint);
     }
 

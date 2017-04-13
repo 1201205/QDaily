@@ -112,17 +112,17 @@ class MainFragment : BaseFragment<HomePresenter>(), HomeContract.View {
 
     @Subscribe
     fun handleLoadMore(event: LoadMoreEventX) {
-        mPresenter?.getMoreColumnData(event.mId!!)
+        mPresenter?.getMoreColumnData(event.id)
     }
 
     @Subscribe
     fun handleJumpArticle(event: JumpArticleEvent) {
-        jumpToArticle(event.mUrl)
+        jumpToArticle(event.url)
     }
 
-    fun jumpToArticle(url:String?){
-        var intent=Intent(context,ArticleActivity::class.java)
-        intent.putExtra("url",url)
+    fun jumpToArticle(url: String?) {
+        var intent = Intent(context, ArticleActivity::class.java)
+        intent.putExtra("url", url)
         startActivity(intent)
     }
 }

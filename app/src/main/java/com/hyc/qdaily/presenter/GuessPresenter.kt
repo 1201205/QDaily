@@ -23,7 +23,7 @@ class GuessPresenter(view: GuessContract.View) : BasePresenter<GuessContract.Vie
             mCount = mQuestions!!.size
             mCurrentQuestion = mQuestions!![0]
             mQuestions!!.removeAt(0)
-            mView.showChoice(mCurrentQuestion!!, mCount, mCount - mQuestions!!.size + 1)
+            mView.showChoice(mCurrentQuestion!!, mCount, mCount - mQuestions!!.size)
         }, { onError(it) })
     }
 
@@ -34,7 +34,7 @@ class GuessPresenter(view: GuessContract.View) : BasePresenter<GuessContract.Vie
         }
         mCurrentQuestion = mQuestions!![0]
         mQuestions!!.removeAt(0)
-        mView.showChoice(mCurrentQuestion!!, mCount, mCount - mQuestions!!.size + 1)
+        mView.showChoice(mCurrentQuestion!!, mCount, mCount - mQuestions!!.size)
 
     }
 
