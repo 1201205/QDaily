@@ -28,6 +28,6 @@ class Option {
     var author: Author? = null
     var selected: Boolean = false
     var collapsed: Boolean = true
-
+    var percent: Int = 0
 
 }

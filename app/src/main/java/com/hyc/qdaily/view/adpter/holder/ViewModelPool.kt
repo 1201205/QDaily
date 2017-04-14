@@ -14,7 +14,7 @@ class ViewModelPool private constructor() {
     private var mProviders: ArrayList<ItemViewProvider<RecyclerView.ViewHolder, ViewData<*>>> = ArrayList()
 
     companion object {
-        var instance: ViewModelPool = ViewModelPool()
+        val instance: ViewModelPool = ViewModelPool()
     }
 
     private fun putInPool(type: String, provider: ItemViewProvider<RecyclerView.ViewHolder, ViewData<*>>) {

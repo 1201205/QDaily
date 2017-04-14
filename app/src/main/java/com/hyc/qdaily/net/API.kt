@@ -47,6 +47,9 @@ interface API {
      *
      * 你猜选项
      * http://app3.qdaily.com/app3/paper/choices/1605.json
+     *
+     * 42%
+     * http://app3.qdaily.com/app3/paper/tots/1550
      */
     @GET("app3/homes/index/{index}.json")
     fun getHomeDataByIndex(@Path("index") index: String): Observable<BaseBean<Home>>

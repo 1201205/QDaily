@@ -48,6 +48,10 @@ class GuessActivity : BaseActivity<GuessPresenter>(), GuessContract.View {
     lateinit var ll4: LinearLayout
     @BindView(R.id.tv_title)
     lateinit var tvTitle: TextView
+    @BindView(R.id.tv_count)
+    lateinit var tvCount: TextView
+    @BindView(R.id.tv_index)
+    lateinit var tvIndex: TextView
     private var mID = ""
     private val ANIM_TIME_NORMAL: Long = 1200
     private val ANIM_TIME_RIGHT: Long = 1500
@@ -65,6 +69,8 @@ class GuessActivity : BaseActivity<GuessPresenter>(), GuessContract.View {
     }
 
     override fun showChoice(question: Question, count: Int, index: Int) {
+        tvCount.text=count.toString()
+        tvIndex.text=index.toString()
         ll1.alpha = 1f
         ll2.alpha = 1f
         ll3.alpha = 1f
@@ -116,9 +122,11 @@ class GuessActivity : BaseActivity<GuessPresenter>(), GuessContract.View {
         if (target != ll4 && rightView != ll4) {
             ll4.animate().alpha(0f).setDuration(ANIM_TIME_NORMAL).start()
         }
-        rightView!!.setBackgroundResource(R.drawable.guess_right_bg)
+        rightView!!.post {
+            rightView!!.setBackgroundResource(R.drawable.guess_right_bg)
+        }
         target.animate().alpha(0f).setDuration(ANIM_TIME_RIGHT).start()
-        rightView!!.animate().alpha(0f).setDuration(ANIM_TIME_RIGHT).setStartDelay(150).setListener(object : BaseAnimatorListener() {
+        rightView!!.animate().alpha(0f).setDuration(ANIM_TIME_RIGHT).setStartDelay(250).setListener(object : BaseAnimatorListener() {
             override fun onAnimationEnd(animation: Animator?) {
                 mPresenter!!.showNextChoice()
             }
@@ -147,7 +155,7 @@ class GuessActivity : BaseActivity<GuessPresenter>(), GuessContract.View {
         if (target != ll4) {
             ll4.animate().alpha(0f).setDuration(ANIM_TIME_NORMAL).start()
         }
-        target.animate().alpha(0f).setDuration(ANIM_TIME_RIGHT).setStartDelay(150).setListener(object : BaseAnimatorListener() {
+        target.animate().alpha(0f).setDuration(ANIM_TIME_RIGHT).setStartDelay(250).setListener(object : BaseAnimatorListener() {
             override fun onAnimationEnd(animation: Animator?) {
                 mPresenter!!.showNextChoice()
             }

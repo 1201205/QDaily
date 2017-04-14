@@ -11,12 +11,12 @@ import android.view.View;
 
 public class SkinIndicatorView extends View {
     public SkinIndicatorView(Context context) {
-        super(context);
+        this(context,null);
     }
 
     public SkinIndicatorView(Context context,
                              @Nullable AttributeSet attrs) {
-        super(context, attrs);
+        this(context, attrs,0);
     }
 
     public SkinIndicatorView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
