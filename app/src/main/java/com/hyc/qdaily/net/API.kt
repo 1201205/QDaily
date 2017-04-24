@@ -10,6 +10,7 @@ import com.hyc.qdaily.beans.other.LeftSideBar
 import com.hyc.qdaily.beans.paper.Choices
 import com.hyc.qdaily.beans.paper.PaperDetail
 import com.hyc.qdaily.beans.paper.PaperOptions
+import com.hyc.qdaily.beans.paper.Tot
 import io.reactivex.Observable
 import okhttp3.ResponseBody
 import retrofit2.http.GET
@@ -80,5 +81,8 @@ interface API {
 
     @GET("app3/paper/choices/{id}.json")
     fun getChoices(@Path("id") id: String): Observable<BaseBean<Choices>>
+
+    @GET("app3/paper/tots/1550")
+    fun getTot(@Path("id") id:String):Observable<BaseBean<Tot>>
 
 }
