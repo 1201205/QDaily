@@ -9,16 +9,18 @@ import butterknife.BindView
 import butterknife.ButterKnife
 import com.facebook.drawee.view.SimpleDraweeView
 import com.hyc.qdaily.R
+import com.hyc.qdaily.anko.TestLayout
 import com.hyc.qdaily.beans.home.InsertContent
 import com.hyc.qdaily.beans.view.ViewData
 import com.hyc.qdaily.util.loadUrl
+import org.jetbrains.anko.find
 
 /**
  * Created by ray on 17/3/12.
  */
 class TopicProvider : ItemViewProvider<TopicProvider.TopicHolder, ViewData<InsertContent>>() {
     override fun onCreateViewHolder(inflater: LayoutInflater, viewGroup: ViewGroup?): TopicHolder {
-        return TopicHolder(inflater.inflate(R.layout.item_topic, viewGroup, false))
+        return TopicHolder(TestLayout().bind(viewGroup!!.context))
     }
 
     override fun onBindViewHolder(holder: TopicHolder, data: ViewData<InsertContent>, position: Int, wrapper: ParamWrapper) {
@@ -31,15 +33,9 @@ class TopicProvider : ItemViewProvider<TopicProvider.TopicHolder, ViewData<Inser
     }
 
     class TopicHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        @BindView(R.id.sdv_img)
-        lateinit var sdvImg: SimpleDraweeView
-        @BindView(R.id.tv_title)
-        lateinit var tvTitle: TextView
-        @BindView(R.id.tv_des)
-        lateinit var tvDes: TextView
+        var sdvImg: SimpleDraweeView = itemView.find(R.id.sdv_img)
+        var tvTitle: TextView=itemView.find(R.id.tv_title)
+        var tvDes: TextView=itemView.find(R.id.tv_des)
 
-        init {
-            ButterKnife.bind(this, itemView)
-        }
     }
 }
