@@ -13,7 +13,9 @@ abstract class BaseActivity<T : BasePresenter<*>> : BaseActivity(), BaseView {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(layoutID)
+//        setContentView(layoutID)
+        initView()
+
         ButterKnife.bind(this)
         if (intent != null) {
             handleIntent()
@@ -21,7 +23,6 @@ abstract class BaseActivity<T : BasePresenter<*>> : BaseActivity(), BaseView {
         initPresenterAndData()
             mPresenter?.attachView()
         StatusBarUtil.StatusBarLightMode(this)
-        initView()
     }
 
     protected abstract fun handleIntent()

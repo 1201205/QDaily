@@ -33,7 +33,7 @@ class TestLayout : ViewBinder<Context> {
                         height = wrapContent
                     }
                     textView {
-//                        textSize = sp(16).toFloat()
+                        textSize = 16f
                         id = R.id.tv_title
                         textColor= getResourceColor(R.color.white)
 //                        setTextColor(R.color.white)
@@ -41,7 +41,7 @@ class TestLayout : ViewBinder<Context> {
 
                     textView {
                         maxLines = 2
-//                        textSize = sp(12).toFloat()
+                        textSize = 12f
                         id = R.id.tv_des
                         textColor= getResourceColor(R.color.white)
 //                        setTextColor(R.color.alpha_white)

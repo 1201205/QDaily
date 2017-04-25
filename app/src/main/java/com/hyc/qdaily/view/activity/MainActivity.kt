@@ -23,23 +23,20 @@ import android.Manifest.permission.READ_PHONE_STATE
 import android.Manifest.permission.WRITE_EXTERNAL_STORAGE
 import android.content.pm.PackageManager
 import android.support.v4.app.ActivityCompat
+import com.hyc.qdaily.anko.MainActivityUI
+import org.jetbrains.anko.find
 
 
 class MainActivity : BaseActivity<VoidPresenter>() {
 
-    @BindView(R.id.vp_target)
-    lateinit var vpTarget: ViewPager
-    @BindView(R.id.indicator)
-    lateinit var indicator: View
-    @BindView(R.id.tv_news)
-    lateinit var tvNews: TextView
-    @BindView(R.id.tv_lab)
-    lateinit var tvLab: TextView
-    @BindView(R.id.fab_main)
-    lateinit var fabMain: FloatingActionButton
-    var preIndex: Int = 0
-    var mIndicatorY: IntArray = IntArray(2)
-    var mIndicatorScroll: Int = 0
+   private lateinit var vpTarget: ViewPager
+    private lateinit var indicator: View
+    private lateinit var tvNews: TextView
+    private  lateinit var tvLab: TextView
+    private  lateinit var fabMain: FloatingActionButton
+    private  var preIndex: Int = 0
+    private  var mIndicatorY: IntArray = IntArray(2)
+    private  var mIndicatorScroll: Int = 0
     override fun isSupportSwipeBack(): Boolean {
         return false
     }
@@ -53,6 +50,14 @@ class MainActivity : BaseActivity<VoidPresenter>() {
     }
 
     override fun initView() {
+        setContentView(MainActivityUI().bind(this))
+
+         vpTarget=find(R.id.vp_target)
+         indicator=find(R.id.indicator)
+         tvNews=find(R.id.tv_news)
+         tvLab=find(R.id.tv_lab)
+         fabMain=find(R.id.fab_main)
+
         checkSDPermission()
         if (Build.VERSION.SDK_INT >= 23) {
             checkSDPermission()

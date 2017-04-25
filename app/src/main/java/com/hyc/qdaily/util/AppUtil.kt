@@ -2,6 +2,7 @@ package com.hyc.qdaily.util
 
 import android.app.Activity
 import android.content.Context
+import android.content.res.ColorStateList
 import android.graphics.Rect
 import android.net.Uri
 import android.os.Environment
@@ -104,6 +105,10 @@ fun showToast(id: Int) {
 
 fun getResourceColor(id: Int): Int {
     return MainApplication.instance.resources?.getColor(id)!!
+}
+
+fun getResourceColorList(id: Int):ColorStateList{
+    return MainApplication.instance.resources.getColorStateList(id)
 }
 
 fun getString(id: Int): String? {

@@ -12,9 +12,11 @@ import butterknife.BindView
 import butterknife.ButterKnife
 import com.hyc.qdaily.view.activity.MainActivity
 import com.hyc.qdaily.R
+import com.hyc.qdaily.anko.BannerLayout
 import com.hyc.qdaily.beans.home.Feed
 import com.hyc.qdaily.beans.view.ViewData
 import com.hyc.qdaily.view.adpter.LoopViewPagerAdapter
+import org.jetbrains.anko.find
 
 /**
  * Created by hyc on 2017/3/8.
@@ -39,17 +41,11 @@ class BannerProvider : ItemViewProvider<BannerProvider.BannerViewHolder, ViewDat
     }
 
     override fun onCreateViewHolder(inflater: LayoutInflater, viewGroup: ViewGroup?): BannerProvider.BannerViewHolder {
-        return BannerViewHolder(inflater.inflate(R.layout.item_pager, viewGroup, false))
+        return BannerViewHolder(BannerLayout().bind(viewGroup!!.context))
     }
 
     class BannerViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        @BindView(R.id.vp_banner)
-        lateinit var vpBanner: ViewPager
-        @BindView(R.id.ll_indicator)
-        lateinit var llIndicator: LinearLayout
-
-        init {
-            ButterKnife.bind(this, itemView)
-        }
+         var vpBanner: ViewPager=itemView.find(R.id.vp_banner)
+         var llIndicator: LinearLayout=itemView.find(R.id.ll_indicator)
     }
 }
