@@ -42,7 +42,7 @@ public class SkinTextView extends AppCompatTextView implements SkinChangeable {
 
 
     @Override public void skinChanged() {
-        Log.e("hyc-test", mSkinAttrs.toString());
+        //Log.e("hyc-test", mSkinAttrs.toString());
         mSkinAttrs.applySkin(this);
     }
 

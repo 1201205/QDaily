@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<android.support.design.widget.FloatingActionButton xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/fab_main"
+    android:layout_width="90dp"
+    android:layout_height="90dp"
+    app:elevation="0dp"
+    app:borderWidth="0dp"
+    app:pressedTranslationZ="0dp"
+    app:rippleColor="@android:color/transparent"
+    app:backgroundTint="@android:color/transparent"
+    android:src="@drawable/fab_selector"/>
+

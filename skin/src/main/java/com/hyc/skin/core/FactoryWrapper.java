@@ -33,7 +33,7 @@ public class FactoryWrapper implements LayoutInflaterFactory {
     @Override
     public View onCreateView(View parent, String name, Context context, AttributeSet attrs) {
         final boolean isPre21 = Build.VERSION.SDK_INT < 21;
-        Log.e("hyc-test-name",name+"----");
+        //Log.e("hyc-test-name",name+"----");
         // We only want the View to inherit its context if we're running pre-v21
         final boolean inheritContext = isPre21 && shouldInheritContext((ViewParent) parent);
         View view = mViewInflater.createView(parent, name, context, attrs, inheritContext,
@@ -42,12 +42,12 @@ public class FactoryWrapper implements LayoutInflaterFactory {
                 VectorEnabledTintResources.shouldBeUsed()); /* Only tint wrap the context if enabled */
         if (view != null && view instanceof SkinChangeable) {
             skinChangeables.add((SkinChangeable) view);
-            Log.e("hyc-test", "我解析到了可以切换主题view");
+            //Log.e("hyc-test", "我解析到了可以切换主题view");
         }
         if (view != null) {
-            Log.e("hyc-test", "-onCreateView-" + view.toString());
+            //Log.e("hyc-test", "-onCreateView-" + view.toString());
         } else {
-            Log.e("hyc-test", "-onCreateView- view---null");
+            //Log.e("hyc-test", "-onCreateView- view---null");
         }
 
         return view;

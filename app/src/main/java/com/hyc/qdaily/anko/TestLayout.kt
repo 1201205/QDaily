@@ -16,7 +16,7 @@ import com.hyc.qdaily.util.getResourceColor
  * Created by hyc on 2017/4/25.
  */
 class TestLayout : ViewBinder<Context> {
-    override fun bind(t: Context): View = t.UI {
+    override fun bind(mainActivity: Context): View = mainActivity.UI {
             relativeLayout {
                 lparams(width = dip(240), height = dip(140)) {
                     setMargins(0, dip(5), 0, dip(5))

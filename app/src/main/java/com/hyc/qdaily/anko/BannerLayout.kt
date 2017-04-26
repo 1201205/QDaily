@@ -13,7 +13,7 @@ import org.jetbrains.anko.support.v4.viewPager
  * Created by ray on 17/4/25.
  */
 class BannerLayout:ViewBinder<Context>{
-    override fun bind(t: Context): View =t.UI {
+    override fun bind(mainActivity: Context): View = mainActivity.UI {
         relativeLayout{
             lparams(width= matchParent,height = wrapContent)
             backgroundColor= getResourceColor(R.color.content_bg)
