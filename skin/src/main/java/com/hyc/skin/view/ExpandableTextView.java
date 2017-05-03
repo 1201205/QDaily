@@ -15,7 +15,6 @@ import android.util.AttributeSet;
 import android.view.ViewGroup;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.widget.TextView;
-
 import com.hyc.skin.R;
 import java.lang.reflect.Field;
 
@@ -41,12 +40,10 @@ public class ExpandableTextView extends android.support.v7.widget.AppCompatTextV
 {
     // copy off TextView.LINES
     private static final int MAXMODE_LINES = 1;
-
+    private final int maxLines;
     private OnExpandListener onExpandListener;
     private TimeInterpolator expandInterpolator;
     private TimeInterpolator collapseInterpolator;
-
-    private final int maxLines;
     private long animationDuration;
     private boolean animating;
     private boolean expanded;
@@ -290,14 +287,6 @@ public class ExpandableTextView extends android.support.v7.widget.AppCompatTextV
         this.animationDuration = animationDuration;
     }
 
-    /**
-     * Sets a listener which receives updates about this {@link ExpandableTextView}.
-     * @param onExpandListener the listener.
-     */
-    public void setOnExpandListener(final OnExpandListener onExpandListener)
-    {
-        this.onExpandListener = onExpandListener;
-    }
 
     /**
      * Returns the {@link OnExpandListener}.
@@ -307,6 +296,16 @@ public class ExpandableTextView extends android.support.v7.widget.AppCompatTextV
     {
         return this.onExpandListener;
     }
+
+
+    /**
+     * Sets a listener which receives updates about this {@link ExpandableTextView}.
+     * @param onExpandListener the listener.
+     */
+    public void setOnExpandListener(final OnExpandListener onExpandListener) {
+        this.onExpandListener = onExpandListener;
+    }
+
 
     /**
      * Sets a {@link TimeInterpolator} for expanding and collapsing.
@@ -318,6 +317,16 @@ public class ExpandableTextView extends android.support.v7.widget.AppCompatTextV
         this.collapseInterpolator = interpolator;
     }
 
+
+    /**
+     * Returns the current {@link TimeInterpolator} for expanding.
+     * @return the current interpolator, null by default.
+     */
+    public TimeInterpolator getExpandInterpolator() {
+        return this.expandInterpolator;
+    }
+
+
     /**
      * Sets a {@link TimeInterpolator} for expanding.
      * @param expandInterpolator the interpolator
@@ -327,14 +336,16 @@ public class ExpandableTextView extends android.support.v7.widget.AppCompatTextV
         this.expandInterpolator = expandInterpolator;
     }
 
+
     /**
-     * Returns the current {@link TimeInterpolator} for expanding.
+     * Returns the current {@link TimeInterpolator} for collapsing.
      * @return the current interpolator, null by default.
      */
-    public TimeInterpolator getExpandInterpolator()
+    public TimeInterpolator getCollapseInterpolator()
     {
-        return this.expandInterpolator;
+        return this.collapseInterpolator;
     }
+
 
     /**
      * Sets a {@link TimeInterpolator} for collpasing.
@@ -345,14 +356,6 @@ public class ExpandableTextView extends android.support.v7.widget.AppCompatTextV
         this.collapseInterpolator = collapseInterpolator;
     }
 
-    /**
-     * Returns the current {@link TimeInterpolator} for collapsing.
-     * @return the current interpolator, null by default.
-     */
-    public TimeInterpolator getCollapseInterpolator()
-    {
-        return this.collapseInterpolator;
-    }
 
     /**
      * Is this {@link ExpandableTextView} expanded or not?

@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import butterknife.BindView
 import butterknife.ButterKnife
 import com.hyc.qdaily.R
+import com.hyc.qdaily.anko.TopicsProviderUI
 import com.hyc.qdaily.beans.home.InsertContent
 import com.hyc.qdaily.beans.view.ViewData
 import com.hyc.qdaily.util.SpaceItemDecoration
@@ -19,7 +20,7 @@ import com.hyc.qdaily.view.adpter.ViewAdapter
  */
 class TopicsProvider : ItemViewProvider<TopicsProvider.TopicsHolder,ViewData<ArrayList<ViewData<InsertContent>>>>() {
     override fun onCreateViewHolder(inflater: LayoutInflater, viewGroup: ViewGroup?): TopicsHolder {
-        return TopicsHolder(inflater.inflate(R.layout.item_topics, viewGroup, false))
+        return TopicsHolder(TopicsProviderUI().bind(viewGroup!!.context))
     }
 
     override fun onBindViewHolder(holder: TopicsHolder, data: ViewData<ArrayList<ViewData<InsertContent>>>, position: Int, wrapper: ParamWrapper) {

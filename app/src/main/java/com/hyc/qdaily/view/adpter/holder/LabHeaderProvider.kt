@@ -1,6 +1,7 @@
 package com.hyc.qdaily.view.adpter.holder
 
 import android.support.v7.widget.RecyclerView
+import android.support.v7.widget.StaggeredGridLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,13 +11,12 @@ import butterknife.BindView
 import butterknife.ButterKnife
 import com.facebook.drawee.view.SimpleDraweeView
 import com.hyc.qdaily.R
+import com.hyc.qdaily.anko.LabProviderUI
 import com.hyc.qdaily.beans.home.Feed
 import com.hyc.qdaily.beans.view.ViewData
 import com.hyc.qdaily.events.JumpPaperDetailEvent
 import com.hyc.qdaily.util.loadUrl
 import org.greenrobot.eventbus.EventBus
-import android.support.v7.widget.StaggeredGridLayoutManager
-
 
 
 /**
@@ -24,7 +24,7 @@ import android.support.v7.widget.StaggeredGridLayoutManager
  */
 class LabHeaderProvider : ItemViewProvider<LabHeaderProvider.LabHolder, ViewData<Feed>>() {
     override fun onCreateViewHolder(inflater: LayoutInflater, viewGroup: ViewGroup?): LabHolder {
-        var itemView=inflater.inflate(R.layout.item_lab, viewGroup, false)
+        var itemView = LabProviderUI().bind(viewGroup!!.context)
         val targetParams = itemView.layoutParams
         val StaggerLayoutParams: StaggeredGridLayoutManager.LayoutParams
         if (targetParams != null) {

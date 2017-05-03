@@ -5,20 +5,20 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import butterknife.BindView
-import butterknife.ButterKnife
 import com.facebook.drawee.view.SimpleDraweeView
 import com.hyc.qdaily.R
+import com.hyc.qdaily.anko.BookProviderUI
 import com.hyc.qdaily.beans.home.Feed
 import com.hyc.qdaily.beans.view.ViewData
 import com.hyc.qdaily.util.loadUrl
+import org.jetbrains.anko.find
 
 /**
  * Created by ray on 17/3/12.
  */
 class BookProvider : ItemViewProvider<BookProvider.BookHolder, ViewData<Feed>>() {
     override fun onCreateViewHolder(inflater: LayoutInflater, viewGroup: ViewGroup?): BookHolder {
-        return BookHolder(inflater.inflate(R.layout.item_book, viewGroup, false))
+        return BookHolder(BookProviderUI().bind(viewGroup!!.context))
     }
 
     override fun onBindViewHolder(holder: BookHolder, data: ViewData<Feed>, position: Int, wrapper: ParamWrapper) {
@@ -32,17 +32,10 @@ class BookProvider : ItemViewProvider<BookProvider.BookHolder, ViewData<Feed>>()
     }
 
     class BookHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        @BindView(R.id.sdv_img)
-        lateinit var sdvImg: SimpleDraweeView
-        @BindView(R.id.tv_title)
-        lateinit var tvTitle: TextView
-        @BindView(R.id.tv_praise_count)
-        lateinit var tvPraiseCount: TextView
-        @BindView(R.id.tv_comment_count)
-        lateinit var tvCommentCount: TextView
+        var sdvImg: SimpleDraweeView = itemView.find(R.id.sdv_img)
+        var tvTitle: TextView = itemView.find(R.id.tv_title)
+        var tvPraiseCount: TextView = itemView.find(R.id.tv_praise_count)
+        var tvCommentCount: TextView = itemView.find(R.id.tv_comment_count)
 
-        init {
-            ButterKnife.bind(this, itemView)
-        }
     }
 }

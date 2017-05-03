@@ -3,19 +3,17 @@ package com.hyc.qdaily.anko
 import android.content.Context
 import android.view.Gravity
 import android.view.View
-import android.view.ViewGroup
-import android.view.ViewManager
 import android.widget.LinearLayout
 import android.widget.RelativeLayout
 import com.hyc.qdaily.R
-import org.jetbrains.anko.*
 import com.hyc.qdaily.util.getResourceColor
+import org.jetbrains.anko.*
 
 
 /**
  * Created by hyc on 2017/4/25.
  */
-class TestLayout : ViewBinder<Context> {
+class TopicProviderUI : ViewBinder<Context> {
     override fun bind(mainActivity: Context): View = mainActivity.UI {
             relativeLayout {
                 lparams(width = dip(240), height = dip(140)) {

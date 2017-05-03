@@ -2,13 +2,17 @@ package com.hyc.qdaily.view.fragment
 
 import android.content.Context
 import android.content.Intent
+import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.OrientationHelper
 import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.RecyclerView.OnScrollListener
+import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import butterknife.BindView
 import com.hyc.qdaily.R
+import com.hyc.qdaily.anko.LabFragmentUI
 import com.hyc.qdaily.base.BaseFragment
 import com.hyc.qdaily.beans.view.ViewData
 import com.hyc.qdaily.contract.HomeContract
@@ -21,6 +25,7 @@ import com.hyc.qdaily.view.activity.ArticleActivity
 import com.hyc.qdaily.view.adpter.ViewAdapter
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
+import org.jetbrains.anko.find
 
 /**
  * Created by ray on 17/3/15.
@@ -46,6 +51,11 @@ class MainFragment : BaseFragment<HomePresenter>(), HomeContract.View {
         EventBus.getDefault().register(this)
     }
 
+    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        var view = LabFragmentUI().bind(context)
+        mRecyclerView = view.find(R.id.target)
+        return view
+    }
     override fun initPresenter() {
         mPresenter = HomePresenter(this)
         mPresenter!!.getRecommendData()

@@ -5,11 +5,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import butterknife.BindView
-import butterknife.ButterKnife
 import com.facebook.drawee.view.SimpleDraweeView
 import com.hyc.qdaily.R
-import com.hyc.qdaily.anko.TestLayout
+import com.hyc.qdaily.anko.TopicProviderUI
 import com.hyc.qdaily.beans.home.InsertContent
 import com.hyc.qdaily.beans.view.ViewData
 import com.hyc.qdaily.util.loadUrl
@@ -20,7 +18,7 @@ import org.jetbrains.anko.find
  */
 class TopicProvider : ItemViewProvider<TopicProvider.TopicHolder, ViewData<InsertContent>>() {
     override fun onCreateViewHolder(inflater: LayoutInflater, viewGroup: ViewGroup?): TopicHolder {
-        return TopicHolder(TestLayout().bind(viewGroup!!.context))
+        return TopicHolder(TopicProviderUI().bind(viewGroup!!.context))
     }
 
     override fun onBindViewHolder(holder: TopicHolder, data: ViewData<InsertContent>, position: Int, wrapper: ParamWrapper) {

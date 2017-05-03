@@ -9,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.hyc.qdaily.R
+import com.hyc.qdaily.anko.LabFragmentUI
 import com.hyc.qdaily.base.BaseFragment
 import com.hyc.qdaily.beans.view.ViewData
 import com.hyc.qdaily.contract.LabContract
@@ -22,6 +23,7 @@ import com.hyc.qdaily.view.activity.VoteActivity
 import com.hyc.qdaily.view.adpter.ViewAdapter
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
+import org.jetbrains.anko.find
 
 /**
  * Created by ray on 17/3/15.
@@ -32,8 +34,8 @@ class LabFragment : BaseFragment<LabPresenter>(), LabContract.View {
     private var mAdapter: ViewAdapter? = null
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        var view = inflater!!.inflate(R.layout.fragment_main, container, false)
-        mRecyclerView = view.findViewById(R.id.target) as RecyclerView
+        var view = LabFragmentUI().bind(context)
+        mRecyclerView = view.find(R.id.target)
         return view
     }
 
