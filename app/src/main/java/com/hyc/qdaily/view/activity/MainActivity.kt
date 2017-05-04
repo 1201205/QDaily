@@ -22,6 +22,7 @@ import com.hyc.qdaily.view.fragment.MainFragment
 
 
 class MainActivity : BaseActivity<VoidPresenter>() {
+    override fun generateView(): View = MainActivityUI().bind(this)
 
     lateinit var vpTarget: ViewPager
     lateinit var indicator: View
@@ -44,7 +45,6 @@ class MainActivity : BaseActivity<VoidPresenter>() {
     }
 
     override fun initView() {
-        setContentView(MainActivityUI().bind(this))
 
 //        vpTarget = find(R.id.vp_target)
 //        indicator = find(R.id.indicator)

@@ -57,6 +57,12 @@ inline fun TextView.drawableRight(id: Int) {
     setCompoundDrawables(null, null, right, null)
 }
 
+inline fun TextView.drawableTop(id: Int) {
+    var top = ResourcesCompat.getDrawable(context.resources, id, null)
+    top!!.setBounds(0, 0, top.minimumWidth, top.minimumHeight)
+    setCompoundDrawables(null, top, null, null)
+}
+
 inline fun TextView.bold() {
     typeface = Typeface.DEFAULT_BOLD
 }

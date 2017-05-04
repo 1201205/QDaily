@@ -36,7 +36,7 @@ class VerticalProviderUI : ViewBinder<View> {
                 rightMargin = dip(18)
                 topMargin = dip(5)
                 leftMargin = dip(18)
-                bottomMargin = dip(15)
+                bottomMargin = dip(5)
             }
             linearLayout {
                 textView {
@@ -64,6 +64,7 @@ class VerticalProviderUI : ViewBinder<View> {
                 }
                 leftPadding = dip(18)
                 rightPadding = dip(18)
+                bottomPadding = dip(18)
             }.lparams(width = wrapContent, height = wrapContent)
         }
     }.view
