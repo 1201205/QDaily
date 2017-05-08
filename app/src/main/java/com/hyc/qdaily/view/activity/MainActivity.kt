@@ -1,45 +1,37 @@
 package com.hyc.qdaily.view.activity
 
 import android.Manifest
-import android.annotation.TargetApi
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
 import android.support.design.widget.FloatingActionButton
+import android.support.v4.app.ActivityCompat
 import android.support.v4.view.ViewPager
 import android.view.View
 import android.view.ViewTreeObserver
 import android.widget.TextView
-import butterknife.BindView
 import butterknife.OnClick
 import com.hyc.qdaily.R
+import com.hyc.qdaily.anko.MainActivityUI
 import com.hyc.qdaily.base.BaseActivity
 import com.hyc.qdaily.presenter.VoidPresenter
 import com.hyc.qdaily.view.adpter.FragmentPagerAdapter
 import com.hyc.qdaily.view.fragment.LabFragment
 import com.hyc.qdaily.view.fragment.MainFragment
-import android.Manifest.permission
-import android.Manifest.permission.READ_PHONE_STATE
-import android.Manifest.permission.WRITE_EXTERNAL_STORAGE
-import android.content.pm.PackageManager
-import android.support.v4.app.ActivityCompat
 
 
 class MainActivity : BaseActivity<VoidPresenter>() {
+    override fun generateView(): View = MainActivityUI().bind(this)
 
-    @BindView(R.id.vp_target)
     lateinit var vpTarget: ViewPager
-    @BindView(R.id.indicator)
     lateinit var indicator: View
-    @BindView(R.id.tv_news)
     lateinit var tvNews: TextView
-    @BindView(R.id.tv_lab)
     lateinit var tvLab: TextView
-    @BindView(R.id.fab_main)
     lateinit var fabMain: FloatingActionButton
-    var preIndex: Int = 0
-    var mIndicatorY: IntArray = IntArray(2)
-    var mIndicatorScroll: Int = 0
+    private var preIndex: Int = 0
+    private var mIndicatorY: IntArray = IntArray(2)
+    private var mIndicatorScroll: Int = 0
     override fun isSupportSwipeBack(): Boolean {
         return false
     }
@@ -53,27 +45,34 @@ class MainActivity : BaseActivity<VoidPresenter>() {
     }
 
     override fun initView() {
-        checkSDPermission()
+
+//        vpTarget = find(R.id.vp_target)
+//        indicator = find(R.id.indicator)
+//        tvNews = find(R.id.tv_news)
+//        tvLab = find(R.id.tv_lab)
+//        fabMain = find(R.id.fab_main)
+//
+//        checkSDPermission()
         if (Build.VERSION.SDK_INT >= 23) {
             checkSDPermission()
         }
         indicator.viewTreeObserver
-            .addOnPreDrawListener(object : ViewTreeObserver.OnPreDrawListener {
-                override fun onPreDraw(): Boolean {
-                    indicator.viewTreeObserver.removeOnPreDrawListener(this)
-                    val width = indicator.width
-                    val textWidth = tvNews.width
-                    val location = IntArray(2)
-                    tvNews.getLocationInWindow(location)
-                    mIndicatorY[0] = location[0] - (width - textWidth) / 2
-                    tvLab.getLocationInWindow(location)
-                    mIndicatorY[1] = location[0] - (width - textWidth) / 2
-                    indicator.x = mIndicatorY[0].toFloat()
-                    mIndicatorScroll = mIndicatorY[1] - mIndicatorY[0]
-                    tvNews.isSelected = true
-                    return true
-                }
-            })
+                .addOnPreDrawListener(object : ViewTreeObserver.OnPreDrawListener {
+                    override fun onPreDraw(): Boolean {
+                        indicator.viewTreeObserver.removeOnPreDrawListener(this)
+                        val width = indicator.width
+                        val textWidth = tvNews.width
+                        val location = IntArray(2)
+                        tvNews.getLocationInWindow(location)
+                        mIndicatorY[0] = location[0] - (width - textWidth) / 2
+                        tvLab.getLocationInWindow(location)
+                        mIndicatorY[1] = location[0] - (width - textWidth) / 2
+                        indicator.x = mIndicatorY[0].toFloat()
+                        mIndicatorScroll = mIndicatorY[1] - mIndicatorY[0]
+                        tvNews.isSelected = true
+                        return true
+                    }
+                })
         var adapter = FragmentPagerAdapter(supportFragmentManager)
         adapter.add(MainFragment())
         adapter.add(LabFragment())

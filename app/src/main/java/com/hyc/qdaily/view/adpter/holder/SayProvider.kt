@@ -5,13 +5,13 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageButton
 import android.widget.RelativeLayout
 import android.widget.TextView
 import butterknife.BindView
 import butterknife.ButterKnife
 import com.facebook.drawee.view.SimpleDraweeView
 import com.hyc.qdaily.R
+import com.hyc.qdaily.anko.SayProviderUI
 import com.hyc.qdaily.beans.paper.Option
 import com.hyc.qdaily.beans.view.ViewData
 import com.hyc.qdaily.util.loadUrl
@@ -22,7 +22,7 @@ import com.hyc.skin.view.ExpandableTextView
  */
 class SayProvider : ItemViewProvider<SayProvider.SayHolder, ViewData<Option>>() {
     override fun onCreateViewHolder(inflater: LayoutInflater, viewGroup: ViewGroup?): SayHolder {
-        return SayHolder(inflater.inflate(R.layout.item_say, viewGroup, false))
+        return SayHolder(SayProviderUI().bind(viewGroup!!.context))
     }
 
     override fun onBindViewHolder(holder: SayHolder, data: ViewData<Option>, position: Int, wrapper: ParamWrapper) {

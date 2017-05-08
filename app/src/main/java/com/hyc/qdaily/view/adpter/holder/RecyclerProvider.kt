@@ -1,6 +1,5 @@
 package com.hyc.qdaily.view.adpter.holder
 
-import android.graphics.Rect
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.text.TextUtils
@@ -12,6 +11,7 @@ import butterknife.BindView
 import butterknife.ButterKnife
 import com.facebook.drawee.view.SimpleDraweeView
 import com.hyc.qdaily.R
+import com.hyc.qdaily.anko.RecyclerProviderUI
 import com.hyc.qdaily.beans.view.ColumnData
 import com.hyc.qdaily.beans.view.ViewData
 import com.hyc.qdaily.events.LoadMoreEventX
@@ -26,7 +26,7 @@ import org.greenrobot.eventbus.EventBus
  */
 class RecyclerProvider : ItemViewProvider<RecyclerProvider.RecyclerHolder, ViewData<ColumnData>>() {
     override fun onCreateViewHolder(inflater: LayoutInflater, viewGroup: ViewGroup?): RecyclerHolder {
-        return RecyclerHolder(inflater.inflate(R.layout.item_recycler, viewGroup, false))
+        return RecyclerHolder(RecyclerProviderUI().bind(viewGroup!!.context))
     }
 
     override fun onBindViewHolder(holder: RecyclerHolder, data: ViewData<ColumnData>, position: Int, wrapper: ParamWrapper) {

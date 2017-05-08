@@ -5,7 +5,7 @@ import android.support.v7.widget.StaggeredGridLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.hyc.qdaily.R
+import com.hyc.qdaily.anko.SayFooterProviderUI
 import com.hyc.qdaily.beans.view.ViewData
 
 /**
@@ -13,7 +13,7 @@ import com.hyc.qdaily.beans.view.ViewData
  */
 class SayFooterProvider : ItemViewProvider<SayFooterProvider.SayFooterHolder, ViewData<Void>>() {
     override fun onCreateViewHolder(inflater: LayoutInflater, viewGroup: ViewGroup?): SayFooterHolder {
-        var itemView = inflater.inflate(R.layout.item_say_footer, viewGroup, false)
+        var itemView = SayFooterProviderUI().bind(viewGroup!!.context)
         val targetParams = itemView.layoutParams
         val StaggerLayoutParams: StaggeredGridLayoutManager.LayoutParams
         if (targetParams != null) {

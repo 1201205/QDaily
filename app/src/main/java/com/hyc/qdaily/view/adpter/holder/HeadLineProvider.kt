@@ -8,6 +8,7 @@ import android.widget.TextView
 import butterknife.BindView
 import butterknife.ButterKnife
 import com.hyc.qdaily.R
+import com.hyc.qdaily.anko.HeadLineProviderUI
 import com.hyc.qdaily.beans.home.HeadLine
 import com.hyc.qdaily.beans.view.ViewData
 
@@ -32,7 +33,7 @@ class HeadLineProvider : ItemViewProvider<HeadLineProvider.HeadLineHolder, ViewD
     }
 
     override fun onCreateViewHolder(inflater: LayoutInflater, viewGroup: ViewGroup?): HeadLineHolder {
-        return HeadLineHolder(inflater.inflate(R.layout.item_head_line, viewGroup, false))
+        return HeadLineHolder(HeadLineProviderUI().bind(viewGroup!!.context))
     }
 
     class HeadLineHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {

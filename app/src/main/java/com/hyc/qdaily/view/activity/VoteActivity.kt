@@ -5,8 +5,10 @@ import android.content.Intent
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.text.TextUtils
+import android.view.View
 import butterknife.BindView
 import com.hyc.qdaily.R
+import com.hyc.qdaily.anko.SayActivityUI
 import com.hyc.qdaily.base.BaseActivity
 import com.hyc.qdaily.beans.view.ViewData
 import com.hyc.qdaily.contract.VoteContract
@@ -17,11 +19,10 @@ import com.hyc.qdaily.view.adpter.ViewAdapter
  * Created by ray on 17/3/28.
  */
 class VoteActivity : BaseActivity<VotePresenter>(), VoteContract.View {
+    override fun generateView(): View = SayActivityUI().bind(this)
     @BindView(R.id.rv_target)
     lateinit var rvTarget: RecyclerView
-
     private var mID: String? = null
-
     companion object {
         private val ID = "id"
         fun getIntent(context: Context, id: String): Intent {

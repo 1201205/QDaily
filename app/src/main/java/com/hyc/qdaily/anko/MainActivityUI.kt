@@ -73,7 +73,7 @@ class MainActivityUI : ViewBinder<MainActivity> {
             mainActivity.fabMain = include<FloatingActionButton>(R.layout.fab_main).lparams {
                 width = dip(90)
                 height = dip(90)
-                behavior = ScrollAwareFABBehavior(null,null)
+                behavior = ScrollAwareFABBehavior()
                 gravity = Gravity.BOTTOM or Gravity.LEFT
             }
         }

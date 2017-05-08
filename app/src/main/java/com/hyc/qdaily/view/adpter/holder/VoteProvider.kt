@@ -10,6 +10,7 @@ import butterknife.BindView
 import butterknife.ButterKnife
 import com.facebook.drawee.view.SimpleDraweeView
 import com.hyc.qdaily.R
+import com.hyc.qdaily.anko.VoteProviderUI
 import com.hyc.qdaily.beans.paper.Option
 import com.hyc.qdaily.beans.view.ViewData
 import com.hyc.qdaily.util.loadUrl
@@ -19,7 +20,7 @@ import com.hyc.qdaily.util.loadUrl
  */
 class VoteProvider : ItemViewProvider<VoteProvider.VoteHolder, ViewData<Option>>() {
     override fun onCreateViewHolder(inflater: LayoutInflater, viewGroup: ViewGroup?): VoteHolder {
-        return VoteHolder(inflater.inflate(R.layout.item_vote, viewGroup, false))
+        return VoteHolder(VoteProviderUI().bind(viewGroup!!.context))
     }
 
     override fun onBindViewHolder(holder: VoteHolder, data: ViewData<Option>, position: Int, wrapper: ParamWrapper) {

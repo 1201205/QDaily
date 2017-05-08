@@ -2,24 +2,28 @@ package com.hyc.qdaily.view.activity
 
 import android.content.Context
 import android.content.Intent
-import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.StaggeredGridLayoutManager
 import android.text.TextUtils
-import butterknife.BindView
+import android.view.View
 import com.hyc.qdaily.R
+import com.hyc.qdaily.anko.SayActivityUI
 import com.hyc.qdaily.base.BaseActivity
 import com.hyc.qdaily.beans.view.ViewData
 import com.hyc.qdaily.contract.SayContract
-import com.hyc.qdaily.contract.VoteContract
 import com.hyc.qdaily.presenter.SayPresenter
-import com.hyc.qdaily.presenter.VotePresenter
 import com.hyc.qdaily.view.adpter.ViewAdapter
+import org.jetbrains.anko.find
 
 /**
  * Created by hyc on 17/3/28.
  */
 class SayActivity : BaseActivity<SayPresenter>(), SayContract.View {
+    override fun generateView(): View {
+        var v = SayActivityUI().bind(this)
+        rvTarget = v.find(R.id.rv_target)
+        return v
+    }
     override fun showContent(data: ArrayList<ViewData<*>>) {
         mAdapter = ViewAdapter.Builder(this, data).build()
         rvTarget.adapter = mAdapter
@@ -36,7 +40,6 @@ class SayActivity : BaseActivity<SayPresenter>(), SayContract.View {
         hasMore=false
     }
 
-    @BindView(R.id.rv_target)
     lateinit var rvTarget: RecyclerView
     private var mID: String? = null
     private var mAdapter: ViewAdapter? = null
