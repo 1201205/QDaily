@@ -44,18 +44,18 @@ public class SkinResources {
 
     public int getColor(int resID) {
         int color = 0;
-        Log.e("hyc-test", "id---" + resID + "-----" + mPackageName + "++++" + (mResources == null));
+        //Log.e("hyc-test", "id---" + resID + "-----" + mPackageName + "++++" + (mResources == null));
         if (TextUtils.isEmpty(mPackageName) || mResources == null) {
             return ContextCompat.getColor(mContext, resID);
         }
         String resName = mContext.getResources().getResourceEntryName(resID);
-        Log.e("hyc-test", "id---" + resID + "-----" + resName);
+        //Log.e("hyc-test", "id---" + resID + "-----" + resName);
         int target = mResources.getIdentifier(resName, "color", mPackageName);
         color = mResources.getColor(target);
         if (color == 0) {
             return ContextCompat.getColor(mContext, resID);
         }
-        Log.e("hyc-test", "id---" + resID + "---resName--" + resName + "---color---" + color);
+        //Log.e("hyc-test", "id---" + resID + "---resName--" + resName + "---color---" + color);
         return color;
     }
 
@@ -69,7 +69,7 @@ public class SkinResources {
     }
 
     public Drawable getDrawable(int resID) {
-        Log.e("hyc-test-Drawable", "id---" + resID + "-----" + mPackageName + "++++" + (mResources == null));
+        //Log.e("hyc-test-Drawable", "id---" + resID + "-----" + mPackageName + "++++" + (mResources == null));
         if (TextUtils.isEmpty(mPackageName) || mResources == null) {
             return ContextCompat.getDrawable(mContext, resID);
         }

@@ -13,7 +13,6 @@ import android.view.View;
 import com.hyc.skin.R;
 import com.hyc.skin.core.SkinAttrs;
 import com.hyc.skin.core.SkinChangeable;
-import com.hyc.skin.core.SkinResources;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -30,7 +29,6 @@ public class SkinDateView extends View implements SkinChangeable {
     private int mTopFontColor;
     private int mBottomBgColor;
     private int mBottomFontColor;
-
     private int mRealBorder;
     private int mRealTop;
     private int mRealTopFont;
@@ -52,18 +50,13 @@ public class SkinDateView extends View implements SkinChangeable {
     private int mBottomLine;
     private float topTextSize;
     private float bottomTextSize;
-
-
+    private RectF mContent;
     public SkinDateView(Context context) {
         this(context, null);
     }
-
-
     public SkinDateView(Context context, AttributeSet attrs) {
         this(context, attrs, 0);
     }
-
-
     public SkinDateView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.SkinDateView);
@@ -81,6 +74,56 @@ public class SkinDateView extends View implements SkinChangeable {
         bottomTextSize=  dip2px(12,context);
         skinChanged();
 
+    }
+
+
+    public int getBorderColor() {
+        return mBorderColor;
+    }
+
+
+    public void setBorderColor(int mBorderColor) {
+        this.mBorderColor = mBorderColor;
+    }
+
+
+    public int getTopBgColor() {
+        return mTopBgColor;
+    }
+
+
+    public void setTopBgColor(int mTopBgColor) {
+        this.mTopBgColor = mTopBgColor;
+    }
+
+
+    public int getTopFontColor() {
+        return mTopFontColor;
+    }
+
+
+    public void setTopFontColor(int mTopFontColor) {
+        this.mTopFontColor = mTopFontColor;
+    }
+
+
+    public int getBottomBgColor() {
+        return mBottomBgColor;
+    }
+
+
+    public void setBottomBgColor(int mBottomBgColor) {
+        this.mBottomBgColor = mBottomBgColor;
+    }
+
+
+    public int getBottomFontColor() {
+        return mBottomFontColor;
+    }
+
+
+    public void setBottomFontColor(int mBottomFontColor) {
+        this.mBottomFontColor = mBottomFontColor;
     }
 
 
@@ -106,9 +149,6 @@ public class SkinDateView extends View implements SkinChangeable {
         day = String.valueOf(getDay(calendar));
         week = getWeek(calendar);
     }
-
-
-    private RectF mContent;
 
 
     @Override protected void onDraw(Canvas canvas) {
@@ -137,11 +177,11 @@ public class SkinDateView extends View implements SkinChangeable {
 
 
     @Override public void skinChanged() {
-        mRealBorder = SkinResources.getInstance().getColor(mBorderColor);
-        mRealBottom = SkinResources.getInstance().getColor(mBottomBgColor);
-        mRealBottomFont = SkinResources.getInstance().getColor(mBottomFontColor);
-        mRealTop = SkinResources.getInstance().getColor(mTopBgColor);
-        mRealTopFont = SkinResources.getInstance().getColor(mTopFontColor);
+        //mRealBorder = SkinResources.getInstance().getColor(mBorderColor);
+        //mRealBottom = SkinResources.getInstance().getColor(mBottomBgColor);
+        //mRealBottomFont = SkinResources.getInstance().getColor(mBottomFontColor);
+        //mRealTop = SkinResources.getInstance().getColor(mTopBgColor);
+        //mRealTopFont = SkinResources.getInstance().getColor(mTopFontColor);
         postInvalidate();
     }
 

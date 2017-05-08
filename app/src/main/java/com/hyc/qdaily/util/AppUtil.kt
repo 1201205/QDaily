@@ -2,14 +2,15 @@ package com.hyc.qdaily.util
 
 import android.app.Activity
 import android.content.Context
+import android.content.res.ColorStateList
 import android.graphics.Rect
+import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.os.Environment
 import android.util.DisplayMetrics
 import android.widget.Toast
 import com.hyc.qdaily.MainApplication
 import java.io.File
-import java.lang.reflect.Field
 
 /**
  * Created by Administrator on 2016/8/26.
@@ -104,6 +105,14 @@ fun showToast(id: Int) {
 
 fun getResourceColor(id: Int): Int {
     return MainApplication.instance.resources?.getColor(id)!!
+}
+
+fun getResourceDrawable(id: Int): Drawable {
+    return MainApplication.instance.resources.getDrawable(id)
+}
+
+fun getResourceColorList(id: Int):ColorStateList{
+    return MainApplication.instance.resources.getColorStateList(id)
 }
 
 fun getString(id: Int): String? {

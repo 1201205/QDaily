@@ -62,7 +62,7 @@ public class SkinManager {
                 if (resources!=null) {
                     for (SkinChangeListener listener:mSkinChangeListeners) {
                         listener.reloadSkin();
-                        Log.e("hyc-test","更换资源");
+                        //Log.e("hyc-test","更换资源");
                     }
                 }
             }
@@ -86,7 +86,7 @@ public class SkinManager {
                     SkinResources.getInstance().changeResources(resources,packageName);
                     return resources;
                 }catch (Exception e){
-                    Log.e("hyc-test","失败");
+                    //Log.e("hyc-test","失败");
                     return null;
                 }
             }
@@ -147,7 +147,7 @@ public class SkinManager {
         SkinResources.getInstance().closeExternalSkin();
         for (SkinChangeListener listener:mSkinChangeListeners) {
             listener.reloadSkin();
-            Log.e("hyc-test","更换资源");
+            //Log.e("hyc-test","更换资源");
         }
 
     }

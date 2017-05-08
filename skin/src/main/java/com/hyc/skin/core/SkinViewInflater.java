@@ -47,6 +47,7 @@ import android.util.Log;
 import android.view.InflateException;
 import android.view.View;
 
+import com.hyc.skin.view.MyRecyclerView;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -85,7 +86,7 @@ public class SkinViewInflater {
                                  @NonNull AttributeSet attrs, boolean inheritContext,
                                  boolean readAndroidTheme, boolean readAppTheme, boolean wrapContext) {
         final Context originalContext = context;
-        Log.e("hyc-test","createView2");
+        //Log.e("hyc-test","createView2");
         // We can emulate Lollipop's android:theme attribute propagating down the view hierarchy
         // by using the parent's context
         if (inheritContext && parent != null) {
@@ -100,6 +101,13 @@ public class SkinViewInflater {
         }
 
         View view = null;
+        if (name.equals("android.support.v7.widget.RecyclerView")) {
+            view=new MyRecyclerView(context,attrs);
+            if (view!=null) {
+                checkOnClickListener(view, attrs);
+            }
+            return view;
+        }
         if (name.startsWith("com.hyc.skin.widget")) {
             view = createViewFromTag(context, name, attrs);
             if (view!=null) {
@@ -222,7 +230,7 @@ public class SkinViewInflater {
     private View createView(Context context, String name, String prefix)
             throws ClassNotFoundException, InflateException {
         Constructor<? extends View> constructor = sConstructorMap.get(name);
-        Log.e("hyc-test-end",name);
+        //Log.e("hyc-test-end",name);
         try {
             if (constructor == null) {
                 // Class not found in the cache, see if it's real, and try to add it
