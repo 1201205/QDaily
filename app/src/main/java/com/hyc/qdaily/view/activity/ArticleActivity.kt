@@ -1,10 +1,8 @@
 package com.hyc.qdaily.view.activity
 
-import android.view.View
 import android.webkit.WebView
 import butterknife.BindView
 import com.hyc.qdaily.R
-import com.hyc.qdaily.anko.ArticleActivityUI
 import com.hyc.qdaily.base.BaseActivity
 import com.hyc.qdaily.contract.ArticleContract
 import com.hyc.qdaily.presenter.ArticlePresenter
@@ -14,10 +12,6 @@ import com.hyc.qdaily.view.ArticleWebClient
  * Created by hyc on 2017/3/24.
  */
 class ArticleActivity:BaseActivity<ArticlePresenter>(),ArticleContract.View{
-    override fun generateView(): View {
-        return ArticleActivityUI().bind(this)
-    }
-
     override fun showLoading() {
     }
 
@@ -36,7 +30,7 @@ class ArticleActivity:BaseActivity<ArticlePresenter>(),ArticleContract.View{
     @BindView(R.id.wb_article)
     lateinit var wbArticle:WebView
     lateinit var mUrl:String
-     var mID:Int=0
+    var mID: Int = 0
 
     override fun onNetError() {
     }

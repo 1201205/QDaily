@@ -5,22 +5,22 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import butterknife.BindView
+import butterknife.ButterKnife
 import com.facebook.drawee.view.SimpleDraweeView
 import com.hyc.qdaily.R
-import com.hyc.qdaily.anko.ClassifyProviderUI
 import com.hyc.qdaily.beans.other.LeftSideBar
 import com.hyc.qdaily.beans.view.ViewData
 import com.hyc.qdaily.events.JumpCategoryEvent
 import com.hyc.qdaily.util.loadUrl
 import org.greenrobot.eventbus.EventBus
-import org.jetbrains.anko.find
 
 /**
  * Created by hyc on 2017/3/27.
  */
 class ClassifyProvider : ItemViewProvider<ClassifyProvider.ClassifyHolder, ViewData<LeftSideBar>>() {
     override fun onCreateViewHolder(inflater: LayoutInflater, viewGroup: ViewGroup?): ClassifyHolder {
-        return ClassifyHolder(ClassifyProviderUI().bind(viewGroup!!.context))
+        return ClassifyHolder(inflater.inflate(R.layout.item_classify, viewGroup, false))
     }
 
     override fun onBindViewHolder(holder: ClassifyHolder, data: ViewData<LeftSideBar>, position: Int, wrapper: ParamWrapper) {
@@ -38,7 +38,13 @@ class ClassifyProvider : ItemViewProvider<ClassifyProvider.ClassifyHolder, ViewD
     }
 
     class ClassifyHolder(item: View) : RecyclerView.ViewHolder(item) {
-        var sdvIcon: SimpleDraweeView = item.find(R.id.sdv_icon)
-        var tvName: TextView = item.find(R.id.tv_name)
+        @BindView(R.id.sdv_icon)
+        lateinit var sdvIcon: SimpleDraweeView
+        @BindView(R.id.tv_name)
+        lateinit var tvName: TextView
+
+        init {
+            ButterKnife.bind(this, item)
+        }
     }
 }

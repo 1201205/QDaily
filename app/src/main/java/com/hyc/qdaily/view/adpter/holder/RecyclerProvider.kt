@@ -11,7 +11,6 @@ import butterknife.BindView
 import butterknife.ButterKnife
 import com.facebook.drawee.view.SimpleDraweeView
 import com.hyc.qdaily.R
-import com.hyc.qdaily.anko.RecyclerProviderUI
 import com.hyc.qdaily.beans.view.ColumnData
 import com.hyc.qdaily.beans.view.ViewData
 import com.hyc.qdaily.events.LoadMoreEventX
@@ -26,7 +25,7 @@ import org.greenrobot.eventbus.EventBus
  */
 class RecyclerProvider : ItemViewProvider<RecyclerProvider.RecyclerHolder, ViewData<ColumnData>>() {
     override fun onCreateViewHolder(inflater: LayoutInflater, viewGroup: ViewGroup?): RecyclerHolder {
-        return RecyclerHolder(RecyclerProviderUI().bind(viewGroup!!.context))
+        return RecyclerHolder(inflater.inflate(R.layout.item_recycler, viewGroup, false))
     }
 
     override fun onBindViewHolder(holder: RecyclerHolder, data: ViewData<ColumnData>, position: Int, wrapper: ParamWrapper) {
@@ -49,7 +48,7 @@ class RecyclerProvider : ItemViewProvider<RecyclerProvider.RecyclerHolder, ViewD
             rvLanguage.addOnScrollListener(object : RecyclerView.OnScrollListener() {
                 override fun onScrolled(recyclerView: RecyclerView?, dx: Int, dy: Int) {
                     if (!columnContent.requesting && !TextUtils.isEmpty(columnContent.lastIndex) && (rvLanguage.layoutManager as
-                        LinearLayoutManager).findLastVisibleItemPosition() >= rvLanguage.adapter.itemCount - 2) {
+                            LinearLayoutManager).findLastVisibleItemPosition() >= rvLanguage.adapter.itemCount - 2) {
                         EventBus.getDefault().post(LoadMoreEventX(columnContent.id!!))
                     }
                 }

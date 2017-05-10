@@ -18,7 +18,7 @@ public class ScrollAwareFABBehavior extends FloatingActionButton.Behavior {
     private CoordinatorLayout.LayoutParams lp;
 
 
-    public ScrollAwareFABBehavior() {
+    public ScrollAwareFABBehavior(Context context, AttributeSet attrs) {
         super();
     }
 

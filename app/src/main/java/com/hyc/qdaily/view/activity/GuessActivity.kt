@@ -10,7 +10,6 @@ import butterknife.BindView
 import butterknife.OnClick
 import com.facebook.drawee.view.SimpleDraweeView
 import com.hyc.qdaily.R
-import com.hyc.qdaily.anko.GuessActivityUI
 import com.hyc.qdaily.base.BaseActivity
 import com.hyc.qdaily.base.BaseAnimatorListener
 import com.hyc.qdaily.beans.paper.Question
@@ -22,10 +21,6 @@ import com.hyc.qdaily.util.loadUrl
  * Created by hyc on 2017/4/10.
  */
 class GuessActivity : BaseActivity<GuessPresenter>(), GuessContract.View {
-    override fun generateView(): View {
-        return GuessActivityUI().bind(this)
-    }
-
     @BindView(R.id.tv_name1)
     lateinit var tvName1: TextView
     @BindView(R.id.tv_name2)

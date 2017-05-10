@@ -4,12 +4,10 @@ import android.content.Context
 import android.content.Intent
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
-import android.view.View
 import android.widget.TextView
 import butterknife.BindView
 import butterknife.OnClick
 import com.hyc.qdaily.R
-import com.hyc.qdaily.anko.CategoryActivityUI
 import com.hyc.qdaily.base.BaseActivity
 import com.hyc.qdaily.beans.view.ViewData
 import com.hyc.qdaily.contract.CategoryContract
@@ -22,10 +20,6 @@ import com.hyc.qdaily.view.adpter.ViewAdapter
  * Created by hyc on 17/3/27.
  */
 class CategoryActivity : BaseActivity<CategoryPresernter>(), CategoryContract.View {
-    override fun generateView(): View {
-        return CategoryActivityUI().bind(this)
-    }
-
     @BindView(R.id.tv_title)
     lateinit var tvTitle: TextView
     @BindView(R.id.target)

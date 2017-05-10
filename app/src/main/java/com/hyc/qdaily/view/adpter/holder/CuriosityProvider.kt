@@ -5,20 +5,20 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import butterknife.BindView
+import butterknife.ButterKnife
 import com.facebook.drawee.view.SimpleDraweeView
 import com.hyc.qdaily.R
-import com.hyc.qdaily.anko.CuriosityProviderUI
 import com.hyc.qdaily.beans.home.Feed
 import com.hyc.qdaily.beans.view.ViewData
 import com.hyc.qdaily.util.loadUrl
-import org.jetbrains.anko.find
 
 /**
  * Created by ray on 17/3/12.
  */
 class CuriosityProvider : ItemViewProvider<CuriosityProvider.CuriosityHolder, ViewData<Feed>>() {
     override fun onCreateViewHolder(inflater: LayoutInflater, viewGroup: ViewGroup?): CuriosityHolder {
-        return CuriosityHolder(CuriosityProviderUI().bind(viewGroup!!.context))
+        return CuriosityHolder(inflater.inflate(R.layout.item_curiosity, viewGroup, false))
     }
 
     override fun onBindViewHolder(holder: CuriosityHolder, data: ViewData<Feed>, position: Int, wrapper: ParamWrapper) {
@@ -34,11 +34,21 @@ class CuriosityProvider : ItemViewProvider<CuriosityProvider.CuriosityHolder, Vi
     }
 
     class CuriosityHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        var sdvIcon: SimpleDraweeView = itemView.find(R.id.sdv_icon)
-        var sdvImg: SimpleDraweeView = itemView.find(R.id.sdv_img)
-        var tvName: TextView = itemView.find(R.id.tv_name)
-        var sdvLab: SimpleDraweeView = itemView.find(R.id.sdv_lab)
-        var tvDes: TextView = itemView.find(R.id.tv_des)
-        var tvTitle: TextView = itemView.find(R.id.tv_title)
+        @BindView(R.id.sdv_icon)
+        lateinit var sdvIcon: SimpleDraweeView
+        @BindView(R.id.sdv_img)
+        lateinit var sdvImg: SimpleDraweeView
+        @BindView(R.id.tv_name)
+        lateinit var tvName: TextView
+        @BindView(R.id.sdv_lab)
+        lateinit var sdvLab: SimpleDraweeView
+        @BindView(R.id.tv_des)
+        lateinit var tvDes: TextView
+        @BindView(R.id.tv_title)
+        lateinit var tvTitle: TextView
+
+        init {
+            ButterKnife.bind(this, itemView)
+        }
     }
 }

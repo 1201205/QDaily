@@ -14,7 +14,6 @@ import android.widget.LinearLayout
 import butterknife.BindView
 import butterknife.OnClick
 import com.hyc.qdaily.R
-import com.hyc.qdaily.anko.MenuActivityUI
 import com.hyc.qdaily.base.BaseActivity
 import com.hyc.qdaily.events.JumpCategoryEvent
 import com.hyc.qdaily.model.ClassifyModel
@@ -27,8 +26,6 @@ import org.greenrobot.eventbus.Subscribe
  * Created by ray on 17/3/22.
  */
 class MenuActivity : BaseActivity<VoidPresenter>() {
-    override fun generateView(): View = MenuActivityUI().bind(this)
-
     @BindView(R.id.ll_horizontal)
     lateinit var llHorizontal: LinearLayout
     @BindView(R.id.ll_vertical)

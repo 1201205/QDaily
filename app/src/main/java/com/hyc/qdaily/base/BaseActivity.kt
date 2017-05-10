@@ -1,7 +1,6 @@
 package com.hyc.qdaily.base
 
 import android.os.Bundle
-import android.view.View
 import butterknife.ButterKnife
 import com.hyc.qdaily.util.StatusBarUtil
 import com.hyc.skin.BaseActivity
@@ -14,19 +13,17 @@ abstract class BaseActivity<T : BasePresenter<*>> : BaseActivity(), BaseView {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(generateView())
-        initView()
-
+        setContentView(layoutID)
         ButterKnife.bind(this)
+
         if (intent != null) {
             handleIntent()
         }
         initPresenterAndData()
-            mPresenter?.attachView()
+        mPresenter?.attachView()
         StatusBarUtil.StatusBarLightMode(this)
+        initView()
     }
-
-    protected abstract fun generateView(): View
 
     protected abstract fun handleIntent()
 

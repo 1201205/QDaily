@@ -11,7 +11,6 @@ import butterknife.BindView
 import butterknife.ButterKnife
 import com.facebook.drawee.view.SimpleDraweeView
 import com.hyc.qdaily.R
-import com.hyc.qdaily.anko.LabProviderUI
 import com.hyc.qdaily.beans.home.Feed
 import com.hyc.qdaily.beans.view.ViewData
 import com.hyc.qdaily.events.JumpPaperDetailEvent
@@ -24,7 +23,7 @@ import org.greenrobot.eventbus.EventBus
  */
 class LabHeaderProvider : ItemViewProvider<LabHeaderProvider.LabHolder, ViewData<Feed>>() {
     override fun onCreateViewHolder(inflater: LayoutInflater, viewGroup: ViewGroup?): LabHolder {
-        var itemView = LabProviderUI().bind(viewGroup!!.context)
+        var itemView = inflater.inflate(R.layout.item_lab, viewGroup, false)
         val targetParams = itemView.layoutParams
         val StaggerLayoutParams: StaggeredGridLayoutManager.LayoutParams
         if (targetParams != null) {

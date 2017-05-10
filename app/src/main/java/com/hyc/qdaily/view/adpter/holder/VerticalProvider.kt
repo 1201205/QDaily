@@ -1,7 +1,6 @@
 package com.hyc.qdaily.view.adpter.holder
 
 import android.support.v7.widget.RecyclerView
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,7 +9,6 @@ import butterknife.BindView
 import butterknife.ButterKnife
 import com.facebook.drawee.view.SimpleDraweeView
 import com.hyc.qdaily.R
-import com.hyc.qdaily.anko.VerticalProviderUI
 import com.hyc.qdaily.beans.home.Feed
 import com.hyc.qdaily.beans.view.ViewData
 import com.hyc.qdaily.util.getTime
@@ -21,9 +19,7 @@ import com.hyc.qdaily.util.loadUrl
  */
 class VerticalProvider : ItemViewProvider<VerticalProvider.VerticalHolder, ViewData<Feed>>() {
     override fun onCreateViewHolder(inflater: LayoutInflater, viewGroup: ViewGroup?): VerticalHolder {
-
-        Log.e("hyc-width", "----" + viewGroup!!.width + "----" + viewGroup.measuredWidth);
-        return VerticalHolder(VerticalProviderUI().bind(viewGroup!!))
+        return VerticalHolder(inflater.inflate(R.layout.item_vertical, viewGroup, false))
     }
 
     override fun onBindViewHolder(holder: VerticalHolder, data: ViewData<Feed>, position: Int, wrapper: ParamWrapper) {

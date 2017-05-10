@@ -9,7 +9,6 @@ import butterknife.BindView
 import butterknife.ButterKnife
 import com.facebook.drawee.view.SimpleDraweeView
 import com.hyc.qdaily.R
-import com.hyc.qdaily.anko.LanguageProviderUI
 import com.hyc.qdaily.beans.home.Feed
 import com.hyc.qdaily.beans.view.ViewData
 import com.hyc.qdaily.util.getTime
@@ -20,7 +19,7 @@ import com.hyc.qdaily.util.loadUrl
  */
 class LanguageProvider : ItemViewProvider<LanguageProvider.LanguageHolder,ViewData<Feed>>() {
     override fun onCreateViewHolder(inflater: LayoutInflater, viewGroup: ViewGroup?): LanguageHolder {
-        return LanguageHolder(LanguageProviderUI().bind(viewGroup!!.context))
+        return LanguageHolder(inflater.inflate(R.layout.item_language, viewGroup, false))
     }
 
     override fun onBindViewHolder(holder: LanguageHolder, data: ViewData<Feed>, position: Int, wrapper: ParamWrapper) {

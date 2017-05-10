@@ -11,7 +11,6 @@ import butterknife.BindView
 import butterknife.ButterKnife
 import com.facebook.drawee.view.SimpleDraweeView
 import com.hyc.qdaily.R
-import com.hyc.qdaily.anko.SayProviderUI
 import com.hyc.qdaily.beans.paper.Option
 import com.hyc.qdaily.beans.view.ViewData
 import com.hyc.qdaily.util.loadUrl
@@ -22,7 +21,7 @@ import com.hyc.skin.view.ExpandableTextView
  */
 class SayProvider : ItemViewProvider<SayProvider.SayHolder, ViewData<Option>>() {
     override fun onCreateViewHolder(inflater: LayoutInflater, viewGroup: ViewGroup?): SayHolder {
-        return SayHolder(SayProviderUI().bind(viewGroup!!.context))
+        return SayHolder(inflater.inflate(R.layout.item_say, viewGroup, false))
     }
 
     override fun onBindViewHolder(holder: SayHolder, data: ViewData<Option>, position: Int, wrapper: ParamWrapper) {
