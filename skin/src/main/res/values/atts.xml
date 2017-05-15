@@ -10,4 +10,8 @@
     <declare-styleable name="ExpandableTextView">
         <attr name="animation_duration" format="integer"/>
     </declare-styleable>
+    <declare-styleable name="MyIndicatorView">
+        <attr name="border"
+            format="dimension"/>
+    </declare-styleable>
 </resources>
