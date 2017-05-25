@@ -3,4 +3,12 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+    <color name="tot_progress_bg">#E7E7E8</color>
+    <color name="tot_left_out">#FFEAA1</color>
+    <color name="tot_left_in">#EEEEEE</color>
+    <color name="tot_progress_out">#FFF6D5</color>
+    <color name="tot_progress_in">#FFC81C</color>
+    <color name="tot_progress">#DCDDDE</color>
+    <color name="tot_right_out">#EEEEEE</color>
+    <color name="tot_right_in">#FFC900</color>
 </resources>

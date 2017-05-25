@@ -12,7 +12,7 @@ import java.io.InputStream
  */
 class FileCacheLoader private constructor() {
     companion object {
-        val instance = FileCacheLoader()
+        val instance by lazy(mode = LazyThreadSafetyMode.SYNCHRONIZED) { FileCacheLoader() }
     }
 
     fun loadFormCache(url: String?): InputStream? {

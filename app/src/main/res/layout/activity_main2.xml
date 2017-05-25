@@ -75,7 +75,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
-
+    <com.hyc.skin.view.MyProgressBar
+        android:layout_marginLeft="30dp"
+        android:layout_width="300dp"
+        android:layout_height="60dp"/>
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab_main"
         android:layout_width="90dp"
