@@ -1,7 +1,6 @@
 package com.hyc.skin.view;
 
 import android.content.Context;
-import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
@@ -10,10 +9,7 @@ import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.RectF;
 import android.support.annotation.Nullable;
-import android.support.v4.content.res.ResourcesCompat;
 import android.util.AttributeSet;
-import android.util.EventLog;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import com.hyc.skin.R;
@@ -92,6 +88,9 @@ public class MyProgressBar extends View {
         mMain = new RectF(0, mMainHeight, mWidth, mMainHeight * 2);
         mContent = new RectF(mLeftCenter, mHeight * 5 / 12, mRightCenter, mHeight * 7 / 12);
     }
+    public float getProgress(){
+        return mProgress;
+    }
 
 
     private void compressBitmap() {
@@ -116,6 +115,12 @@ public class MyProgressBar extends View {
     //     Log.e("hyc-dispatchTouchEvent",event.getAction()+"----"+event.getX());
     //     return super.dispatchTouchEvent(event);
     // }
+
+
+    @Override protected void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        mBitmap=null;
+    }
 
 
     @Override public boolean onTouchEvent(MotionEvent event) {

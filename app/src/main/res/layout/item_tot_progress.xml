@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="250dp"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="20dp"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="18dp"
+        android:layout_marginRight="18dp"
+        android:background="@color/main_bg">
+
+        <com.hyc.skin.view.MyProgressBar
+            android:id="@+id/mpb_tot"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginLeft="5dp"/>
+
+        <TextView
+            android:id="@+id/tv_left"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:text="111"
+            android:layout_below="@id/mpb_tot"/>
+
+        <TextView
+            android:id="@+id/tv_right"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="15dp"
+            android:text="111"
+            android:layout_below="@id/mpb_tot"/>
+        <TextView
+            android:gravity="center"
+            android:background="@drawable/bg_lab_tots_seek_left"
+            android:id="@+id/tv_left_des"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:text="111222222222222"
+            android:layout_below="@id/tv_left"/>
+        <TextView
+            android:gravity="center"
+            android:background="@drawable/bg_lab_tots_seek_right"
+            android:id="@+id/tv_right_des"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="15dp"
+            android:text="111222222222222"
+            android:layout_below="@id/tv_right"/>
+    </RelativeLayout>
+</LinearLayout>

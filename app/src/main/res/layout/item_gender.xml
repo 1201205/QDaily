@@ -1,17 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="180dp"
+    android:layout_height="200dp"
     android:orientation="vertical">
-    <com.hyc.skin.view.MyProgressBar
-        android:layout_width="400dp"
-        android:layout_height="80dp"/>
     <TextView
         android:id="@+id/tv_title"
         android:padding="20dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
     <RelativeLayout
+        android:layout_marginLeft="18dp"
+        android:layout_marginRight="18dp"
         android:background="@color/main_bg"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -21,18 +20,29 @@
             android:layout_width="1dp"
             android:layout_height="1dp"/>
         <TextView
-            android:id="@+id/tv_right"
-            android:layout_marginRight="40dp"
+            android:gravity="center"
+            android:text="1"
+            android:maxLines="1"
+            android:layout_centerVertical="true"
+            android:background="@drawable/icon_gender_unselected"
+            android:id="@+id/tv_left"
+            android:layout_marginRight="50dp"
             android:layout_toLeftOf="@id/center"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
         <TextView
-            android:id="@+id/tv_left"
-            android:layout_marginLeft="40dp"
+            android:gravity="center"
+            android:text="1"
+            android:maxLines="1"
+            android:layout_centerVertical="true"
+            android:background="@drawable/icon_gender_unselected"
+            android:id="@+id/tv_right"
+            android:layout_marginLeft="50dp"
             android:layout_toRightOf="@id/center"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
         <ImageView
+            android:src="@drawable/icon_gender_select"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
     </RelativeLayout>
